@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+//Styles:
+
 const StyledBackdrop = styled.div`
     text-align: center;
     padding: 30px 30px;
     background-color: lightcyan;
 `
+
+//Render:
 
 const Mainbackdrop = () => {
     return (
