@@ -1,8 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledNavbar = styled.div`
+    background-color: salmon;
+
+`
 
 const Navbar = () => {
     return (
-        <div>This is where the navbar should be</div>
+        <StyledNavbar>
+            <a href='#'>Logo/Home</a>
+        </StyledNavbar>
     )
 }
 
