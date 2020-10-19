@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
         required: [true, 'Please enter an email address for your new account!'],
         unique: [true, 'Sorry! Someone else has already registered under this email address!'],
         validate: {
-            validator: validator.isEmail(),
+            validator: validator.isEmail,
             message: 'Please input a valid email address'
         }
     },
@@ -36,12 +36,15 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please confirm your password!'],
         validate: {
-            validator: function() {
-                this.passwordConfirm === this.password
+            validator: function(passwordConfirmValue) {
+                return passwordConfirmValue === this.password
             },
             message: 'Your passwords do not match!'
         }
     }
 })
 
-module.exports = mongoose.model('userModel', userSchema);
+//Creating Model:
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
