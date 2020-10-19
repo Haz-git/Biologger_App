@@ -1,13 +1,12 @@
 const dotenv = require('dotenv');
-const express = require('express');
-const app = express();
 
 //Using dotenv for env variables:
 dotenv.config({
     path: `${__dirname}/config.env`
 });
-//Use Json middleware:
-app.use(express.json());
+
+//Grabbing Express Application: 
+const app = require('./app.js');
 
 //Server Start:
 app.listen(process.env.PORT, () => {
