@@ -14,10 +14,32 @@ const MainContainer = styled.div`
 
 //Render:
 const LoginForm = ({ handleSubmit, userLogin }) => {
+
+    const dispatchFormValues = formValues => {
+        userLogin(formValues);
+    }
+
+
     return (
         <>
             <MainContainer>
-                <h1>Test</h1>
+                <h1>Please enter the details below:</h1>
+                <div>
+                    <form onSubmit={handleSubmit(dispatchFormValues)}>
+                        <div>
+                            <label>Email Address</label>
+                            <Field name='email' component='input'></Field>
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <Field name='password' component='input'></Field>
+                        </div>
+                        <div>
+                            <button type='submit'>Submit</button>
+                            <button type='reset'>Reset</button>
+                        </div>
+                    </form>
+                </div>
             </MainContainer>
         </>
     )
