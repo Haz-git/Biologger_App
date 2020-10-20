@@ -11,7 +11,7 @@ import LoginForm from '../components/loginPage/LoginForm';
 
 const App = () => {
     return (
-        <div>
+        <>
             <Router history={history}>
                 <Navbar />
                 <Switch>
@@ -20,7 +20,7 @@ const App = () => {
                     <Route exact path='/login' component={LoginForm} />
                 </Switch>
             </Router>
-        </div>
+        </>
     )
 }
 
