@@ -69,6 +69,7 @@ exports.login = handleAsync(async (req, res, next) => {
     //3. Use instance method to hash inputted password and compare with stored password to see if correct:
     //4. If match, send Token to client.
 
+    //Instance methods only availiable to documents.
     if (user.comparePasswords(password, user.password) === false) {
         return next(new throwAppError('Sorry! Your email or password does not match!', 401))
     }
