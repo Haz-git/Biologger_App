@@ -67,15 +67,17 @@ exports.login = handleAsync(async (req, res, next) => {
     const user = await User.findOne({ email }).select('+password');
 
     //3. Use instance method to hash inputted password and compare with stored password to see if correct:
-    
-
     //4. If match, send Token to client.
 
-    if (inputPassword === user.password) {
-        
+    if (user.comparePasswords(password, user.password) === false) {
+        return next(new throwAppError('Sorry! Your email or password does not match!', 401))
     }
 
+    const token = signToken(user._id);
+
     res.status(200).json({
-        Message: "This should log you back in",
+        status: 'Success',
+        message: 'You are logged in.',
+        token,
     })
 });
