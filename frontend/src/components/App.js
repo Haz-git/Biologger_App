@@ -1,6 +1,6 @@
 //Dependencies
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Router, Route } from 'react-router-dom';
 
 //Components
 import Navbar from './landingPage/Navbar';
@@ -8,17 +8,20 @@ import MainBackdrop from './landingPage/MainBackdrop';
 import MainBodyblock from './landingPage/MainBodyblock';
 import Footer from './landingPage/Footer';
 import signupForm from './signupPage/signupForm';
+import history from '../historyObject';
 
 const App = () => {
     return (
         <div>
-            <BrowserRouter>
+            <Router history={history}>
                 <Navbar />
-                <Route exact path='/signup' component={signupForm} />
-                <MainBackdrop />
-                <MainBodyblock />
-                <Footer />
-            </BrowserRouter>
+                <Switch>
+                    <Route exact path='/signup' component={signupForm} />
+                    <MainBackdrop />
+                    <MainBodyblock />
+                    <Footer />
+                </Switch>
+            </Router>
         </div>
     )
 }

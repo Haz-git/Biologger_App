@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 //Styling:
 
@@ -14,7 +15,7 @@ const CenterNavbar = styled.div`
     justify-content: space-around;
 
 `
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
     text-decoration: none;
     padding: 20px 20px;
     &:hover {
@@ -27,12 +28,12 @@ const StyledLink = styled.a`
 const Navbar = () => {
     return (
         <StyledNavbar>
-            <StyledLink href='#'>Logo/Home</StyledLink>
+            <StyledLink to='#'>Logo/Home</StyledLink>
             <CenterNavbar>
-                <StyledLink href='#'>About Biologger</StyledLink>
-                <StyledLink href='#'>Support and Services</StyledLink>
+                <StyledLink to='#'>About Biologger</StyledLink>
+                <StyledLink to='#'>Support and Services</StyledLink>
             </CenterNavbar>
-            <StyledLink href='#'>Login</StyledLink>
+            <StyledLink to='/signup'>Login Or Sign up</StyledLink>
         </StyledNavbar>
     )
 }
