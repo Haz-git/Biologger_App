@@ -10,7 +10,7 @@ const signToken = id => {
 
 exports.signup = handleAsync(async(req, res, next) => {
 
-    //Extracting Request Data:
+    //Extracting Request User Data:
     const {
         firstName,
         lastName,

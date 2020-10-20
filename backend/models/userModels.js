@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const userSchema = mongoose.Schema({
     firstName: {
@@ -31,6 +32,7 @@ const userSchema = mongoose.Schema({
         required: [true, 'Please enter a password!'],
         minlength: [6, 'Please enter a password greater than 6 characters!'],
         maxlength: [20, 'Passwords cannot be over 20 characters'],
+        select: false,
     },
     passwordConfirm: {
         type: String,
@@ -42,6 +44,15 @@ const userSchema = mongoose.Schema({
             message: 'Your passwords do not match!'
         }
     }
+})
+
+//Create a pre-save Hook to hash password before save:
+userSchema.pre('save', async function(next) {
+    //hash the password on save:
+    this.password = await bcrypt.hash(this.password, 12);
+    //Set passwordConfirm to undefined:
+    this.passwordConfirm = undefined;
+    next();
 })
 
 //Creating Model:
