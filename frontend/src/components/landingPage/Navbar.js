@@ -6,15 +6,9 @@ import { Link } from 'react-router-dom';
 
 const StyledNavbar = styled.div`
     display: flex;
-    justify-content: space-between;
     background-color: salmon;
 `
 
-const CenterNavbar = styled.div`
-    display: flex;
-    justify-content: space-around;
-
-`
 const StyledLink = styled(Link)`
     text-decoration: none;
     padding: 20px 20px;
@@ -28,12 +22,9 @@ const StyledLink = styled(Link)`
 const Navbar = () => {
     return (
         <StyledNavbar>
-            <StyledLink to='#'>Logo/Home</StyledLink>
-            <CenterNavbar>
-                <StyledLink to='#'>About Biologger</StyledLink>
-                <StyledLink to='#'>Support and Services</StyledLink>
-            </CenterNavbar>
-            <StyledLink to='/signup'>Login Or Sign up</StyledLink>
+            <StyledLink to='/'>Logo/Home</StyledLink>
+            <StyledLink to='/signup'>Sign up</StyledLink>
+            <StyledLink to='/login'>Login</StyledLink>
         </StyledNavbar>
     )
 }
