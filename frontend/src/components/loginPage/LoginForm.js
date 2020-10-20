@@ -1,11 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import userLogin from '../../redux/userLogin/userLoginActions';
 
-const LoginForm = () => {
+//Styles:
+const MainContainer = styled.div`
+    text-align: center;
+    padding: 10px 10px;
+    background-color: lightblue;
+`
+
+
+//Render:
+const LoginForm = ({ handleSubmit, userLogin }) => {
     return (
         <>
-            <h1>This should be the login form.</h1>
+            <MainContainer>
+                <h1>Test</h1>
+            </MainContainer>
         </>
     )
 }
 
-export default LoginForm;
+//Connections:
+
+const reduxLoginForm = connect(null, { userLogin })(LoginForm);
+
+export default reduxForm({
+    form: 'loginForm'
+})(reduxLoginForm);
