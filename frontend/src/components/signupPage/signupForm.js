@@ -19,20 +19,54 @@ const FormContainer = styled.div`
 
 
 //Render:
-const SignUpForm = () => {
+const SignUpForm = ({ handleSubmit, userSignUp }) => {
+
+    const dispatchFormValues = formValues => {
+        console.log(formValues);
+        userSignUp(formValues);
+    }
+
     return (
         <>
             <MainContainer>
                 <h1>Thank you for signing up!</h1>
                 <h2>Please fill in the provided fields below:</h2>
-                <FormContainer>
+                <form onSubmit={handleSubmit(dispatchFormValues)}>
+                    <FormContainer>
+                            <div>
+                                <div>
+                                    <label>First Name</label>
+                                    <Field name='firstName' component='input'></Field>
+                                </div>
+                                <div>
+                                    <label>Last Name</label>
+                                    <Field name='lastName' component='input'></Field>
+                                </div>
+                                <div>
+                                    <label>Username</label>
+                                    <Field name='userName' component='input'></Field>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label>Email Address</label>
+                                    <Field name='email' component='input'></Field>
+                                </div>
+                                <div>
+                                    <label>Password</label>
+                                    <Field name='password' component='input'></Field>
+                                </div>
+                                <div>
+                                    <label>Confirm Password</label>
+                                    <Field name='passwordConfirm' component='input'></Field>
+                                </div>
+                            </div>
+                    </FormContainer>
                     <div>
-                        <div>
-                            <label>First Name</label>
-                            <Field name='firstName' component='input'></Field>
-                        </div>
+                        <button type='submit'>Submit</button>
+                        <button type='reset'>Reset</button>
                     </div>
-                </FormContainer>
+                </form>
             </MainContainer>
         </>
     )
