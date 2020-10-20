@@ -4,9 +4,7 @@ import { Switch, Router, Route } from 'react-router-dom';
 
 //Components
 import Navbar from './landingPage/Navbar';
-import MainBackdrop from './landingPage/MainBackdrop';
-import MainBodyblock from './landingPage/MainBodyblock';
-import Footer from './landingPage/Footer';
+import MainLandingPage from './landingPage/MainLandingPage';
 import signupForm from './signupPage/signupForm';
 import history from '../historyObject';
 
@@ -16,10 +14,8 @@ const App = () => {
             <Router history={history}>
                 <Navbar />
                 <Switch>
+                    <Route exact path='/' component={MainLandingPage} />
                     <Route exact path='/signup' component={signupForm} />
-                    <MainBackdrop />
-                    <MainBodyblock />
-                    <Footer />
                 </Switch>
             </Router>
         </div>
