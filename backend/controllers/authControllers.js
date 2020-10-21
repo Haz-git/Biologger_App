@@ -105,11 +105,14 @@ exports.login = handleAsync(async (req, res, next) => {
         return next(new throwAppError('Sorry! Your email or password does not match!', 401))
     }
 
-    const token = signToken(user._id);
+    // const token = signToken(user._id);
 
-    res.status(200).json({
-        status: 'Success',
-        message: 'You are logged in.',
-        token,
-    })
+
+    // res.status(200).json({
+    //     status: 'Success',
+    //     message: 'You are logged in.',
+    //     token,
+    // })
+
+    createSendToken(user, 200, res, 'Currently: Logged In', true);
 });
