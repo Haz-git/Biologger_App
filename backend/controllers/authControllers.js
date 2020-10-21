@@ -15,8 +15,8 @@ const signToken = id => {
 }
 
 //Function to send token via cookie:
-const createSendToken = (user, statusCode, res) => {
-    const token = signtoken(user._id);
+const createSendToken = (user, statusCode, res, message, completed) => {
+    const token = signToken(user._id);
     const cookieOptions = {
         expires: new Date(
             Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -30,9 +30,14 @@ const createSendToken = (user, statusCode, res) => {
 
     res.cookie('jwt', token, cookieOptions);
 
+    //Remove password from res.body:
+    user.password = undefined;
+
     res.status(statusCode).json({
         status: 'Success',
         token,
+        message,
+        completed,
         data: {
             user
         }
@@ -63,17 +68,18 @@ exports.signup = handleAsync(async(req, res, next) => {
         passwordConfirm,
     });
 
-    const token = signToken(newUser._id);
+    createSendToken(newUser, 201, res, 'New User Created.', true);
 
-    res.status(200).json({
-        status: 'Success',
-        token,
-        message: 'This User has been added to the DB',
-        completed: true,
-        data: {
-            user: newUser
-        }
-    });
+
+    // res.status(200).json({
+    //     status: 'Success',
+    //     token,
+    //     message: 'This User has been added to the DB',
+    //     completed: true,
+    //     data: {
+    //         user: newUser
+    //     }
+    // });
 });
 
 //Login Controller:
