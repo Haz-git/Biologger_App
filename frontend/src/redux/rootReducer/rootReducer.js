@@ -1,6 +1,7 @@
 import { USER_SIGN_UP } from '../userSignUp/userSignUpTypes';
 import { USER_LOG_IN } from '../userLogin/userLoginTypes';
 
+
 const initialState = {};
 
 export default (state = initialState, action) => {
