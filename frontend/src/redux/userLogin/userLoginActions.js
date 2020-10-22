@@ -5,7 +5,6 @@ import api from '../../api';
 const userLogin = formValues => async dispatch => {
     //Send a POST request to api:
     const response = await api.post('/users/login', {...formValues});
-
     //Dispatch response object to reducers:
     dispatch({
         type: USER_LOG_IN,
