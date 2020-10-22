@@ -1,4 +1,5 @@
 const express = require('express');
+const { route } = require('../app');
 const router = express.Router();
 
 //Controllers:
@@ -12,6 +13,14 @@ router
 router
     .route('/login')
     .post(authController.login);
+
+// router
+//     .route('/session')
+//     .post
+
+router
+    .route('/logout')
+    .get(authController.logout);
 
 //User Routers:
     

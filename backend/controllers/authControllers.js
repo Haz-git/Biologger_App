@@ -116,3 +116,13 @@ exports.login = handleAsync(async (req, res, next) => {
 
     createSendToken(user, 200, res, 'Currently: Logged In', true);
 });
+
+//Logout Controller:
+
+exports.logout = handleAsync(async (req, res, next) => {
+    res.clearCookie('jwt').send();
+    res.status(200).json({
+        status: 'Success',
+        message: 'User has been successfully logged out',
+    })
+});
