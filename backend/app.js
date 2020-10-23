@@ -62,6 +62,6 @@ app.use(function(req, res, next) {
 
 
 //Attaching Main Routes:
-app.use('/api/users/', userRouter);
+app.use('/api/users', userRouter);
 
 module.exports = app;
