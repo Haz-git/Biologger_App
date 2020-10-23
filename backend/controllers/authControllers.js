@@ -68,18 +68,19 @@ exports.signup = handleAsync(async(req, res, next) => {
         passwordConfirm,
     });
 
-    createSendToken(newUser, 201, res, 'New User Created.', true);
+    // createSendToken(newUser, 201, res, 'New User Created.', true);
+    
+    const token = signToken(newUser._id);
 
-
-    // res.status(200).json({
-    //     status: 'Success',
-    //     token,
-    //     message: 'This User has been added to the DB',
-    //     completed: true,
-    //     data: {
-    //         user: newUser
-    //     }
-    // });
+    res.status(200).json({
+        status: 'Success',
+        token,
+        message: 'This User has been added to the DB',
+        completed: true,
+        data: {
+            user: newUser
+        }
+    });
 });
 
 //Login Controller:
@@ -105,16 +106,16 @@ exports.login = handleAsync(async (req, res, next) => {
         return next(new throwAppError('Sorry! Your email or password does not match!', 401))
     }
 
-    // const token = signToken(user._id);
+    const token = signToken(user._id);
 
 
-    // res.status(200).json({
-    //     status: 'Success',
-    //     message: 'You are logged in.',
-    //     token,
-    // })
+    res.status(200).json({
+        status: 'Success',
+        message: 'You are logged in.',
+        token,
+    })
 
-    createSendToken(user, 200, res, 'Currently: Logged In', true);
+    // createSendToken(user, 200, res, 'Currently: Logged In', true);
 });
 
 //Logout Controller:
