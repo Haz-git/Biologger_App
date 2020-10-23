@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getJWT } from '../../utils/jwthelper';
 import history from '../../historyObject';
-import api from '../../api';
+// import api from '../../api';
 
 class AuthenticatedComponents extends Component {
 
@@ -19,14 +19,28 @@ class AuthenticatedComponents extends Component {
         if(!jwt) {
             history.push('/login');
         }
-
+        //Implement route in server for using JWT to get user, store something temporarily for now:
+        this.setState({
+            user: 'temp'
+        });
 
     }
 
 
     render() {
+
+        if (this.state.user === undefined) {
+            return (
+                <div><h1>The route you are accessing is protected. Please log in.</h1></div>
+            );
+        }
+
         return (
-            <div>Hello World</div>
+            <>
+                {this.props.children}
+            </>
         )
     }
 }
+
+export default AuthenticatedComponents;

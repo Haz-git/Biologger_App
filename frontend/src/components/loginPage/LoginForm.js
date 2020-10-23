@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import userLogin from '../../redux/userLogin/userLoginActions';
-import { render } from '@testing-library/react';
 
 //Styles:
 const MainContainer = styled.div`

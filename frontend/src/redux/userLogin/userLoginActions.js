@@ -8,13 +8,12 @@ const userLogin = formValues => async dispatch => {
 
     //Store JWT in response into localstorage:
     localStorage.setItem('jwt', response.data.token);
+
     //Dispatch response object to reducers:
     dispatch({
         type: USER_LOG_IN,
         payload: response.data,
     })
-
-    history.push('/');
 
 }
 
