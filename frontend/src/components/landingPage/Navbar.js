@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 //Styling:
 
@@ -21,12 +22,43 @@ const StyledLink = styled(Link)`
 //Component Structure:
 
 const Navbar = () => {
+
+    const getCookie = () => {
+        console.log(Cookies.get());
+        const cookie = Cookies.get('jwt');
+        if (cookie) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const renderNavOnCookie = () => {
+        const flag = getCookie();
+        if (flag === true) {
+            return (
+                <StyledLink to='/logout'>Log Out</StyledLink>
+            )
+        } else if (flag === false) {
+            return (
+                <>
+                    <StyledLink to='/signup'>Sign up</StyledLink>
+                    <StyledLink to='/login'>Login</StyledLink>
+                </>
+            )
+        }
+    }
+
+    //Original Component Render:
+    // <StyledLink to='/'>Logo/Home</StyledLink>
+    // <StyledLink to='/signup'>Sign up</StyledLink>
+    // <StyledLink to='/login'>Login</StyledLink>
+    
     return (
         <>
             <StyledNavbar>
                 <StyledLink to='/'>Logo/Home</StyledLink>
-                <StyledLink to='/signup'>Sign up</StyledLink>
-                <StyledLink to='/login'>Login</StyledLink>
+                {renderNavOnCookie()}
             </StyledNavbar>
         </>
     )
