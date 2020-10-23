@@ -125,3 +125,13 @@ exports.logout = handleAsync(async (req, res) => {
         message: 'User has been successfully logged out',
     })
 });
+
+//Cookie-Reader Controller:
+
+exports.readCookie = handleAsync(async (req, res) => {
+    console.log(req.signedCookies);
+    res.status(200).json({
+        status: 'Success',
+        message: 'Your cookies are read'
+    })
+})
