@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { getJWT } from '../../utils/jwthelper';
 import { logouthelper } from '../../utils/logouthelper';
 import { connect } from 'react-redux';
 
@@ -26,12 +25,6 @@ const StyledLink = styled(Link)`
 const Navbar = ({ jwt }) => {
 
     const [JWT, setJWT] = useState(undefined);
-
-    // const grabJWT = () => {
-    //     const jwt = getJWT();
-    //     setJWT(jwt);
-    //     return jwt ? true : false;
-    // }
 
     useEffect(() => {
         setJWT(jwt);
