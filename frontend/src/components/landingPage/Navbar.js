@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { getJWT } from '../../utils/jwthelper';
 
 //Styling:
 
@@ -23,10 +23,10 @@ const StyledLink = styled(Link)`
 
 const Navbar = () => {
 
-    const getCookie = () => {
-        console.log(Cookies.get());
-        const cookie = Cookies.get('jwt');
-        if (cookie) {
+    const grabJWT = () => {
+        const jwt = getJWT();
+
+        if (jwt) {
             return true;
         } else {
             return false;
@@ -34,10 +34,12 @@ const Navbar = () => {
     }
 
     const renderNavOnCookie = () => {
-        const flag = getCookie();
+        const flag = grabJWT();
         if (flag === true) {
             return (
-                <StyledLink to='/logout'>Log Out</StyledLink>
+                <>
+                    <StyledLink to='/logout'>Log Out</StyledLink>
+                </>
             )
         } else if (flag === false) {
             return (
