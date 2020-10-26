@@ -69,12 +69,12 @@ exports.signup = handleAsync(async(req, res, next) => {
     });
 
     // createSendToken(newUser, 201, res, 'New User Created.', true);
-    
-    const token = signToken(newUser._id);
+    // Stop giving user token on sign up...
+    // const token = signToken(newUser._id);
 
     res.status(200).json({
         status: 'Success',
-        token,
+        // token,
         message: 'This User has been added to the DB',
         completed: true,
         data: {
