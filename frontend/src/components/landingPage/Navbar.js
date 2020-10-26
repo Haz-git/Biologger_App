@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getJWT } from '../../utils/jwthelper';
+import { logouthelper } from '../../utils/logouthelper';
 
 //Styling:
 
@@ -38,7 +39,7 @@ const Navbar = () => {
         if (flag === true) {
             return (
                 <>
-                    <StyledLink to='/logout'>Log Out</StyledLink>
+                    <button onClick={() => logouthelper()}>Log out</button>
                 </>
             )
         } else if (flag === false) {

@@ -15,6 +15,8 @@ const userLogin = formValues => async dispatch => {
         payload: response.data,
     })
 
+    history.push('/MainDashboard');
+
 }
 
 export default userLogin;

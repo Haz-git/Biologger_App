@@ -22,7 +22,6 @@ const FormContainer = styled.div`
 const SignUpForm = ({ handleSubmit, userSignUp }) => {
 
     const dispatchFormValues = formValues => {
-        console.log(formValues);
         userSignUp(formValues);
     }
 

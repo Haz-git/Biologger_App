@@ -8,7 +8,7 @@ import MainLandingPage from './landingPage/MainLandingPage';
 import SignUpForm from './signupPage/SignUpForm';
 import history from '../historyObject';
 import LoginForm from '../components/loginPage/LoginForm';
-import Dashboard from '../components/authComponents/Dashboard';
+import MainDashboard from '../components/Dashboard/MainDashboard';
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
 
 
@@ -22,7 +22,7 @@ const App = () => {
                     <Route exact path='/signup' component={SignUpForm} />
                     <Route exact path='/login' component={LoginForm} />
                     <AuthenticatedComponents>
-                        <Route exact path='/dashboard' component={Dashboard} />
+                        <Route exact path='/dashboard' component={MainDashboard} />
                     </AuthenticatedComponents>
                 </Switch>
             </Router>
