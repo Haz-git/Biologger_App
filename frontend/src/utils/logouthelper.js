@@ -1,3 +1,5 @@
+import history from '../historyObject';
+
 export const logouthelper = () => {
     //Remove JWT.
     localStorage.removeItem('jwt');
