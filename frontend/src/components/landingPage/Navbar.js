@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getJWT } from '../../utils/jwthelper';
 import { logouthelper } from '../../utils/logouthelper';
+import { connect } from 'react-redux';
 
 //Styling:
 
@@ -22,48 +23,60 @@ const StyledLink = styled(Link)`
 
 //Component Structure:
 
-const Navbar = () => {
+const Navbar = ({ jwt }) => {
 
     const [JWT, setJWT] = useState(undefined);
 
-    const grabJWT = () => {
-        const jwt = getJWT();
-        setJWT(jwt);
-        return jwt ? true : false;
-    }
+    // const grabJWT = () => {
+    //     const jwt = getJWT();
+    //     setJWT(jwt);
+    //     return jwt ? true : false;
+    // }
 
     useEffect(() => {
-        grabJWT();
-    }, [JWT]);
+        setJWT(jwt);
+    }, [jwt]);
 
-    const renderNavOnCookie = () => {
+    const renderNavOnJWT = flag => {
 
-        console.log(JWT);
-        if (JWT) {
+        if (flag !== undefined) {
             return (
                 <>
                     <button onClick={() => logouthelper()}>Log out</button>
                 </>
             )
-        } else if (JWT === undefined || JWT === null) {
+        } else if (flag === undefined || flag === null) {
             return (
                 <>
                     <StyledLink to='/signup'>Sign up</StyledLink>
-                    <StyledLink to='/login'>Login</StyledLink>
+                    <StyledLink to='/login' >Login</StyledLink>
                 </>
             )
         }
     }
+
 
     
     return (
         <>
             <StyledNavbar>
                 <StyledLink to='/'>Logo/Home</StyledLink>
-                {renderNavOnCookie()}
+                {renderNavOnJWT(JWT)}
             </StyledNavbar>
         </>
     )
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+    if (!state.auth.userLogIn) {
+        return {
+            jwt: state.auth.userLogIn,
+        }
+    } else {
+        return {
+            jwt: state.auth.userLogIn.token,
+        }
+    }
+}
+
+export default connect(mapStateToProps)(Navbar);

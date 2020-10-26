@@ -13,10 +13,10 @@ const MainContainer = styled.div`
 
 
 //Render:
-const LoginForm = ({ handleSubmit, userLogin }) => {
+const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
 
     const dispatchFormValues = formValues => {
-        userLogin(formValues);
+        userLogin(formValues, notifier);
     }
 
 
