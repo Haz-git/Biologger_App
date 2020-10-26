@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getJWT } from '../../utils/jwthelper';
@@ -24,25 +24,28 @@ const StyledLink = styled(Link)`
 
 const Navbar = () => {
 
+    const [JWT, setJWT] = useState(undefined);
+
     const grabJWT = () => {
         const jwt = getJWT();
-
-        if (jwt) {
-            return true;
-        } else {
-            return false;
-        }
+        setJWT(jwt);
+        return jwt ? true : false;
     }
 
+    useEffect(() => {
+        grabJWT();
+    }, [JWT]);
+
     const renderNavOnCookie = () => {
-        const flag = grabJWT();
-        if (flag === true) {
+
+        console.log(JWT);
+        if (JWT) {
             return (
                 <>
                     <button onClick={() => logouthelper()}>Log out</button>
                 </>
             )
-        } else if (flag === false) {
+        } else if (JWT === undefined || JWT === null) {
             return (
                 <>
                     <StyledLink to='/signup'>Sign up</StyledLink>
@@ -52,10 +55,6 @@ const Navbar = () => {
         }
     }
 
-    //Original Component Render:
-    // <StyledLink to='/'>Logo/Home</StyledLink>
-    // <StyledLink to='/signup'>Sign up</StyledLink>
-    // <StyledLink to='/login'>Login</StyledLink>
     
     return (
         <>
