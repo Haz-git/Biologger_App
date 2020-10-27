@@ -18,9 +18,6 @@ router
     .route('/logout')
     .get(authController.logout);
 
-router
-    .route('/read-cookie')
-    .get(authController.readCookie);
 
 //User Routers:
     

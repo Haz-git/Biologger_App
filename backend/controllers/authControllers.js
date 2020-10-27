@@ -113,7 +113,8 @@ exports.login = handleAsync(async (req, res, next) => {
         status: 'Success',
         message: 'You are logged in.',
         token,
-    })
+        data: user,
+    });
 
     // createSendToken(user, 200, res, 'Currently: Logged In', true);
 });
