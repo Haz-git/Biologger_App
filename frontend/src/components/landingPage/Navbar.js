@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { logouthelper } from '../../utils/logouthelper';
 import { connect } from 'react-redux';
+import { getJWT } from '../../utils/jwthelper';
 
 //Styling:
 
@@ -27,18 +28,19 @@ const Navbar = ({ jwt }) => {
     const [JWT, setJWT] = useState(undefined);
 
     useEffect(() => {
-        setJWT(jwt);
+        const jwt2 = getJWT();
+        setJWT(jwt2);
     }, [jwt]);
 
     console.log(JWT);
 
     const renderNavOnJWT = flag => {
 
-        if (flag !== undefined) {
+        if (typeof flag === 'string') {
             return (
                 <>
                     <StyledLink to='/dashboard'>My Dashboard</StyledLink>
-                    <StyledLink to='/meeting'>Meetings</StyledLink>
+                    <StyledLink to='/meetings'>Meetings</StyledLink>
                     <StyledLink to='/messenger'>Messenger</StyledLink>
                     <StyledLink to='/groups'>Groups</StyledLink>
                     <StyledLink to='/createbionote'>Create BioNote</StyledLink>

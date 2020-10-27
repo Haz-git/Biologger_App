@@ -8,8 +8,16 @@ import MainLandingPage from './landingPage/MainLandingPage';
 import SignUpForm from './signupPage/SignUpForm';
 import history from '../historyObject';
 import LoginForm from '../components/loginPage/LoginForm';
-import MainDashboard from '../components/Dashboard/MainDashboard';
+
+//Authentication Component:
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
+
+//Authenticated Components:
+import MainDashboard from '../components/Dashboard/MainDashboard';
+import Groups from '../components/Dashboard/Groups';
+import Meetings from '../components/Dashboard/Meetings';
+import Messenger from '../components/Dashboard/Messenger';
+import CreateBioNote from '../components/Dashboard/CreateBioNote';
 
 
 const App = () => {
@@ -23,6 +31,10 @@ const App = () => {
                     <Route exact path='/login' component={LoginForm} />
                     <AuthenticatedComponents>
                         <Route exact path='/dashboard' component={MainDashboard} />
+                        <Route exact path='/groups' component={Groups} />
+                        <Route exact path='/meetings' component={Meetings} />
+                        <Route exact path='/messenger' component={Messenger} />
+                        <Route exact path='/createbionote' component={CreateBioNote} />
                     </AuthenticatedComponents>
                 </Switch>
             </Router>
