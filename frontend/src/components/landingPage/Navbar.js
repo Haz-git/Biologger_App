@@ -30,11 +30,18 @@ const Navbar = ({ jwt }) => {
         setJWT(jwt);
     }, [jwt]);
 
+    console.log(JWT);
+
     const renderNavOnJWT = flag => {
 
         if (flag !== undefined) {
             return (
                 <>
+                    <StyledLink to='/dashboard'>My Dashboard</StyledLink>
+                    <StyledLink to='/meeting'>Meetings</StyledLink>
+                    <StyledLink to='/messenger'>Messenger</StyledLink>
+                    <StyledLink to='/groups'>Groups</StyledLink>
+                    <StyledLink to='/createbionote'>Create BioNote</StyledLink>
                     <button onClick={() => logouthelper()}>Log out</button>
                 </>
             )
