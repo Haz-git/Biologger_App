@@ -11,7 +11,7 @@ const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
     key: 'root',
     storage,
-    whitelist: []
+    whitelist: ['auth']
 }
 
 //Creating Enhancers:
