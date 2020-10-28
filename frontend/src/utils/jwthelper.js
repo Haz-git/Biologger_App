@@ -1,3 +1,3 @@
 export const getJWT = () => {
-    return localStorage.getItem('jwt');
+    return JSON.parse(localStorage.getItem('jwt'));
 }
