@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
-    key: 'root',
+    key: 'auth',
     storage,
     whitelist: ['auth']
 }
