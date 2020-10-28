@@ -23,20 +23,20 @@ const StyledLink = styled(Link)`
 
 //Component Structure:
 
-const Navbar = ({ jwt }) => {
+const Navbar = ({ StateJwt }) => {
 
     const [JWT, setJWT] = useState(undefined);
 
     useEffect(() => {
         const jwt2 = getJWT();
         setJWT(jwt2);
-    }, [jwt]);
+    }, [StateJwt]);
 
     console.log(JWT);
 
-    const renderNavOnJWT = flag => {
+    const renderNavOnJWT = jwt => {
 
-        if (typeof flag === 'object') {
+        if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <>
                     <StyledLink to='/dashboard'>My Dashboard</StyledLink>
@@ -47,7 +47,7 @@ const Navbar = ({ jwt }) => {
                     <button onClick={() => logouthelper()}>Log out</button>
                 </>
             )
-        } else if (flag === undefined || flag === null) {
+        } else {
             return (
                 <>
                     <StyledLink to='/signup'>Sign up</StyledLink>
@@ -71,11 +71,11 @@ const Navbar = ({ jwt }) => {
 const mapStateToProps = state => {
     if (!state.auth.userLogIn) {
         return {
-            jwt: state.auth.userLogIn,
+            StateJwt: state.auth.userLogIn,
         }
     } else {
         return {
-            jwt: state.auth.userLogIn.token,
+            StateJwt: state.auth.userLogIn.token,
         }
     }
 }
