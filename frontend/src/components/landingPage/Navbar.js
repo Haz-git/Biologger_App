@@ -36,7 +36,7 @@ const Navbar = ({ jwt }) => {
 
     const renderNavOnJWT = flag => {
 
-        if (typeof flag === 'string') {
+        if (typeof flag === 'object') {
             return (
                 <>
                     <StyledLink to='/dashboard'>My Dashboard</StyledLink>
