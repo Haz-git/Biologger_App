@@ -108,12 +108,14 @@ exports.login = handleAsync(async (req, res, next) => {
 
     const token = signToken(user._id);
 
+    //Find the same user for data processing into redux store, but exclude password:
+    const returnedUser = await User.findOne({ email });
 
     res.status(200).json({
         status: 'Success',
         message: 'You are logged in.',
         token,
-        data: user,
+        data: returnedUser,
     });
 
     // createSendToken(user, 200, res, 'Currently: Logged In', true);
