@@ -5,6 +5,8 @@ import {
     EditorState,
 } from 'draft-js';
 
+//Creating Link Entity:
+
 export const linkStrategy = (contentBlock, callback, contentState) => {
     contentBlock.findEntityRanges(
         character => {
@@ -16,6 +18,8 @@ export const linkStrategy = (contentBlock, callback, contentState) => {
         callback
     );
 }
+
+//Link Component:
 
 export const Link = props => {
     const { contentState, entityKey } = props;
@@ -30,4 +34,20 @@ export const Link = props => {
             aria-label={url}
         >{props.children}</a>
     );
+}
+
+//Creating Link Plugin KeyBinding:
+
+const addLinkPlugin = {
+    keyBindingFn(event, { getEditorState }) {
+        const editorState = getEditorState()
+        const selection = editorState.getSelection();
+        if (selection.isCollapsed()) {
+            return;
+        } 
+
+        if (KeyBindingUtil.hasCommandModifier(event) && event.which === 75) {
+            return 'add-link'
+        }
+    }
 }
