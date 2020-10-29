@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { EditorState, RichUtils } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import styled from 'styled-components';
-import createHighlightPlugin from './bionotePlugin';
+import createHighlightPlugin from './bionotePlugins/bionoteHighlightPlugin';
 
 //Styles:
 const MainContainer = styled.div`
@@ -63,6 +63,10 @@ class CreateBioNote extends Component {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
     }
 
+    onHighlight = () => {
+        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'HIGHLIGHT'))
+    }
+
     render() {
         return (
             <MainContainer>
@@ -70,12 +74,16 @@ class CreateBioNote extends Component {
                     <button onClick={this.onUnderlineClick}>U</button>
                     <button onClick={this.onBoldClick}><b>B</b></button>
                     <button onClick={this.onItalicClick}><em>I</em></button>
+                    <button className="highlight" onClick={this.onHighlight}>
+                        <span style={{ background: "yellow" }}>H</span>
+                    </button>
                 </OptionsContainer>
                 <EditorContainer>
                     <Editor 
                         editorState={this.state.editorState}
                         handleKeyCommand={this.handleKeyCommand}
-                        onChange={this.onChange} 
+                        onChange={this.onChange}
+                        plugins={this.plugins}
                     />
                 </EditorContainer>
             </MainContainer>
