@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { EditorState, RichUtils } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import styled from 'styled-components';
+
+//Plugins:
 import createHighlightPlugin from './bionotePlugins/bionoteHighlightPlugin';
+import addLinkPlugin from './bionotePlugins/addLinkPlugin';
 
 //Styles:
 const MainContainer = styled.div`
@@ -31,6 +34,7 @@ class CreateBioNote extends Component {
 
         this.plugins = [
             highlightPlugin,
+            addLinkPlugin,
         ];
     }
 
@@ -67,6 +71,24 @@ class CreateBioNote extends Component {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'HIGHLIGHT'))
     }
 
+    onAddLink = () => {
+        const editorState = this.state.editorState;
+        const selection = editorState.getSelection();
+        const link = window.prompt('Paste the link -')
+
+        if (!link) {
+            this.onChange(RichUtils.toggleLink(editorState, selection, null));
+            return 'handled';
+        }
+
+        const content = editorState.getCurrentContent();
+        const contentWithEntity = content.createEntity('LINK', 'MUTABLE', { url: link });
+        const newEditorState = EditorState.push(editorState, contentWithEntity, 'create-entity');
+        const entityKey = contentWithEntity.getLastCreatedEntityKey();
+        this.onChange(RichUtils.toggleLink(newEditorState, selection, entityKey))
+
+    }
+
     render() {
         return (
             <MainContainer>
@@ -77,6 +99,7 @@ class CreateBioNote extends Component {
                     <button className="highlight" onClick={this.onHighlight}>
                         <span style={{ background: "yellow" }}>H</span>
                     </button>
+                    <button onClick={this.onAddLink}>Add Link</button>
                 </OptionsContainer>
                 <EditorContainer>
                     <Editor 

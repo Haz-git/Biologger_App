@@ -52,7 +52,7 @@ const addLinkPlugin = {
     },
 //Add Link Handler:
 
-    handleKeyCommand(command, editorState, { getEditorState, setEditorState }) {
+    handleKeyCommand(command, editorState, _eventTimeStamp, { getEditorState, setEditorState }) {
 
         if (command !== "add-link") {
             return "not-handled";
