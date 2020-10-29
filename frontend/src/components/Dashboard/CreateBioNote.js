@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { EditorState, RichUtils } from 'draft-js';
+import Editor from 'draft-js-plugins-editor';
 import styled from 'styled-components';
+import createHighlightPlugin from './bionotePlugin';
 
 //Styles:
 const MainContainer = styled.div`
@@ -14,6 +16,9 @@ const EditorContainer = styled.div`
     border: 1px solid black;
 `
 
+//Generating highlight Plugin:
+const highlightPlugin = createHighlightPlugin();
+
 
 //Render:
 
@@ -23,6 +28,10 @@ class CreateBioNote extends Component {
         this.state = {
             editorState: EditorState.createEmpty(),
         }
+
+        this.plugins = [
+            highlightPlugin,
+        ];
     }
 
     onChange = (editorState) => {
