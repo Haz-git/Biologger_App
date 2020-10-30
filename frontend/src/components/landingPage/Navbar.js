@@ -5,6 +5,19 @@ import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import { logouthelper } from '../../utils/logouthelper';
 
+//Icons:
+import {
+    AiFillHome,
+    AiFillFund,
+    AiOutlineUsergroupAdd,
+    AiFillMessage,
+    AiFillPhone,
+} from 'react-icons/ai';
+
+import { MdFolder } from 'react-icons/md';
+
+import { BiExit } from 'react-icons/bi';
+
 //Styling:
 
 const DefaultNavbar = styled.div`
@@ -23,7 +36,7 @@ const DefaultLink = styled(Link)`
 
 const DashboardNavbar = styled.div`
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
+    width: fit-content; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -34,7 +47,7 @@ const DashboardNavbar = styled.div`
 `
 
 const DashboardLink = styled(Link)`
-    padding: 6px 8px 6px 16px;
+    padding: 10px 10px;
     text-decoration: none;
     font-size: 25px;
     display: block;
@@ -61,13 +74,12 @@ const Navbar = ({ StateJwt }) => {
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <DashboardLink to='/'>Logo/Home</DashboardLink>
-                    <DashboardLink to='/dashboard'>My Dashboard</DashboardLink>
-                    <DashboardLink to='/meetings'>Meetings</DashboardLink>
-                    <DashboardLink to='/messenger'>Messenger</DashboardLink>
-                    <DashboardLink to='/groups'>Groups</DashboardLink>
-                    <DashboardLink to='/createbionote'>Create BioNote</DashboardLink>
-                    <button onClick={() => logouthelper()}>Log out</button>
+                    <DashboardLink to='/dashboard'><AiFillHome /></DashboardLink>
+                    <DashboardLink to='/meetings'><AiFillPhone /></DashboardLink>
+                    <DashboardLink to='/messenger'><AiFillMessage /></DashboardLink>
+                    <DashboardLink to='/groups'><AiOutlineUsergroupAdd /></DashboardLink>
+                    <DashboardLink to='/createbionote'><MdFolder /></DashboardLink>
+                    <DashboardLink to='/logout'><BiExit /></DashboardLink>
                 </DashboardNavbar>
             )
         } else {

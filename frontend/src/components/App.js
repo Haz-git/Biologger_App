@@ -9,6 +9,7 @@ import MainLandingPage from './landingPage/MainLandingPage';
 import SignUpForm from './signupPage/SignUpForm';
 import history from '../historyObject';
 import LoginForm from '../components/loginPage/LoginForm';
+import Logout from '../components/Logout';
 
 //Authentication Component:
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
@@ -22,7 +23,7 @@ import CreateBioNote from '../components/Dashboard/CreateBioNote';
 
 //Styling:
 const DashboardContainer = styled.div`
-    margin-left: 160px;
+    margin-left: 50px;
     padding: 0px 10px;
 `
 
@@ -43,6 +44,7 @@ const App = () => {
                             <Route exact path='/meetings' component={Meetings} />
                             <Route exact path='/messenger' component={Messenger} />
                             <Route exact path='/createbionote' component={CreateBioNote} />
+                            <Route exact path='/logout' component={Logout} />
                         </DashboardContainer>
                     </AuthenticatedComponents>
                 </Switch>
