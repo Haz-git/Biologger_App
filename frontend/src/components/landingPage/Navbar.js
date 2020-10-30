@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { logouthelper } from '../../utils/logouthelper';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
+import { logouthelper } from '../../utils/logouthelper';
 
 //Styling:
 
-const StyledNavbar = styled.div`
+const DefaultNavbar = styled.div`
     display: flex;
     background-color: salmon;
 
 `
 
-const StyledLink = styled(Link)`
+const DefaultLink = styled(Link)`
     text-decoration: none;
     padding: 20px 20px;
     &:hover {
@@ -38,20 +38,20 @@ const Navbar = ({ StateJwt }) => {
 
         if (typeof jwt === 'object' && jwt !== null) {
             return (
-                <>
-                    <StyledLink to='/dashboard'>My Dashboard</StyledLink>
-                    <StyledLink to='/meetings'>Meetings</StyledLink>
-                    <StyledLink to='/messenger'>Messenger</StyledLink>
-                    <StyledLink to='/groups'>Groups</StyledLink>
-                    <StyledLink to='/createbionote'>Create BioNote</StyledLink>
+                <div>
+                    <DefaultLink to='/dashboard'>My Dashboard</DefaultLink>
+                    <DefaultLink to='/meetings'>Meetings</DefaultLink>
+                    <DefaultLink to='/messenger'>Messenger</DefaultLink>
+                    <DefaultLink to='/groups'>Groups</DefaultLink>
+                    <DefaultLink to='/createbionote'>Create BioNote</DefaultLink>
                     <button onClick={() => logouthelper()}>Log out</button>
-                </>
+                </div>
             )
         } else {
             return (
                 <>
-                    <StyledLink to='/signup'>Sign up</StyledLink>
-                    <StyledLink to='/login' >Login</StyledLink>
+                    <DefaultLink to='/signup'>Sign up</DefaultLink>
+                    <DefaultLink to='/login' >Login</DefaultLink>
                 </>
             )
         }
@@ -60,10 +60,10 @@ const Navbar = ({ StateJwt }) => {
 
     return (
         <>
-            <StyledNavbar>
-                <StyledLink to='/'>Logo/Home</StyledLink>
+            <DefaultNavbar>
+                <DefaultLink to='/'>Logo/Home</DefaultLink>
                 {renderNavOnJWT(JWT)}
-            </StyledNavbar>
+            </DefaultNavbar>
         </>
     )
 }
