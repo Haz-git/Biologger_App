@@ -28,9 +28,19 @@ const DashboardNavbar = styled.div`
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black */
+    background-color: salmon; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+`
+
+const DashboardLink = styled(Link)`
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    &:hover {
+        background: lightblue;
+    }
 `
 
 //Component Structure:
@@ -51,12 +61,12 @@ const Navbar = ({ StateJwt }) => {
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <DefaultLink to='/'>Logo/Home</DefaultLink>
-                    <DefaultLink to='/dashboard'>My Dashboard</DefaultLink>
-                    <DefaultLink to='/meetings'>Meetings</DefaultLink>
-                    <DefaultLink to='/messenger'>Messenger</DefaultLink>
-                    <DefaultLink to='/groups'>Groups</DefaultLink>
-                    <DefaultLink to='/createbionote'>Create BioNote</DefaultLink>
+                    <DashboardLink to='/'>Logo/Home</DashboardLink>
+                    <DashboardLink to='/dashboard'>My Dashboard</DashboardLink>
+                    <DashboardLink to='/meetings'>Meetings</DashboardLink>
+                    <DashboardLink to='/messenger'>Messenger</DashboardLink>
+                    <DashboardLink to='/groups'>Groups</DashboardLink>
+                    <DashboardLink to='/createbionote'>Create BioNote</DashboardLink>
                     <button onClick={() => logouthelper()}>Log out</button>
                 </DashboardNavbar>
             )
