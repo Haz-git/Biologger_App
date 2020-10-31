@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import io from 'socket.io-client';
 
 class Messenger extends Component {
@@ -14,6 +15,16 @@ class Messenger extends Component {
         this.socket = io(server);
     }
 
+    handleSearchChange = e => {
+        this.setState({
+            chatMessage: e.target.value
+        })
+    }
+
+    handleChatSubmit = e => {
+        e.preventDefault();
+    }
+
     render() {
         return(
             <>
@@ -24,7 +35,7 @@ class Messenger extends Component {
                             This should be where the chat messages go...
                         </div>
                     </div>
-                    <form>
+                    <form onSubmit={this.handleChatSubmit}>
                         <input
                             id='message'
                             placeholder='Start Chatting!'
@@ -42,4 +53,10 @@ class Messenger extends Component {
     }
 }
 
-export default Messenger;
+const mapStateToProps = state => {
+    return {
+        user: state.auth.userLogIn.data
+    }
+}
+
+export default connect(mapStateToProps)(Messenger);
