@@ -13,4 +13,33 @@ class Messenger extends Component {
         //Connecting Socket to Server:
         this.socket = io(server);
     }
+
+    render() {
+        return(
+            <>
+                <h1>Messenger App</h1>
+                <div>
+                    <div>
+                        <div>
+                            This should be where the chat messages go...
+                        </div>
+                    </div>
+                    <form>
+                        <input
+                            id='message'
+                            placeholder='Start Chatting!'
+                            type='text'
+                            value={this.state.chatMessage}onChange={this.handleSearchChange}
+
+                        />
+                        <div>
+                            <button type='submit'>Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </>
+        )
+    }
 }
+
+export default Messenger;
