@@ -9,6 +9,10 @@ dotenv.config({
 //Grabbing Express Application: 
 const app = require('./app.js');
 
+//Creating Connection to Socket.IO ?
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
 //Connecting app to MongoDB via Mongoose:
 
 mongoose
