@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react';
+import io from 'socket.io-client';
 
-const Messenger = () => {
-    return (
-        <div>
-            This should be the messenger page
-        </div>
-    )
+class Messenger extends Component {
+    state = {
+        chatMessage: "",
+    }
+
+    componentDidMount() {
+        let server = 'http://localhost:8080/api';
+        //We probably need to establish a custom server route for this.
+
+        //Connecting Socket to Server:
+        this.socket = io(server);
+    }
 }
-
-export default Messenger;

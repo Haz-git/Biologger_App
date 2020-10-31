@@ -23,7 +23,7 @@ import CreateBioNote from '../components/Dashboard/CreateBioNote';
 
 //Styling:
 const DashboardContainer = styled.div`
-    margin-left: 50px;
+    margin-left: 45px;
     padding: 0px 10px;
 `
 
