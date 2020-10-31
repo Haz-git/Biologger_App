@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { moment } from 'moment';
 import io from 'socket.io-client';
 
 class Messenger extends Component {
@@ -23,6 +24,26 @@ class Messenger extends Component {
 
     handleChatSubmit = e => {
         e.preventDefault();
+
+        //We need to put chat message into server:
+        let chatMessage = this.state.chatMessage;
+
+        let userId = this.props.user._id;
+        let userName = this.props.user.userName;
+        let currentTime = moment();
+
+        this.socket.emit("Input Chat Message", {
+            chatMessage,
+            userId,
+            userName,
+            currentTime,
+        });
+
+        //Reset State:
+
+        this.setState({
+            chatMessage: ''
+        });
     }
 
     render() {
