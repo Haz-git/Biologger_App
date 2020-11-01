@@ -9,7 +9,7 @@ class Messenger extends Component {
     }
 
     componentDidMount() {
-        let server = 'http://localhost:8080/api';
+        let server = 'http://localhost:8080';
         //We probably need to establish a custom server route for this.
 
         //Connecting Socket to Server:
