@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { moment } from 'moment';
+import moment from 'moment';
 import io from 'socket.io-client';
 
 class Messenger extends Component {
@@ -14,6 +14,9 @@ class Messenger extends Component {
 
         //Connecting Socket to Server:
         this.socket = io(server);
+        this.socket.on('Output Chat Message', msg => {
+            console.log(msg);
+        })
     }
 
     handleSearchChange = e => {
@@ -38,6 +41,8 @@ class Messenger extends Component {
             userName,
             currentTime,
         });
+
+        console.log(chatMessage, userId, userName, currentTime);
 
         //Reset State:
 
