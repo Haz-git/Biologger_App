@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const chatModel = require('./models/chatModel');
+const Chat = require('./models/chatModel');
 
 //Using dotenv for env variables:
 dotenv.config({
@@ -17,7 +17,7 @@ const io = require('socket.io')(server);
 
 //Connecting app to MongoDB via Mongoose:
 
-const db_Connection = mongoose
+const connectToDb = mongoose
     .connect(process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD), {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -31,10 +31,10 @@ const db_Connection = mongoose
 //Get message from client:
 io.on('connection', socket => {
     socket.on('Input Chat Message', msg => {
-        db_Connection.then(db => {
+        connectToDb.then(() => {
             try {
                 //Grab data sent over via socket from client:
-                let chat = new chatModel({
+                let chat = new Chat({
                     message : msg.chatMessage,
                     sender : msg.userId,
                     username : msg.userName
@@ -45,8 +45,17 @@ io.on('connection', socket => {
                         success: false,
                         err,
                     })
+                    /*
+                    BUG: It seems as though the message sent over from client is going through the socket correctly. However, this data is NOT being persisted to mongo correctly and returning null on the client-side.
 
-                    chatModel.find({
+                    How do we tell mongo to persist to another collection in JS?
+
+                    What's going on here?
+
+                    */
+                    console.log('Chat document saved to Mongo');
+
+                    Chat.find({
                         '_id': doc._id,
                     }).populate('sender').exec((err, doc) => {
                         //Once finish persistence, we send information back to client..
