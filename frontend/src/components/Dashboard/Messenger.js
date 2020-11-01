@@ -42,8 +42,6 @@ class Messenger extends Component {
             currentTime,
         });
 
-        console.log(chatMessage, userId, userName, currentTime);
-
         //Reset State:
 
         this.setState({
