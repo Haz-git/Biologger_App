@@ -61,7 +61,7 @@ io.on('connection', socket => {
 })
 
 //Server Start:
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
     console.log(`The server is online and listening on port: ${process.env.PORT}`);
 })
 
