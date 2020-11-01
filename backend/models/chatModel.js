@@ -5,7 +5,7 @@ const chatSchema = mongoose.Schema({
         type: String,
     },
     sender: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'userModels'
     },
     type: {
