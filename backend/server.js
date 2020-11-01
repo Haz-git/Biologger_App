@@ -13,9 +13,10 @@ const app = require('./app.js');
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+
 //Connecting app to MongoDB via Mongoose:
 
-mongoose
+const db_Connection = mongoose
     .connect(process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD), {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -25,6 +26,19 @@ mongoose
     .then(() => {
         console.log(`Biologger App on port: ${process.env.PORT} has been connected to MongoDB Atlas`);
     })
+
+//Get message from client:
+io.on('connection', socket => {
+    socket.on("Input Chat Message", msg => {
+        db_Connection.then(db => {
+            try {
+                
+            } catch (err) {
+                
+            }
+        })
+    })
+})
 
 //Server Start:
 app.listen(process.env.PORT, () => {
