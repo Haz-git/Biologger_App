@@ -3,18 +3,24 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import io from 'socket.io-client';
 import restoreChats from '../../redux/chatMessaging/chatActions';
+import ChatCard from './ChatCard.js';
 
 class Messenger extends Component {
+    constructor(props) {
+        super(props);
+        this.props.dispatch(restoreChats())
+    }
     state = {
         chatMessage: "",
     }
+
 
     componentDidMount() {
         let server = 'http://localhost:8080';
         //We probably need to establish a custom server route for this.
 
-        //Gather all stored chat messages:
-        this.props.restoreChats();
+        // // //Gather all stored chat messages:
+        // this.props.dispatch(restoreChats());
 
         //Connecting Socket to Server:
         this.socket = io(server);
@@ -28,6 +34,14 @@ class Messenger extends Component {
             chatMessage: e.target.value
         })
     }
+
+    renderCards = () => 
+        this.props.chat.data.data.chats.map((chat) => (
+            <ChatCard key={chat.id} {...chat} user={chat.sender}/>
+        ));
+
+    
+    
 
     handleChatSubmit = e => {
         e.preventDefault();
@@ -56,13 +70,17 @@ class Messenger extends Component {
     }
 
     render() {
+
+        console.log(this.props.chat);
         return(
             <>
                 <h1>Messenger App</h1>
                 <div>
                     <div>
                         <div>
-                            This should be where the chat messages go...
+                           {this.props.chat && (
+                               <div>{this.renderCards()}</div>
+                           )}
                         </div>
                     </div>
                     <form onSubmit={this.handleChatSubmit}>
@@ -84,8 +102,10 @@ class Messenger extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.auth.userLogIn.data
+        user: state.auth.userLogIn.data,
+        chat: state.chat.chatLogs,
     }
+    //chatLogs.data.data.chats
 }
 
-export default connect(mapStateToProps, { restoreChats })(Messenger);
+export default connect(mapStateToProps)(Messenger);
