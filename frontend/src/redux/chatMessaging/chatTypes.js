@@ -1,0 +1,1 @@
+export const USER_CHAT_REQUEST = 'USER_CHAT_REQUEST';
