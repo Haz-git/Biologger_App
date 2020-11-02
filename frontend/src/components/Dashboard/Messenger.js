@@ -34,12 +34,14 @@ class Messenger extends Component {
         let userId = this.props.user._id;
         let userName = this.props.user.userName;
         let currentTime = moment();
+        let type = 'Text';
 
         this.socket.emit("Input Chat Message", {
             chatMessage,
             userId,
             userName,
             currentTime,
+            type,
         });
 
         //Reset State:
@@ -65,7 +67,6 @@ class Messenger extends Component {
                             placeholder='Start Chatting!'
                             type='text'
                             value={this.state.chatMessage}onChange={this.handleSearchChange}
-
                         />
                         <div>
                             <button type='submit'>Submit</button>
