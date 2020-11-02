@@ -1,14 +1,18 @@
 import api from '../../api';
 import { USER_CHAT_REQUEST } from './chatTypes';
 
-const restoreChats = async dispatch => {
-    const request = await api.get(`/users/chats`);
+export default function restoreChats() {
+    return async dispatch => {
 
-    dispatch({
-        type: USER_CHAT_REQUEST,
-        payload: request,
-    })
+        const response = await api.get(`/users/chats`);
 
+        if (response) {
+            dispatch({
+                type: USER_CHAT_REQUEST,
+                payload: response
+            });
+        } else {
+            return null;
+        }
+    }
 }
-
-export default restoreChats;
