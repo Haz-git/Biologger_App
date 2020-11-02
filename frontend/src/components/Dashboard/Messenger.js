@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import io from 'socket.io-client';
+import restoreChats from '../../redux/chatMessaging/chatActions';
 
 class Messenger extends Component {
     state = {
@@ -11,6 +12,9 @@ class Messenger extends Component {
     componentDidMount() {
         let server = 'http://localhost:8080';
         //We probably need to establish a custom server route for this.
+
+        //Gather all stored chat messages:
+        this.props.restoreChats();
 
         //Connecting Socket to Server:
         this.socket = io(server);
@@ -84,4 +88,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Messenger);
+export default connect(mapStateToProps, { restoreChats })(Messenger);
