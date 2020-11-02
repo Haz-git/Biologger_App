@@ -46,14 +46,7 @@ io.on('connection', socket => {
                         success: false,
                         err,
                     })
-                    /*
-                    BUG: It seems as though the message sent over from client is going through the socket correctly. However, this data is NOT being persisted to mongo correctly and returning null on the client-side.
-
-                    How do we tell mongo to persist to another collection in JS? -- Mongo automatically searches for lowercase and plural form of model! So WE ARE PERSISTING TO DATABASE.
-
-                    What's going on here? --Update: It seems as though even as we're populating the database with our chat messages, mongo can't seem to find the right one...I don't think mongo is finding the doc id... or something is wrong with population...
-
-                    */
+                    
                     console.log('Chat document saved to Mongo');
                     console.log(doc._id);
 

@@ -4,6 +4,7 @@ const router = express.Router();
 
 //Controllers:
 const authController = require('../controllers/authControllers');
+const chatController = require('../controllers/chatController');
 
 //Authentication Routers:
 router
@@ -20,6 +21,10 @@ router
 
 
 //User Routers:
+
+router
+    .route('/users/chats')
+    .get(chatController.chatLogs);
     
 
 module.exports = router;
