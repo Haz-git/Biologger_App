@@ -57,7 +57,7 @@ io.on('connection', socket => {
                     console.log(doc._id);
 
                     Chat.find({
-                        "_id": `ObjectId(${doc._id})`,
+                        "_id": doc._id,
                     }).populate("sender").exec((err, doc) => {
                         //Once finish persistence, we send information back to client..
                         return io.emit("Output Chat Message", doc); 
