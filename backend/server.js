@@ -37,7 +37,8 @@ io.on('connection', socket => {
                 let chat = new Chat({
                     message : msg.chatMessage,
                     sender : msg.userId,
-                    username : msg.userName
+                    username : msg.userName,
+                    type: msg.type,
                 });
                 //Persist data to Mongo
                 chat.save((err, doc) => {
