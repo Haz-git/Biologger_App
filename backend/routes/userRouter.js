@@ -1,5 +1,4 @@
 const express = require('express');
-const { route } = require('../app');
 const router = express.Router();
 
 //Controllers:
@@ -23,7 +22,7 @@ router
 //User Routers:
 
 router
-    .route('/users/chats')
+    .route('/chats')
     .get(chatController.chatLogs);
     
 

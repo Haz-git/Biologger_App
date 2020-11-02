@@ -8,6 +8,14 @@ exports.chatLogs = handleAsync(async( req, res, next) =>{
         .exec((err, chatLogs) => {
             if (err) return res.status(400).send(err);
 
-            res.status(200).send(chatLogs);
+            res.status(200).json({
+                status: 'Success',
+                // token,
+                message: 'Chat logs have been grabbed.',
+                completed: true,
+                data: {
+                    chats: chatLogs,
+                }
+            });
         })
 })
