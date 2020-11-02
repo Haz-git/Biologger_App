@@ -1,5 +1,6 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
-import authReducer from './rootReducer/rootReducer';
+import authReducer from './authReducer/authReducer';
+import chatReducer from './chatMessaging/chatReducer';
 import { reducer as formReducer } from 'redux-form';
 import reduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
@@ -22,6 +23,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     auth: authReducer,
     form: formReducer,
+    chat: chatReducer,
 });
 
 //Persisting formReducer:
