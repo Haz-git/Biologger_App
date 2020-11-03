@@ -4,6 +4,17 @@ import moment from 'moment';
 import io from 'socket.io-client';
 import restoreChats from '../../redux/chatMessaging/chatActions';
 import ChatCard from './ChatCard.js';
+import styled from 'styled-components';
+
+//Styles:
+
+const ChatContainer = styled.div`
+    height: 500px;
+    overflow-y: scroll;
+`
+
+
+//Render:
 
 class Messenger extends Component {
     constructor(props) {
@@ -29,6 +40,10 @@ class Messenger extends Component {
         })
     }
 
+    componentDidUpdate() {
+        this.messageEnd.scrollIntoView({behavior: 'smooth'});
+    }
+
     handleSearchChange = e => {
         this.setState({
             chatMessage: e.target.value
@@ -39,21 +54,6 @@ class Messenger extends Component {
         this.props.chat.data.data.chats.map((chat) => (
             <ChatCard key={chat.id} {...chat} user={chat.sender}/>
         ));
-
-    /*
-
-    You stopped at 18:44 of the video:
-    https://www.youtube.com/watch?v=wx4EnW4ZlmE&list=PL9a7QRYt5fqlDRSRZCtqhVCg_r5U9idbF&index=2
-    
-    Your refresh problem has come back to bite you in the ass. It appears that he has to refresh the page to load the new chat message, and will use redux to solve that. However, when you refresh the page, your entire messenger component crashes. I think you should study his code.
-
-    I feel as though you should take a pause here to try to fix your broken messenger problem. For now, all I can think of is two options:
-
-    1. Find out something about redux-persist and hydrating serialized stores... I think you've already got that set up..
-
-    2. Set up a new route that dispatches whatever the state needs per refresh. I don't think this will be hard to implement, but is this efficient?? I heard AirBnb or something was using a technique like this.
-
-    */
     
 
     handleChatSubmit = e => {
@@ -90,11 +90,14 @@ class Messenger extends Component {
                 <h1>Messenger App</h1>
                 <div>
                     <div>
-                        <div>
+                        <ChatContainer>
                            {this.props.chat && (
                                <div>{this.renderCards()}</div>
                            )}
-                        </div>
+                           <div
+                                ref={el => {this.messageEnd = el;}}
+                            />
+                        </ChatContainer>
                     </div>
                     <form onSubmit={this.handleChatSubmit}>
                         <input
