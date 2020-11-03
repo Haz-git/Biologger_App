@@ -8,19 +8,14 @@ import throttle from 'lodash/throttle';
 
 //Components
 import App from './components/App';
-import {store, persistor} from '../src/redux/store';
+import { store, persistor } from '../src/redux/store';
 
 //Normalize CSS
 import 'normalize.css';
 
-//Subscribe state to localstorage:
-store.subscribe(throttle(() => {
-    saveState(store.getState());
-}, 1000));
-
 render(
-    <Provider store={ store }>
-        <PersistGate persistor={persistor}>
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
             <App />
         </PersistGate>
     </Provider>,
