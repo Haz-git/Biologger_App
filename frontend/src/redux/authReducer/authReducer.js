@@ -11,6 +11,6 @@ export default (state = initialState, action) => {
         case USER_LOG_IN:
             return {...state, userLogIn: action.payload};
         default:
-            return {...state};
+            return state;
     }
 }
