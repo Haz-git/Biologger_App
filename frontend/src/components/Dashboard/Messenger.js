@@ -40,7 +40,20 @@ class Messenger extends Component {
             <ChatCard key={chat.id} {...chat} user={chat.sender}/>
         ));
 
+    /*
+
+    You stopped at 18:44 of the video:
+    https://www.youtube.com/watch?v=wx4EnW4ZlmE&list=PL9a7QRYt5fqlDRSRZCtqhVCg_r5U9idbF&index=2
     
+    Your refresh problem has come back to bite you in the ass. It appears that he has to refresh the page to load the new chat message, and will use redux to solve that. However, when you refresh the page, your entire messenger component crashes. I think you should study his code.
+
+    I feel as though you should take a pause here to try to fix your broken messenger problem. For now, all I can think of is two options:
+
+    1. Find out something about redux-persist and hydrating serialized stores... I think you've already got that set up..
+
+    2. Set up a new route that dispatches whatever the state needs per refresh. I don't think this will be hard to implement, but is this efficient?? I heard AirBnb or something was using a technique like this.
+
+    */
     
 
     handleChatSubmit = e => {
