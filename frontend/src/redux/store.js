@@ -10,9 +10,9 @@ import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
-    key: 'auth',
+    key: 'root',
     storage,
-    whitelist: ['auth']
+    whitelist: ['auth', 'chat']
 }
 
 //Creating Enhancers:
@@ -30,9 +30,9 @@ const rootReducer = combineReducers({
 const persistRootReducer = persistReducer(persistConfig, rootReducer);
 
 //Creating store with reducers and redux extension
-export const store = createStore(persistRootReducer, composeEnhancers(applyMiddleware(reduxThunk)));
+const store = createStore(persistRootReducer, composeEnhancers(applyMiddleware(reduxThunk)));
 
 //Persisted Version of store:
-export const persistor = persistStore(store);
+const persistor = persistStore(store);
 
-export default { store, persistor };
+export { store, persistor };
