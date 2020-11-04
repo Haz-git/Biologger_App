@@ -5,14 +5,30 @@ import io from 'socket.io-client';
 import { restoreChats, updateStateAfterNewMessage } from '../../redux/chatMessaging/chatActions';
 import ChatCard from './ChatCard.js';
 import styled from 'styled-components';
-import { v4 as uuid } from 'uuid';
+
+import 'normalize.css';
 
 //Styles:
 
+const MainMessengerContainer = styled.div`
+    margin-left: 0;
+    box-sizing: border-box;
+    background-color: lightblue;
+    height: 100vh;
+
+`
+const MainHeaderText = styled.h1`
+    margin: 0;
+    text-align: center;
+    background-color: red;
+    font-family: Roboto, sans-serif;
+
+`
+
 const ChatContainer = styled.div`
-    height: 500px;
     overflow-y: scroll;
 `
+
 
 
 //Render:
@@ -84,30 +100,32 @@ class Messenger extends Component {
     render() {
         return(
             <>
-                <h1>Messenger App</h1>
-                <div>
+                <MainMessengerContainer>
+                    <MainHeaderText>Real-Time Messenger</MainHeaderText>
                     <div>
-                        <ChatContainer>
-                           {this.props.chat && (
-                               <div>{this.renderCards()}</div>
-                           )}
-                           <div
-                                ref={el => {this.messageEnd = el;}}
-                            />
-                        </ChatContainer>
-                    </div>
-                    <form onSubmit={this.handleChatSubmit}>
-                        <input
-                            id='message'
-                            placeholder='Start Chatting!'
-                            type='text'
-                            value={this.state.chatMessage}onChange={this.handleSearchChange}
-                        />
                         <div>
-                            <button type='submit'>Submit</button>
+                            <ChatContainer>
+                                {this.props.chat && (
+                                    <div>{this.renderCards()}</div>
+                                )}
+                                <div
+                                    ref={el => {this.messageEnd = el;}}
+                                />
+                            </ChatContainer>
                         </div>
-                    </form>
-                </div>
+                        <form onSubmit={this.handleChatSubmit}>
+                            <input
+                                id='message'
+                                placeholder='Start Chatting!'
+                                type='text'
+                                value={this.state.chatMessage}onChange={this.handleSearchChange}
+                            />
+                            <div>
+                                <button type='submit'>Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </MainMessengerContainer>
             </>
         )
     }
