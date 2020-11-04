@@ -27,16 +27,22 @@ export function restoreChats() {
 
 export function updateStateAfterNewMessage(data) {
     return (dispatch, getState) => {
-        //Is this chat or chatLogs?
         const { chat } = getState();
-
+        //grabbing chat state and concating prior to dispatch to reducer. This doesn't seem to be the problem.
         console.log(chat);
         console.log(chat.chatLogs.data.data.chats);
-        console.log(chat.chatLogs.data.data.chats.concat(data));
+        const newChatLog = {...chat.chatLogs};
+        console.log('This is the newChatLog object', newChatLog);
+        newChatLog.data.data.chats.concat(data);
+        console.log('After Appending: ', newChatLog)
+
+        //I need to figure out a way to remove chatLog, because when appending to reducer it has chatLog nested twice...
+
+        //Testing old way:
 
         dispatch({
             type: USER_CHAT_RECEIVED,
-            payload: chat.chatLogs.data.data.chats.concat(data),
-        })
+            payload: newChatLog,
+        });
     }
 }
