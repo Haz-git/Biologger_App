@@ -13,22 +13,64 @@ import 'normalize.css';
 const MainMessengerContainer = styled.div`
     margin-left: 0;
     box-sizing: border-box;
-    background-color: lightblue;
+    background-color: #f6f9fc;
     height: 100vh;
 
 `
 const MainHeaderText = styled.h1`
     margin: 0;
+    padding: 10px 10px;
     text-align: center;
-    background-color: red;
     font-family: Roboto, sans-serif;
+    color: #747fe0;
 
+`
+const NestedMessengerContainer = styled.div`
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #e5f1fc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0,0.07), 0 1px 1px rgba(0,0,0.07);
 `
 
 const ChatContainer = styled.div`
+    margin-left: 20px;
+    height: 600px;
+    background-color: #e5f1fc;
     overflow-y: scroll;
 `
 
+const InputContainer = styled.div`
+    padding: 40px 40px;
+    background-color: #e5f1fc;
+    text-align: center;
+`
+const StyledInput = styled.input`
+    width: 600px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    &:focus {
+        outline: none;
+    }
+`
+
+const StyledButton = styled.button`
+    cursor: pointer;
+    height: 38px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #35bdb2;
+    color: white;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    &:focus {
+        outline: none;
+    }
+`
 
 
 //Render:
@@ -101,8 +143,8 @@ class Messenger extends Component {
         return(
             <>
                 <MainMessengerContainer>
-                    <MainHeaderText>Real-Time Messenger</MainHeaderText>
-                    <div>
+                    <MainHeaderText>Global Chat</MainHeaderText>
+                    <NestedMessengerContainer>
                         <div>
                             <ChatContainer>
                                 {this.props.chat && (
@@ -113,18 +155,18 @@ class Messenger extends Component {
                                 />
                             </ChatContainer>
                         </div>
-                        <form onSubmit={this.handleChatSubmit}>
-                            <input
-                                id='message'
-                                placeholder='Start Chatting!'
-                                type='text'
-                                value={this.state.chatMessage}onChange={this.handleSearchChange}
-                            />
-                            <div>
-                                <button type='submit'>Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                        <InputContainer>
+                            <form onSubmit={this.handleChatSubmit} autocomplete='off'>
+                                <StyledInput
+                                    id='message'
+                                    placeholder='Start Chatting!'
+                                    type='text'
+                                    value={this.state.chatMessage}onChange={this.handleSearchChange}
+                                />
+                                <StyledButton type='submit'>Submit</StyledButton>
+                            </form>
+                        </InputContainer>
+                    </NestedMessengerContainer>
                 </MainMessengerContainer>
             </>
         )
