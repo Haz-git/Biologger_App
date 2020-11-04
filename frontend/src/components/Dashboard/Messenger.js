@@ -21,7 +21,7 @@ class Messenger extends Component {
     constructor(props) {
         super(props);
         console.log(props);
-        this.props.restoreChats();
+        // this.props.restoreChats();
     }
 
     state = {
@@ -36,6 +36,7 @@ class Messenger extends Component {
         //We probably need to establish a custom server route for this.
 
         // // //Gather all stored chat messages:
+        this.props.restoreChats();
 
         //Connecting Socket to Server:
         this.socket = io(server);
@@ -50,7 +51,7 @@ class Messenger extends Component {
 
     And so we tried to do it in the action payload using 'getState()'. This worked, but we ended up appending chatLogs twice and so our components couldn't render properly. 
 
-    Using the spread operator, I created a new object and fixed the appending...But now with state change we STILL don't get re-rendering of the chat messages...
+    Using the spread operator, I created a new object and fixed the appending...But now with state change we STILL don't get re-rendering of the chat messages
 
     */
 
@@ -66,7 +67,7 @@ class Messenger extends Component {
 
     renderCards = () => (
         this.props.chat.data.data.chats.map((chat) => (
-            <ChatCard key={uuid()} {...chat} user={chat.sender}/>
+            <ChatCard key={chat._id} {...chat}/>
         ))
     )
     
