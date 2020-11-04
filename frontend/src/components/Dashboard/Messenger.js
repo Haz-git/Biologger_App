@@ -18,24 +18,15 @@ const ChatContainer = styled.div`
 //Render:
 
 class Messenger extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-        // this.props.restoreChats();
-    }
 
     state = {
         chatMessage: "",
     }
 
-
-
-
     componentDidMount() {
         let server = 'http://localhost:8080';
-        //We probably need to establish a custom server route for this.
 
-        // // //Gather all stored chat messages:
+        //Gather all stored chat messages:
         this.props.restoreChats();
 
         //Connecting Socket to Server:
@@ -46,14 +37,6 @@ class Messenger extends Component {
             this.props.updateStateAfterNewMessage(msg);
         })
     }
-    /*
-    So it seems that the cause of the error was that the reducer wasn't appending correctly! I knew it! When we tried to append to the current State of chat in the reducer, we can't do that because the reducer can't reference the own state...dumb.
-
-    And so we tried to do it in the action payload using 'getState()'. This worked, but we ended up appending chatLogs twice and so our components couldn't render properly. 
-
-    Using the spread operator, I created a new object and fixed the appending...But now with state change we STILL don't get re-rendering of the chat messages
-
-    */
 
     componentDidUpdate = () => {
         this.messageEnd.scrollIntoView({behavior: 'smooth'});
