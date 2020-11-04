@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import io from 'socket.io-client';
-import restoreChats from '../../redux/chatMessaging/chatActions';
+import { restoreChats, updateStateAfterNewMessage } from '../../redux/chatMessaging/chatActions';
 import ChatCard from './ChatCard.js';
 import styled from 'styled-components';
 
@@ -19,8 +19,8 @@ const ChatContainer = styled.div`
 class Messenger extends Component {
     constructor(props) {
         super(props);
-        this.props.dispatch(restoreChats())
     }
+
     state = {
         chatMessage: "",
     }
@@ -31,12 +31,14 @@ class Messenger extends Component {
         //We probably need to establish a custom server route for this.
 
         // // //Gather all stored chat messages:
-        // this.props.dispatch(restoreChats());
+        this.props.dispatch(restoreChats());
 
         //Connecting Socket to Server:
         this.socket = io(server);
         this.socket.on('Output Chat Message', msg => {
+            //We need to create another action creator to dispatch an 'updated state' when receiving new messages from backend:
             console.log(msg);
+            this.props.dispatch(updateStateAfterNewMessage(msg));
         })
     }
 
@@ -83,8 +85,6 @@ class Messenger extends Component {
     }
 
     render() {
-
-        console.log(this.props.chat);
         return(
             <>
                 <h1>Messenger App</h1>
@@ -121,7 +121,6 @@ const mapStateToProps = state => {
         user: state.auth.userLogIn.data,
         chat: state.chat.chatLogs,
     }
-    //chatLogs.data.data.chats
 }
 
 export default connect(mapStateToProps)(Messenger);
