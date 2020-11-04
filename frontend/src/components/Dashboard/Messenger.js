@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import { restoreChats, updateStateAfterNewMessage } from '../../redux/chatMessaging/chatActions';
 import ChatCard from './ChatCard.js';
 import styled from 'styled-components';
+import { v4 as uuid } from 'uuid';
 
 //Styles:
 
@@ -19,6 +20,8 @@ const ChatContainer = styled.div`
 class Messenger extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
+        this.props.restoreChats();
     }
 
     state = {
@@ -26,23 +29,32 @@ class Messenger extends Component {
     }
 
 
+
+
     componentDidMount() {
         let server = 'http://localhost:8080';
         //We probably need to establish a custom server route for this.
 
         // // //Gather all stored chat messages:
-        this.props.dispatch(restoreChats());
 
         //Connecting Socket to Server:
         this.socket = io(server);
         this.socket.on('Output Chat Message', msg => {
             //We need to create another action creator to dispatch an 'updated state' when receiving new messages from backend:
             console.log(msg);
-            this.props.dispatch(updateStateAfterNewMessage(msg));
+            this.props.updateStateAfterNewMessage(msg);
         })
     }
+    /*
+    So it seems that the cause of the error was that the reducer wasn't appending correctly! I knew it! When we tried to append to the current State of chat in the reducer, we can't do that because the reducer can't reference the own state...dumb.
 
-    componentDidUpdate() {
+    And so we tried to do it in the action payload using 'getState()'. This worked, but we ended up appending chatLogs twice and so our components couldn't render properly. 
+
+    Using the spread operator, I created a new object and fixed the appending...But now with state change we STILL don't get re-rendering of the chat messages...
+
+    */
+
+    componentDidUpdate = () => {
         this.messageEnd.scrollIntoView({behavior: 'smooth'});
     }
 
@@ -52,10 +64,11 @@ class Messenger extends Component {
         })
     }
 
-    renderCards = () => 
+    renderCards = () => (
         this.props.chat.data.data.chats.map((chat) => (
-            <ChatCard key={chat.id} {...chat} user={chat.sender}/>
-        ));
+            <ChatCard key={uuid()} {...chat} user={chat.sender}/>
+        ))
+    )
     
 
     handleChatSubmit = e => {
@@ -123,4 +136,11 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Messenger);
+const mapDispatchToProps = () => {
+    return {
+        restoreChats,
+        updateStateAfterNewMessage,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps())(Messenger);
