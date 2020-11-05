@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
-import { logouthelper } from '../../utils/logouthelper';
 
 
 //Icons:
