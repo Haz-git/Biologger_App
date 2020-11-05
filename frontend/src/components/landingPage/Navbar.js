@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import { logouthelper } from '../../utils/logouthelper';
 
+
 //Icons:
 import {
     AiFillHome,
@@ -22,8 +23,13 @@ import { BiExit } from 'react-icons/bi';
 
 const DefaultNavbar = styled.div`
     display: flex;
+    justify-content: space-between;
     background-color: salmon;
+    align-items: center;
 
+`
+const NavLinks = styled.div`
+    display: flex;
 `
 
 const DefaultLink = styled(Link)`
@@ -85,9 +91,11 @@ const Navbar = ({ StateJwt }) => {
         } else {
             return (
                 <DefaultNavbar>
-                    <DefaultLink to='/'>Logo/Home</DefaultLink>
-                    <DefaultLink to='/signup'>Sign up</DefaultLink>
-                    <DefaultLink to='/login' >Login</DefaultLink>
+                    <DefaultLink to='/'>BioLogger</DefaultLink>
+                    <NavLinks>
+                        <DefaultLink to='/signup'>Sign up</DefaultLink>
+                        <DefaultLink to='/login' >Login</DefaultLink>
+                    </NavLinks>
                 </DefaultNavbar>
             )
         }
