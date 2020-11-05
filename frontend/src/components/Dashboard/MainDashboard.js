@@ -1,5 +1,39 @@
 import React, { Component } from 'react';
 import { getJWT } from '../../utils/jwthelper';
+import styled from 'styled-components';
+
+//Main Dashboard Components:
+import MDTodo from './MDTodo';
+import MDSciNews from './MDSciNews';
+
+//Styles:
+const MainDashboardContainer = styled.div`
+    height: 100vh;
+    background-color: white;
+`
+const MainDashboardHeaderContainer = styled.div`
+    padding-top: 20px;
+    text-align: center;
+    background-color: lightblue;
+`
+const MainDashboardHeader = styled.h1`
+    margin: 0;
+`
+const MainDashboardHeader2 = styled.h2`
+    padding-top: 10px;
+    margin: 0;
+`
+
+const MainDashboardUpperGrid = styled.div`
+    background-color: pink;
+    padding: 20px 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+`
+
+const UpperGridContainer = styled.div`
+    text-align: center;
+`
 
 class MainDashboard extends Component {
     constructor(props) {
@@ -27,21 +61,22 @@ class MainDashboard extends Component {
         const { firstName, lastName, userName, email } = this.state;
 
         return (
-            <div>
-                <h1>Welcome back {firstName} </h1>
-                <h2>You are currently signed in under {email}</h2>
-            </div>
+            <MainDashboardContainer>
+                <MainDashboardHeaderContainer>
+                    <MainDashboardHeader>Welcome back {firstName}! </MainDashboardHeader>
+                    <MainDashboardHeader2>You are currently signed in under {email}</MainDashboardHeader2>
+                </MainDashboardHeaderContainer>
+                <MainDashboardUpperGrid>
+                    <UpperGridContainer>
+                        <MDTodo />
+                    </UpperGridContainer>
+                    <UpperGridContainer>
+                        <MDSciNews />
+                    </UpperGridContainer>
+                </MainDashboardUpperGrid>
+            </MainDashboardContainer>
         )
     }
 }
-
-// const mapStateToProps = state => {
-//     return {
-//         user: state.auth.userLogIn.data,
-//     }
-// }
-
-
-// export default connect(mapStateToProps)(MainDashboard);
 
 export default MainDashboard;
