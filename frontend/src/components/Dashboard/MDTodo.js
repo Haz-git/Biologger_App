@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addNewTask } from '../../redux/userTaskLog/userTaskLogActions';
+import { addNewTask, getTasks } from '../../redux/userTaskLog/userTaskLogActions';
 
-const MDTodo = ({ addNewTask }) => {
+const MDTodo = ({ addNewTask, getTasks }) => {
 
     const [task, setTask] = useState('');
 
+    useEffect(() => {
+        getTasks();
+    },[])
+
     const handleSubmit = e => {
         e.preventDefault();
-        addNewTask(task);
-        console.log(task + 'Has been submitted');
-        setTask('');
+
+        if(task.trim() === '') {
+            console.log(task.trim());
+            alert('Please enter a value');
+        } else {
+            addNewTask(task);
+            console.log(task + 'Has been submitted');
+            setTask('');
+        }
     }
 
     const handleChange = e => {
@@ -44,4 +54,4 @@ const MDTodo = ({ addNewTask }) => {
 }
 //Passing in null for time being:
 
-export default connect(null, { addNewTask })(MDTodo);
+export default connect(null, { addNewTask, getTasks })(MDTodo);
