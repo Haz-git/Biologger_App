@@ -17,11 +17,12 @@ exports.addTask = handleAsync(async(req, res) => {
         if (err) console.log(err);
     });
 
+    const userNewTaskList = await User.findOne({ _id }).select('taskList');
     //The new task should be appended to user document:
 
     res.status(200).json({
         status: 'Success',
-        newAppendedTask: data,
+        userNewTaskList : userNewTaskList.taskList,
     });
 });
 
@@ -29,10 +30,10 @@ exports.getTasks = handleAsync(async(req, res) => {
     const { _id } = req.body;
 
     const existingUserTaskList = await User.findOne({ _id }).select('taskList');
-    console.log(existingUserTaskList);
+    
 
     res.status(200).json({
         status: 'Success',
-        existingUserTaskList: existingUserTaskList.tastList,
+        existingUserTaskList: existingUserTaskList.taskList,
     });
 });
