@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { addNewTask } from '../../redux/userTaskLog/userTaskLogActions';
 
-const MDTodo = () => {
+const MDTodo = ({ addNewTask }) => {
 
     const [task, setTask] = useState('');
 
     const handleSubmit = e => {
         e.preventDefault();
+        addNewTask(task);
         console.log(task + 'Has been submitted');
     }
 
@@ -32,5 +35,6 @@ const MDTodo = () => {
         </>
     )
 }
+//Passing in null for time being:
 
-export default MDTodo;
+export default connect(null, { addNewTask })(MDTodo);
