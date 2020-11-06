@@ -156,12 +156,13 @@ class Messenger extends Component {
                             </ChatContainer>
                         </div>
                         <InputContainer>
-                            <form onSubmit={this.handleChatSubmit} autocomplete='off'>
+                            <form onSubmit={this.handleChatSubmit} autoComplete='off'>
                                 <StyledInput
                                     id='message'
                                     placeholder='Start Chatting!'
                                     type='text'
-                                    value={this.state.chatMessage}onChange={this.handleSearchChange}
+                                    value={this.state.chatMessage}
+                                    onChange={this.handleSearchChange}
                                 />
                                 <StyledButton type='submit'>Submit</StyledButton>
                             </form>
