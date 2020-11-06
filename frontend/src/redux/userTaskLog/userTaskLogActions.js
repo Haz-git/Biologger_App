@@ -2,8 +2,10 @@ import api from '../../api';
 import { USER_NEW_TASK, USER_GET_TASKS } from './userTaskLogTypes';
 
 export function addNewTask(data) {
-    return async dispatch => {
-        const response = await api.post(`/users/task`, {...data});
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } }} } = getState();
+
+        const response = await api.post(`/users/task`, {data, _id});
 
         console.log('Response from server on newTaskAdd' + response);
 
