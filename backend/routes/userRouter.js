@@ -31,7 +31,10 @@ router
 
 router
     .route('/task')
-    .post(taskController.addTask)
-    .get(taskController.getTasks);
+    .post(taskController.addTask);
+
+router
+    .route('/getTasks')
+    .post(taskController.getTasks);
 
 module.exports = router;
