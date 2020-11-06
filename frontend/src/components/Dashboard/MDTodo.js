@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addNewTask, getTasks } from '../../redux/userTaskLog/userTaskLogActions';
+import TaskCard from './TaskCard';
 
 const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 /*
@@ -34,6 +35,10 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
         e.preventDefault();
         console.log(e.target.value);
         setTask(e.target.value);
+    }
+
+    const renderTasks = () => {
+        //Make render task card similar to render chat card
     }
 
     return (
