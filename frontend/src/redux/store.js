@@ -1,6 +1,7 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import authReducer from './authReducer/authReducer';
 import chatReducer from './chatMessaging/chatReducer';
+import taskReducer from './userTaskLog/userTaskLogReducer';
 import { reducer as formReducer } from 'redux-form';
 import reduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
@@ -12,7 +13,7 @@ const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
     key: 'root',
     storage,
-    whitelist: ['auth', 'chat']
+    whitelist: ['auth', 'chat', 'task']
 }
 
 //Creating Enhancers:
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     form: formReducer,
     chat: chatReducer,
+    task: taskReducer,
 });
 
 //Persisting formReducer:
