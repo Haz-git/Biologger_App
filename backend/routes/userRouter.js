@@ -4,6 +4,7 @@ const router = express.Router();
 //Controllers:
 const authController = require('../controllers/authControllers');
 const chatController = require('../controllers/chatController');
+const taskController = require('../controllers/taskController');
 
 //Authentication Routers:
 router
@@ -19,11 +20,18 @@ router
     .get(authController.logout);
 
 
-//User Routers:
+
+//Global Chat Router:
 
 router
     .route('/chats')
     .get(chatController.chatLogs);
     
+//Personal User Task Router:
+
+router
+    .route('/task')
+    .post(taskController.addTask)
+    .get(taskController.getTasks);
 
 module.exports = router;
