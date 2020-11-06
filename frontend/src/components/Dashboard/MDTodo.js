@@ -10,6 +10,7 @@ const MDTodo = ({ addNewTask }) => {
         e.preventDefault();
         addNewTask(task);
         console.log(task + 'Has been submitted');
+        setTask('');
     }
 
     const handleChange = e => {
@@ -27,7 +28,13 @@ const MDTodo = ({ addNewTask }) => {
                 </div>
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <input onChange={handleChange}type='text' placeholder='Add New Task'></input>
+                        <input 
+                            onChange={handleChange}
+                            type='text' 
+                            placeholder='Add New Task'
+                            value={task}
+                            autoComplete='off'
+                        />
                         <button type='submit'>Submit</button>
                     </form>
                 </div>
