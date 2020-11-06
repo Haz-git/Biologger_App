@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addNewTask, getTasks } from '../../redux/userTaskLog/userTaskLogActions';
 
-const MDTodo = ({ addNewTask, getTasks }) => {
+const MDTodo = ({ addNewTask, getTasks, taskList }) => {
+/*
+    Todo: 
+    We just need cards to render out the tasks now...We've implemented it so that getTasks() that will occur on component mount will return all of the stored tasks, and that addingANewTask will change the state of the list, effectively re-rendering the cards that will react to the state.
+
+    UseMapStateToProps here to import the state and render out a list of cards. Make a new card component as well...
+
+*/
 
     const [task, setTask] = useState('');
 
@@ -52,6 +59,11 @@ const MDTodo = ({ addNewTask, getTasks }) => {
         </>
     )
 }
-//Passing in null for time being:
 
-export default connect(null, { addNewTask, getTasks })(MDTodo);
+const mapStateToProps = state => {
+    return {
+        taskList: state.task.Tasks,
+    }
+}
+
+export default connect(mapStateToProps, { addNewTask, getTasks })(MDTodo);
