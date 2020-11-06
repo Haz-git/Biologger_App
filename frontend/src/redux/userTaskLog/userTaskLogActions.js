@@ -5,6 +5,11 @@ export function addNewTask(data) {
     return async dispatch => {
         const response = await api.post(`/users/task`, {...data});
 
-        console.log(response);
+        console.log('Response from server on newTaskAdd' + response);
+
+        dispatch({
+            type: USER_NEW_TASK,
+            payload: response
+        });
     }
 }
