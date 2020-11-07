@@ -4,6 +4,7 @@ import styled from 'styled-components';
 //Icons:
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';
+import { FaUndo } from 'react-icons/fa';
 
 const MainTaskCardContainer = styled.div`
     margin-top: 5px;
@@ -16,6 +17,9 @@ const StyledButton = styled.button`
     cursor: pointer;
     border: none;
     margin-left: 10px;
+    &:focus {
+        outline: none;
+    }
 `
 
 const TaskCard = ({ item }) => {
@@ -31,6 +35,11 @@ const TaskCard = ({ item }) => {
         console.log('Task should have action creator to be deleted now...');
     }
 
+    const handleRefresh = () => {
+        setStatus('incomplete');
+        console.log('Task should now be incomplete');
+    }
+
     const renderButton = () => {
         if (status === 'incomplete') {
             return (
@@ -40,9 +49,14 @@ const TaskCard = ({ item }) => {
             )
         } else if (status === 'complete') {
             return (
-                <StyledButton onClick={handleDelete}>
-                    <FaTrashAlt />
-                </StyledButton>
+                <>
+                    <StyledButton onClick={handleDelete}>
+                        <FaTrashAlt />
+                    </StyledButton>
+                    <StyledButton onClick={handleRefresh}>
+                        <FaUndo />
+                    </StyledButton>
+                </>
             )
         }
     }
