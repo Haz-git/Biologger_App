@@ -1,7 +1,11 @@
 import React from 'react';
 
-const TaskCard = () => {
+const TaskCard = ({ item }) => {
+    console.log(item);
+
     return (
-        <div></div>
+        <div>{item}</div>
     )
 }
+
+export default TaskCard;
