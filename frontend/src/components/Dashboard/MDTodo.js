@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addNewTask, getTasks } from '../../redux/userTaskLog/userTaskLogActions';
 import TaskCard from './TaskCard';
+import { v4 as uuid } from 'uuid'
 
 const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 /*
@@ -16,6 +17,7 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     useEffect(() => {
         getTasks();
+        console.log(taskList);
     },[])
 
     const handleSubmit = e => {
@@ -37,16 +39,18 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
         setTask(e.target.value);
     }
 
-    const renderTasks = () => {
-        //Make render task card similar to render chat card
-    }
+    const renderTasks = () => (
+        taskList.map(task => (
+            <TaskCard key={uuid()} item={task} />
+        ))
+    )
 
     return (
         <>
             <h2>Task Log</h2>
             <div>
                 <div>
-                    Tasks should be here.
+                    {renderTasks()}
                 </div>
                 <div>
                     <form onSubmit={handleSubmit}>
