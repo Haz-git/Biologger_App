@@ -37,4 +37,8 @@ router
     .route('/getTasks')
     .post(taskController.getTasks);
 
+router
+    .route('/task/delete')
+    .post(taskController.deleteTask);
+
 module.exports = router;
