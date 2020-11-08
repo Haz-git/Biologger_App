@@ -28,7 +28,7 @@ const MainDashboardUpperGrid = styled.div`
     background-color: pink;
     padding: 20px 20px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 35% 65%;
 `
 
 const UpperGridContainer = styled.div`
