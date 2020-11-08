@@ -42,8 +42,10 @@ exports.deleteTask = handleAsync(async (req, res) => {
     const { _id, task } = req.body;
 
     const deletedUserTaskList = await User.findOne({ _id }).select('taskList');
-
-    deletedUserTaskList.splice(item.find(i => i === task), 1);
+    
+    if (deletedUserTaskList.taskList.indexOf(task) > -1) {
+        deletedUserTaskList.taskList.splice(deletedUserTaskList.taskList.indexOf(task), 1);
+    }
 
     await User.updateOne({ _id }, { taskList: deletedUserTaskList.taskList }, { bypassDocumentValidation: true}, (err, result) => {
         if (err) console.log(err);
