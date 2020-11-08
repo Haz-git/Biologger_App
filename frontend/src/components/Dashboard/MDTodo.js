@@ -10,25 +10,21 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     useEffect(() => {
         getTasks();
-        console.log(taskList);
     },[])
 
     const handleSubmit = e => {
         e.preventDefault();
 
         if(task.trim() === '') {
-            console.log(task.trim());
             alert('Please enter a value');
         } else {
             addNewTask(task);
-            console.log(task + 'Has been submitted');
             setTask('');
         }
     }
 
     const handleChange = e => {
         e.preventDefault();
-        console.log(e.target.value);
         setTask(e.target.value);
     }
 
