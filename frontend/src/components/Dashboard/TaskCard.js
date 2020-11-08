@@ -36,12 +36,10 @@ const TaskCard = ({ item, deleteTask }) => {
     const handleDelete = () => {
         //item refers to own item
         deleteTask(item);
-        console.log(item + ' Should be deleted');
     }
 
     const handleRefresh = () => {
         setStatus('incomplete');
-        console.log('Task should now be incomplete');
     }
 
     const renderButton = () => {
