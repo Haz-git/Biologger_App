@@ -17,7 +17,7 @@ export function getTasks() {
 
 export function addNewTask(data) {
     return async (dispatch, getState) => {
-        const { auth: { userLogIn: { data: { _id } }} } = getState();
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
 
         const response = await api.post(`/users/task`, {data, _id});
 
@@ -27,5 +27,15 @@ export function addNewTask(data) {
             type: USER_NEW_TASK,
             payload: response.data.userNewTaskList,
         });
+    }
+}
+
+export function deleteTask(task) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id }}}} = getState();
+
+        const response = await api.post(`/users/task/delete`, {task, _id});
+
+        console.log('Response from server on deleteTask ' + JSON.stringify(response.data))
     }
 }
