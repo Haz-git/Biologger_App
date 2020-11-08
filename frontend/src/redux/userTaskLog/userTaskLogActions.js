@@ -1,5 +1,5 @@
 import api from '../../api';
-import { USER_NEW_TASK, USER_GET_TASKS } from './userTaskLogTypes';
+import { USER_NEW_TASK, USER_GET_TASKS, USER_DELETED_TASK } from './userTaskLogTypes';
 
 export function getTasks() {
     return async (dispatch, getState) => {
@@ -21,8 +21,6 @@ export function addNewTask(data) {
 
         const response = await api.post(`/users/task`, {data, _id});
 
-        console.log('Response from server on newTaskAdd ' + JSON.stringify(response));
-
         dispatch({
             type: USER_NEW_TASK,
             payload: response.data.userNewTaskList,
@@ -36,6 +34,9 @@ export function deleteTask(task) {
 
         const response = await api.post(`/users/task/delete`, {task, _id});
 
-        console.log('Response from server on deleteTask ' + JSON.stringify(response.data))
+        dispatch({
+            type: USER_DELETED_TASK,
+            payload: response.data.afterDeletionTaskList,
+        });
     }
 }
