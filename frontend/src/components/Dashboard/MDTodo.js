@@ -10,8 +10,9 @@ import styled from 'styled-components';
 const MainTodoContainer = styled.div`
     background-color: lightyellow;
     border: 1px solid black;
-    height: 700px;
+    height: 300px;
     width: 100%;
+    overflow-y: scroll;
 `
 
 const MDTodo = ({ addNewTask, getTasks, taskList }) => {
