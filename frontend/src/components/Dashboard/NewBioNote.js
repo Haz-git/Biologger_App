@@ -1,6 +1,14 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
+import styled from 'styled-components';
 
+//Styles:
+
+const MainQuillContainer = styled.div`
+    width: 100%;
+    height: 800px;
+    overflow-y: scroll;
+`
 
 const modules = {
     toolbar: [
@@ -31,13 +39,29 @@ const formats = [
 
 const NewBioNote = () => {
 
+    const handleOnChange = (content, delta, source, editor) => {
+        console.log(editor.getHTML());
+    }
+
     return (
         <>
-            <ReactQuill 
-                theme='snow'
-                modules={modules}
-                toolbar={formats}
-            />
+            <form>
+                <div>
+                    <label>Name of BioNote:  </label>
+                    <input
+                        type='text'
+                        placeholder='Enter Name..'
+                    />
+                </div>
+                <div>
+                    <ReactQuill 
+                        theme='snow'
+                        modules={modules}
+                        formats={formats}
+                        onChange={handleOnChange}
+                    />
+                </div>
+            </form>
         </>
     )
 }
