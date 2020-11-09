@@ -2,7 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addNewTask, getTasks } from '../../redux/userTaskLog/userTaskLogActions';
 import TaskCard from './TaskCard';
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid';
+import styled from 'styled-components';
+
+//Styles:
+
+const MainTodoContainer = styled.div`
+    background-color: lightyellow;
+    border: 1px solid black;
+    height: 700px;
+    width: 100%;
+`
 
 const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
@@ -37,7 +47,7 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
     return (
         <>
             <h2>Task Log</h2>
-            <div>
+            <MainTodoContainer>
                 <div>
                     {renderTasks()}
                 </div>
@@ -53,7 +63,7 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
                         <button type='submit'>Submit</button>
                     </form>
                 </div>
-            </div>
+            </MainTodoContainer>
         </>
     )
 }
