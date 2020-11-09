@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-
-//Styles:
-const MainContainer = styled.div`
-    border: 1px solid gray;
-`
-const OptionsContainer = styled.div`
-    padding: 10px 10px;
-`
-const EditorContainer = styled.div`
-    padding: 10px 10px;
-    border: 1px solid black;
-`
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 //Render:
 
 const CreateBioNote = () => {
     return (
-        <div>Deleted</div>
+        <>
+            <h1>Your Bio-Notes</h1>
+            <div>
+                Your currently have no bionotes.
+            </div>
+            <div>
+                <button>
+                    <Link to='newbionote'>Create New Bionote</Link>
+                </button>
+            </div>
+        </>
     )
 }
 
