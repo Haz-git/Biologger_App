@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getNews } from '../../redux/sciNews/sciNewsActions';
+
+import SciCard from './SciCard';
 /*
 news api key: 3c9c2e2fa85142fb957890523a2bc4fc
 documentation: https://newsapi.org/docs/get-started
@@ -27,6 +29,20 @@ const MDSciNews = ({ getNews, news }) => {
         getNews();
     }
 
+    const renderNews = () => (
+        news.news.data.articles.map(article => (
+            <SciCard
+                source={article.source.name}
+                author={article.author}
+                title={article.title}
+                description={article.description}
+                url={article.url}
+                img={article.urlToImage}
+                pubTime={article.publishedAt}
+            />
+        ))
+    )
+
     
     return (
         <>
@@ -40,7 +56,7 @@ const MDSciNews = ({ getNews, news }) => {
             </div>
             <div>
                 <div>
-                    Sci-News Cards should go here.
+                    {renderNews()}
                 </div>
             </div>
         </>
