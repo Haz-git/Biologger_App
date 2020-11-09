@@ -11,6 +11,7 @@ import { store, persistor } from '../src/redux/store';
 //Normalize CSS
 import 'normalize.css';
 
+
 render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
