@@ -20,6 +20,7 @@ import Groups from '../components/Dashboard/Groups';
 import Meetings from '../components/Dashboard/Meetings';
 import Messenger from '../components/Dashboard/Messenger';
 import CreateBioNote from '../components/Dashboard/CreateBioNote';
+import NewBioNote from '../components/Dashboard/NewBioNote';
 
 //Styling:
 
@@ -52,6 +53,7 @@ const App = () => {
                                 <Route exact path='/messenger' component={Messenger} />
                                 <Route exact path='/createbionote' component={CreateBioNote} />
                                 <Route exact path='/logout' component={Logout} />
+                                <Route exact path='/newbionote' component={NewBioNote} />
                             </DashboardContainer>
                         </AuthenticatedComponents>
                     </Switch>
