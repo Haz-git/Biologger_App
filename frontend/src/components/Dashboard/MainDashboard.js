@@ -33,6 +33,7 @@ const MainDashboardUpperGrid = styled.div`
 
 const UpperGridContainer = styled.div`
     text-align: center;
+    padding: 20px 40px;
 `
 
 class MainDashboard extends Component {
