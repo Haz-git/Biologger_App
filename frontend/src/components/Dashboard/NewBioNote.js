@@ -5,41 +5,49 @@ import QuillEditor from '../../editor/QuillEditor';
 
 //Styles:
 
-const MainQuillContainer = styled.div`
-    width: 100%;
-    height: 800px;
-    overflow-y: scroll;
+const MainEditorContainer = styled.div`
+    padding: 50px 50px;
 `
 
 
 const NewBioNote = () => {
 
     //Create two states for values and files!
+
+    const [content, setContent] = useState('');
+    const [files, setFiles] = useState([]);
+
     const onEditorChange = (value) => {
         console.log(value);
+        setContent(value);
     }
 
-    const onFileChange =
+    const onFileChange = (files) => {
+        console.log(files);
+        setFiles(files);
+    }
 
     return (
         <>
-            <form>
-                <div>
-                    <label>Name of BioNote:  </label>
-                    <input
-                        type='text'
-                        placeholder='Enter Name..'
-                    />
-                </div>
-                <div>
-                    <QuillEditor
-                        theme='snow'
-                        placeholder='Start Writing Your BioNote...'
-                        onEditorChange={onEditorChange}
-                        onFileChange={onFileChange}
-                    />
-                </div>
-            </form>
+            <MainEditorContainer>
+                <form>
+                    <div>
+                        <label>Name of BioNote:  </label>
+                        <input
+                            type='text'
+                            placeholder='Enter Name..'
+                        />
+                    </div>
+                    <div>
+                        <QuillEditor
+                            theme='snow'
+                            placeholder='Start Writing Your BioNote...'
+                            onEditorChange={onEditorChange}
+                            onFileChange={onFileChange}
+                        />
+                    </div>
+                </form>
+            </MainEditorContainer>
         </>
     )
 }
