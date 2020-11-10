@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import styled from 'styled-components';
+import QuillEditor from '../../editor/QuillEditor';
 
 //Styles:
 
@@ -10,38 +11,15 @@ const MainQuillContainer = styled.div`
     overflow-y: scroll;
 `
 
-const modules = {
-    toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
-        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-        [{ 'direction': 'rtl' }],                         // text direction
-        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-        ['clean']                                         // remove formatting button
-    ]
-}
-
-const formats = [
-    'font',
-    'size',
-    'bold', 'italic', 'underline',
-    'list', 'bullet',
-    'align',
-    'color', 'background'
-];
 
 const NewBioNote = () => {
 
-    const handleOnChange = (content, delta, source, editor) => {
-        console.log(editor.getHTML());
+    //Create two states for values and files!
+    const onEditorChange = (value) => {
+        console.log(value);
     }
+
+    const onFileChange =
 
     return (
         <>
@@ -54,16 +32,31 @@ const NewBioNote = () => {
                     />
                 </div>
                 <div>
-                    <ReactQuill 
+                    <QuillEditor
                         theme='snow'
-                        modules={modules}
-                        formats={formats}
-                        onChange={handleOnChange}
+                        placeholder='Start Writing Your BioNote...'
+                        onEditorChange={onEditorChange}
+                        onFileChange={onFileChange}
                     />
                 </div>
             </form>
         </>
     )
 }
+
+/*
+The main goal here is to:
+
+1. Learn how to save documents into mongoDB into each individual user.
+2. Learn how to load documents into the loading component "createbionote" --> perhaps a simple listing pattern?
+
+3. Learn how to grab HTML info from mongodb and re-render HTML document upon clicking it.. 
+4. 
+
+
+
+
+
+*/
 
 export default NewBioNote;
