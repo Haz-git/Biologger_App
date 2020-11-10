@@ -222,10 +222,6 @@ class QuillEditor extends React.Component {
 
     handleChange = (html) => {
         console.log('html', html)
-        // https://youtu.be/BbR-QCoKngE
-        // https://www.youtube.com/embed/ZwKhufmMxko
-        // https://tv.naver.com/v/9176888
-        // renderToStaticMarkup(ReactHtmlParser(html, options));
 
         this.setState({
             editorHtml: html
@@ -234,7 +230,6 @@ class QuillEditor extends React.Component {
         });
     };
 
-    // I V F P들을  눌렀을떄 insertImage: this.imageHandler로 가서  거기서 inputOpenImageRef를 클릭 시킨다. 
     imageHandler = () => {
         this.inputOpenImageRef.current.click();
     };
@@ -271,8 +266,6 @@ class QuillEditor extends React.Component {
                         let range = quill.getSelection();
                         let position = range ? range.index : 0;
 
-                        //먼저 노드 서버에다가 이미지를 넣은 다음에   여기 아래에 src에다가 그걸 넣으면 그게 
-                        //이미지 블롯으로 가서  크리에이트가 이미지를 형성 하며 그걸 발류에서     src 랑 alt 를 가져간후에  editorHTML에 다가 넣는다.
                         quill.insertEmbed(position, "image", { src: "http://localhost:5000/" + response.data.url, alt: response.data.fileName });
                         quill.setSelection(position + 1);
 
@@ -282,7 +275,7 @@ class QuillEditor extends React.Component {
                             }, () => { this.props.onFilesChange(this.state.files) });
                         }
                     } else {
-                        return alert('failed to upload file')
+                        return alert('failed to upload file');
                     }
                 })
         }
@@ -366,14 +359,31 @@ class QuillEditor extends React.Component {
             <div>
                 <div id="toolbar">
                     <select className="ql-header" defaultValue={""} onChange={e => e.persist()}>
+                        <option value="" />
                         <option value="1" />
                         <option value="2" />
-                        <option value="" />
+                        <option value="3" />
+                        <option value="4" />
+                        <option value="5" />
                     </select>
+                    <select className="ql-font" defaultValue={"Sans Serif"} onChange={e => e.persist()}>
+                    </select>
+                    <button className="ql-list" value='bullet' />
+                    <button className="ql-list" value='ordered' />
+                    <select className="ql-align" defaultValue={""} onChange={e => e.persist()}>
+                    </select>
+                    <button className="ql-indent" value="+1" />
+                    <button className="ql-indent" value="-1" />
                     <button className="ql-bold" />
                     <button className="ql-italic" />
                     <button className="ql-underline" />
                     <button className="ql-strike" />
+                    <button className="ql-script" value='sub' />
+                    <button className="ql-script" value='super' />
+                    <select className="ql-color" defaultValue={""} onChange={e => e.persist()}>
+                    </select>
+                    <select className="ql-background" defaultValue={""} onChange={e => e.persist()}>
+                    </select>
                     <button className="ql-insertImage">
                         I
                     </button>
@@ -412,7 +422,6 @@ class QuillEditor extends React.Component {
         //syntax: true,
         toolbar: {
             container: "#toolbar",
-            //id ="toorbar"는  그 위에 B I U S I V F P 이거 있는 곳이다. 
             handlers: {
                 insertImage: this.imageHandler,
                 insertVideo: this.videoHandler,
@@ -425,7 +434,9 @@ class QuillEditor extends React.Component {
 
     formats = [
         'header',
+        'font', 'list', 'align', 'indent', 'indent',
         'bold', 'italic', 'underline', 'strike',
+        'script','script', 'color', 'background',
         'image', 'video', 'file', 'link',"code-block", "video", "blockquote", "clean"
     ];
 }
