@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import QuillEditor from '../../editor/QuillEditor';
 import { connect } from 'react-redux';
 import { createNewBioNote } from '../../redux/userBioNote/bionoteActions';
+import { Link } from 'react-router-dom';
 
 //Editor imports:
 import { Editor } from 'react-draft-wysiwyg';
@@ -68,6 +68,7 @@ const NewBioNote = ({ createNewBioNote }) => {
                     </div>
                     <button type='submit'>Submit BioNote</button>
                 </form>
+                <Link to='/createbionote'>View Your Existing BioNotes</Link>
             </MainEditorContainer>
         </>
     )
