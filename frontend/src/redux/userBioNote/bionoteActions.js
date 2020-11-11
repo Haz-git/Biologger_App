@@ -4,12 +4,19 @@ import {
     USER_DELETE_BIONOTE,
     USER_UPDATE_BIONOTE,
 } from './bionoteTypes';
+import history from '../../historyObject';
 
 export function createNewBioNote(bioName, data) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
         const response = await api.post('/users/bionote/create', { _id, bioName, data });
-        console.log(response);
+
+        dispatch({
+            type: USER_ADD_BIONOTE,
+            payload: response.data.userNewBioNotesCollection.bionotes,
+        })
+
+        history.push('/createbionote');
     }
 }
