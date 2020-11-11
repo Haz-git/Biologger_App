@@ -44,7 +44,8 @@ const userSchema = mongoose.Schema({
             message: 'Your passwords do not match!'
         }
     },
-    taskList: [] //Does this work?
+    taskList: [],
+    bionotes: [],
 })
 
 //Create a pre-save Hook to hash password before save:
