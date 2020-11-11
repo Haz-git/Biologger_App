@@ -17,7 +17,7 @@ const CreateBioNote = ({ bionotes }) => {
     )
 
     return (
-        <h1>
+        <>
             <h1>Your Bio-Notes</h1>
             <div>
                 {renderNotes()}
@@ -27,7 +27,7 @@ const CreateBioNote = ({ bionotes }) => {
                     <Link to='newbionote'>Create New Bionote</Link>
                 </button>
             </div>
-        </h1>
+        </>
     )
 }
 
