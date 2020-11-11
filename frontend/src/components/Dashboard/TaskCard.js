@@ -30,7 +30,6 @@ const TaskCard = ({ item, deleteTask }) => {
 
     const handleComplete = () => {
         setStatus('complete');
-        console.log('This task has been completed');
     }
 
     const handleDelete = () => {

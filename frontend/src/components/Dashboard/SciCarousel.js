@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { connect } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 
 //Components:
 import SciCard from './SciCard';
@@ -17,6 +18,7 @@ const SciCarousel = ({ news }) => {
     const renderNews = () => (
         news.news.data.articles.map(article => (
             <SciCard
+                key={uuid()}
                 source={article.source.name}
                 author={article.author}
                 title={article.title}
