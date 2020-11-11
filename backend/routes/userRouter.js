@@ -47,6 +47,10 @@ router
 
 router
     .route('/bionote/create')
-    .post(bionoteController.addBioNote);
+    .post(bionoteController.addBioNote)
+
+router
+    .route('/bionote/load')
+    .post(bionoteController.getBioNotes);
 
 module.exports = router;
