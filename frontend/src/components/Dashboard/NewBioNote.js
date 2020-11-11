@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import QuillEditor from '../../editor/QuillEditor';
+import { connect } from 'react-redux';
+import { createNewBioNote } from '../../redux/userBioNote/bionoteActions';
+import { create } from 'lodash';
 
 //Styles:
 
@@ -8,8 +11,10 @@ const MainEditorContainer = styled.div`
     padding: 50px 50px;
 `
 
+//Render:
 
-const NewBioNote = () => {
+
+const NewBioNote = ({ createNewBioNote }) => {
 
     //Create two states for values and files!
 
@@ -26,10 +31,16 @@ const NewBioNote = () => {
         setFiles(files);
     }
 
+    const onEditorSubmit = (e) => {
+        e.preventDefault();
+        console.log({content, files});
+        createNewBioNote({content, files});
+    }
+
     return (
         <>
             <MainEditorContainer>
-                <form>
+                <form onSubmit={onEditorSubmit}>
                     <div>
                         <label>Name of BioNote:  </label>
                         <input
@@ -45,6 +56,7 @@ const NewBioNote = () => {
                             onFileChange={onFileChange}
                         />
                     </div>
+                    <button type='submit'>Submit BioNote</button>
                 </form>
             </MainEditorContainer>
         </>
@@ -72,4 +84,4 @@ https://www.youtube.com/watch?v=AgreDlNaUn4 @ timestamp 38:21 --> He's setting u
 
 */
 
-export default NewBioNote;
+export default connect(null, { createNewBioNote })(NewBioNote);
