@@ -13,7 +13,7 @@ exports.addTask = handleAsync(async(req, res) => {
     const userTaskList = await User.findOne({ _id }).select('taskList');
     userTaskList.taskList.push(data);
 
-    await User.updateOne({ _id }, { taskList: userTaskList.taskList }, { bypassDocumentValidation: true}, (err, result) => {
+    await User.updateOne({ _id }, { taskList: userTaskList.taskList }, { bypassDocumentValidation: true}, (err) => {
         if (err) console.log(err);
     });
 
