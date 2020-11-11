@@ -29,3 +29,14 @@ exports.addBioNote = handleAsync(async(req, res) => {
         userNewBioNotesCollection
     });
 })
+
+exports.getBioNotes = handleAsync(async(req, res) => {
+    const { _id } = req.body;
+
+    const userExistingBioNotesCollection = await User.findOne({ _id }).select('bionotes');
+
+    res.status(200).json({
+        status: 'Success',
+        userExistingBioNotesCollection
+    })
+})
