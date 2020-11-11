@@ -91,6 +91,13 @@ https://jpuri.github.io/react-draft-wysiwyg/#/docs
 
 2. Learn how to load documents into the loading component "createbionote" --> perhaps a simple listing pattern?
 
+**Finished this--> Probably will take a break for now. I have stored the bionote information in my DB
+and re-rendered a simple system with all of my bionotes listed. 11/11/2020
+
+I have included buttons that are 'read', 'edit', and 'delete'. They link to components that will TAKE in the NAME of the bionote as a wildcard param, and using that, I should be able to render the bionote via:
+https://codepulse.blog/simple-easy-way-display-draft-js-content/
+
+and the edit/delete i'll probably need an action creator and a POST/PATCH request to the server.
 
 
 3. Learn how to grab HTML info from mongodb and re-render HTML document upon clicking it.. 
