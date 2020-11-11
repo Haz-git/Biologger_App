@@ -1,10 +1,12 @@
 const express = require('express');
+const { route } = require('../app');
 const router = express.Router();
 
 //Controllers:
 const authController = require('../controllers/authControllers');
 const chatController = require('../controllers/chatController');
 const taskController = require('../controllers/taskController');
+const bionoteController = require('../controllers/bionoteController');
 
 //Authentication Routers:
 router
@@ -40,5 +42,11 @@ router
 router
     .route('/task/delete')
     .post(taskController.deleteTask);
+
+//Personal User BioNote Router:
+
+router
+    .route('/bionote/create')
+    .post(bionoteController.addBioNote);
 
 module.exports = router;
