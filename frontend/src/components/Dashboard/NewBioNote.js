@@ -7,6 +7,7 @@ import { createNewBioNote } from '../../redux/userBioNote/bionoteActions';
 //Editor imports:
 import { Editor } from 'react-draft-wysiwyg';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 
 //Styles:
 
@@ -19,25 +20,24 @@ const MainEditorContainer = styled.div`
 
 const NewBioNote = ({ createNewBioNote }) => {
 
-    //Create two states for values and files!
+    //Creating editor state for draftJS editor:
+    const [ editorState, setEditorState ] = useState(EditorState.createEmpty());
 
-    const [content, setContent] = useState('');
-    const [files, setFiles] = useState([]);
+    //Creating state for name input:
+    const [ bioName, setBioName ] = useState('');
 
-    // const onEditorChange = (value) => {
-    //     console.log(value);
-    //     setContent(value);
-    // }
+    const handleNameChange = e => {
+        setBioName(e.target.value);
+    }
+    
 
-    // const onFileChange = (files) => {
-    //     console.log(files);
-    //     setFiles(files);
-    // }
+    const handleEditorStateChange = editorState => {
+        setEditorState(editorState);
+    }
 
     const onEditorSubmit = (e) => {
         e.preventDefault();
-        // console.log({content, files});
-        // createNewBioNote({content, files});
+        createNewBioNote(bioName, convertToRaw(editorState.getCurrentContent()));
     }
 
 
@@ -46,14 +46,25 @@ const NewBioNote = ({ createNewBioNote }) => {
             <MainEditorContainer>
                 <form onSubmit={onEditorSubmit}>
                     <div>
-                        <label>Name of BioNote:  </label>
+                        <label htmlFor='bionoteName'>Name of BioNote:  </label>
                         <input
+                            name='bionoteName'
                             type='text'
                             placeholder='Enter Name..'
+                            value={bioName}
+                            onChange={handleNameChange}
                         />
                     </div>
                     <div>
-                        <Editor />
+                        <Editor
+                            editorState={editorState}
+                            toolbar={{
+                                inline: { inDropdown: true },
+                                textAlign: { inDropdown: true },
+                                image: { previewImage: true },
+                            }}
+                            onEditorStateChange={handleEditorStateChange}
+                        />
                     </div>
                     <button type='submit'>Submit BioNote</button>
                 </form>
