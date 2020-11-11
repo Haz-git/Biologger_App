@@ -9,7 +9,7 @@ export function createNewBioNote(data) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const response = await api.post('/user/bionote/create', {_id, data});
+        const response = await api.post('/users/bionote/create', {_id, data});
         console.log(response);
     }
 }
