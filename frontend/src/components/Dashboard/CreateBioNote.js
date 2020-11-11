@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import { getBioNotes } from '../../redux/userBioNote/bionoteActions';
 
 //Components:
 import BioNoteCard from './BioNoteCard';
 
 //Render:
 
-const CreateBioNote = ({ bionotes }) => {
+const CreateBioNote = ({ bionotes, getBioNotes }) => {
+
+    useEffect(() => {
+        getBioNotes();
+    },[]);
 
     const renderNotes = () => (
         bionotes.map(note => (
@@ -38,4 +43,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(CreateBioNote);
+export default connect(mapStateToProps, { getBioNotes })(CreateBioNote);
