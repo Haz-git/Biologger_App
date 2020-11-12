@@ -1,6 +1,8 @@
 import React from 'react'
 
-const ReadBioNote = () => {
+const ReadBioNote = ({ id }) => {
+    console.log(id);
+    
     return (
         <div>
             Place for reading bionotes

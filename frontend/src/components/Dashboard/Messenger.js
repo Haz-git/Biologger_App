@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import { restoreChats, updateStateAfterNewMessage } from '../../redux/chatMessaging/chatActions';
 import ChatCard from './ChatCard.js';
 import styled from 'styled-components';
+import { v4 as uuid } from 'uuid';
 
 import 'normalize.css';
 
@@ -107,8 +108,9 @@ class Messenger extends Component {
     }
 
     renderCards = () => (
+        //Changing key from chat._id to uuid to prevent occasional duplication:
         this.props.chat.data.data.chats.map((chat) => (
-            <ChatCard key={chat._id} {...chat}/>
+            <ChatCard key={uuid()} {...chat}/>
         ))
     )
     

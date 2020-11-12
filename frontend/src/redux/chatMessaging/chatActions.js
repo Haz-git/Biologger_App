@@ -24,7 +24,6 @@ export function updateStateAfterNewMessage(data) {
 
         const newChatLog = {...chat.chatLogs};
         newChatLog.data.data.chats = newChatLog.data.data.chats.concat(data);
-        console.log('After Appending: ', newChatLog)
 
         dispatch({
             type: USER_CHAT_RECEIVED,
