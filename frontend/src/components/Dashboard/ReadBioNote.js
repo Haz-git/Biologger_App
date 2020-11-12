@@ -13,19 +13,14 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
 
     const renderBioNote = () => {
         const currentNote = bionotes.bionotes.find(x => x.bioName === id);
-
         const jsonCurrentNote = JSON.parse(currentNote.data);
-
         const contentState = convertFromRaw(jsonCurrentNote);
-
         const editorState = EditorState.createWithContent(contentState);
-
         setEditorState(editorState);
-        
     }
     
     return (
-        <div>
+        <>
             <Editor
                 editorState={editorState}
                 readOnly={true}
@@ -33,7 +28,7 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
             <div>
                 <Link to='/createbionote'>Go Back</Link>
             </div>
-        </div>
+        </>
     )
 }
 
