@@ -55,7 +55,11 @@ router
 
 router
     .route('/bionote/update')
-    .post(bionoteController.updateBioNote);
+    .patch(bionoteController.updateBioNote);
+
+router
+    .route('/bionote/delete')
+    .patch(bionoteController.deleteBioNote);
 
 
 
