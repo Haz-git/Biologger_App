@@ -53,4 +53,10 @@ router
     .route('/bionote/load')
     .post(bionoteController.getBioNotes);
 
+router
+    .route('/bionote/update')
+    .post(bionoteController.updateBioNote);
+
+
+
 module.exports = router;
