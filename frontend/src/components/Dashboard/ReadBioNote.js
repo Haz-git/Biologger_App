@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
+import { Link } from 'react-router-dom';
 
 const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
     
@@ -29,6 +30,9 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
                 editorState={editorState}
                 readOnly={true}
             />
+            <div>
+                <Link to='/createbionote'>Go Back</Link>
+            </div>
         </div>
     )
 }
