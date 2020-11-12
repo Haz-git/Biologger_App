@@ -17,6 +17,7 @@ import {
 import { MdFolder } from 'react-icons/md';
 
 import { BiExit } from 'react-icons/bi';
+import { IconContext } from 'react-icons/lib';
 
 //Styling:
 
@@ -40,14 +41,14 @@ const DefaultLink = styled(Link)`
 `
 
 const DashboardNavbar = styled.div`
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: fit-content; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+    height: 100%; 
+    width: fit-content; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
     left: 0;
-    background-color: salmon; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
+    background-color: #2D3142; 
+    overflow-x: hidden; 
     padding-top: 20px;
 `
 
@@ -57,7 +58,7 @@ const DashboardLink = styled(Link)`
     font-size: 25px;
     display: block;
     &:hover {
-        background: lightblue;
+        background: salmon;
     }
 `
 
@@ -72,19 +73,29 @@ const Navbar = ({ StateJwt }) => {
         setJWT(jwt2);
     }, [StateJwt]);
 
-    console.log(JWT);
+    const iconColorDesign = (icon, color) => {
+        return (
+            <IconContext.Provider
+                value={{ color: `${color}`}}
+            >
+                {icon}
+            </IconContext.Provider>
+        )
+    }
+
+    // <AiFillHome style={{ color=#B0D7FF}} />
 
     const renderNavOnJWT = jwt => {
 
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <DashboardLink to='/dashboard'><AiFillHome /></DashboardLink>
-                    <DashboardLink to='/meetings'><AiFillPhone /></DashboardLink>
-                    <DashboardLink to='/messenger'><AiFillMessage /></DashboardLink>
-                    <DashboardLink to='/groups'><AiOutlineUsergroupAdd /></DashboardLink>
-                    <DashboardLink to='/createbionote'><MdFolder /></DashboardLink>
-                    <DashboardLink to='/logout'><BiExit /></DashboardLink>
+                    <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/groups'>{iconColorDesign(<AiOutlineUsergroupAdd />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#B0D7FF')}</DashboardLink>
                 </DashboardNavbar>
             )
         } else {
