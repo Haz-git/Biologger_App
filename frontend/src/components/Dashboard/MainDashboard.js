@@ -9,12 +9,12 @@ import MDSciNews from './MDSciNews';
 //Styles:
 const MainDashboardContainer = styled.div`
     height: 100vh;
-    background-color: #EAE8FF;
+    background-color: #EBFFF6;
 `
 const MainDashboardHeaderContainer = styled.div`
     padding-top: 20px;
     text-align: center;
-    background-color: #EAE8FF;
+    background-color: #EBFFF6;
 `
 const MainDashboardHeader = styled.h1`
     font-family: 'Nunito', sans-serif;
@@ -27,7 +27,7 @@ const MainDashboardHeader2 = styled.h2`
 `
 
 const MainDashboardUpperGrid = styled.div`
-    background-color: #EAE8FF;
+    background-color: #EBFFF6;
     padding: 20px 20px;
     display: grid;
     grid-template-columns: 35% 65%;
@@ -59,9 +59,10 @@ class MainDashboard extends Component {
         console.log(getJWT());
     }
 
+
     render() {
 
-        const { firstName, lastName, userName, email } = this.state;
+        const { firstName, email } = this.state;
 
         return (
             <MainDashboardContainer>

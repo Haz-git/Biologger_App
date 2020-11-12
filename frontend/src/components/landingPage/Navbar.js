@@ -11,6 +11,7 @@ import {
     AiOutlineUsergroupAdd,
     AiFillMessage,
     AiFillPhone,
+    AiTwotoneCalendar,
 } from 'react-icons/ai';
 
 import { MdFolder } from 'react-icons/md';
@@ -92,7 +93,7 @@ const Navbar = ({ StateJwt }) => {
                     <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#B0D7FF')}</DashboardLink>
                     <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#B0D7FF')}</DashboardLink>
                     <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#B0D7FF')}</DashboardLink>
-                    <DashboardLink to='/groups'>{iconColorDesign(<AiOutlineUsergroupAdd />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/calendar'>{iconColorDesign(<AiTwotoneCalendar />,'#B0D7FF')}</DashboardLink>
                     <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#B0D7FF')}</DashboardLink>
                     <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#B0D7FF')}</DashboardLink>
                 </DashboardNavbar>

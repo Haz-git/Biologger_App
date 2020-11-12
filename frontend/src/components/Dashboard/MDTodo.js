@@ -47,7 +47,7 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     return (
         <>
-            <h2>Task Log</h2>
+            <h2>Daily Task Log</h2>
             <MainTodoContainer>
                 <div>
                     {renderTasks()}

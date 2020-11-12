@@ -16,7 +16,7 @@ import AuthenticatedComponents from '../components/authComponents/AuthenticatedC
 
 //Authenticated Components:
 import MainDashboard from '../components/Dashboard/MainDashboard';
-import Groups from '../components/Dashboard/Groups';
+import Calendar from './Dashboard/Calendar';
 import Meetings from '../components/Dashboard/Meetings';
 import Messenger from '../components/Dashboard/Messenger';
 import CreateBioNote from '../components/Dashboard/CreateBioNote';
@@ -51,7 +51,7 @@ const App = () => {
                         <AuthenticatedComponents>
                             <DashboardContainer>
                                 <Route exact path='/dashboard' component={MainDashboard} />
-                                <Route exact path='/groups' component={Groups} />
+                                <Route exact path='/calendar' component={Calendar} />
                                 <Route exact path='/meetings' component={Meetings} />
                                 <Route exact path='/messenger' component={Messenger} />
                                 <Route exact path='/createbionote' component={CreateBioNote} />
