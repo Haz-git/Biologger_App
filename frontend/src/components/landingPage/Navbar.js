@@ -8,7 +8,6 @@ import { getJWT } from '../../utils/jwthelper';
 //Icons:
 import {
     AiFillHome,
-    AiFillFund,
     AiOutlineUsergroupAdd,
     AiFillMessage,
     AiFillPhone,

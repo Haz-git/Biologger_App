@@ -9,23 +9,25 @@ import MDSciNews from './MDSciNews';
 //Styles:
 const MainDashboardContainer = styled.div`
     height: 100vh;
-    background-color: white;
+    background-color: #EAE8FF;
 `
 const MainDashboardHeaderContainer = styled.div`
     padding-top: 20px;
     text-align: center;
-    background-color: lightblue;
+    background-color: #EAE8FF;
 `
 const MainDashboardHeader = styled.h1`
+    font-family: 'Nunito', sans-serif;
     margin: 0;
 `
 const MainDashboardHeader2 = styled.h2`
+    font-family: 'Nunito', sans-serif;
     padding-top: 10px;
     margin: 0;
 `
 
 const MainDashboardUpperGrid = styled.div`
-    background-color: pink;
+    background-color: #EAE8FF;
     padding: 20px 20px;
     display: grid;
     grid-template-columns: 35% 65%;
