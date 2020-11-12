@@ -68,3 +68,24 @@ exports.updateBioNote = handleAsync(async(req, res) => {
         updatedUserBioNoteCollection,
     })
 })
+
+exports.deleteBioNote = handleAsync(async(req, res) => {
+    const { _id, bioName } = req.body;
+
+    let userBioNoteCollection = await User.findOne({ _id }).select('bionotes');
+
+
+    userBioNoteCollection.bionotes.splice(userBioNoteCollection.bionotes.indexOf(x => x.bioName === bioName), 1);
+
+    await User.updateOne({ _id }, { bionotes: userBioNoteCollection.bionotes }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const deletedUserBioNoteCollection = await User.findOne({ _id }).select('bionotes');
+
+    res.status(200).json({
+        status: 'Success',
+        deletedUserBioNoteCollection,
+    })
+
+})
