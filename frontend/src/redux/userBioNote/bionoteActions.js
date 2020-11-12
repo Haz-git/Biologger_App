@@ -36,3 +36,22 @@ export function getBioNotes() {
         })
     } 
 }
+
+export function updateBioNote(bioName, updatedContent) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const data = JSON.stringify(updatedContent);
+
+        const response = await api.post('/users/bionote/update', { _id, bioName, data })
+
+        console.log(response);
+
+        dispatch({
+            type: USER_UPDATE_BIONOTE,
+            payload: response.data.updatedUserBioNoteCollection.bionotes,
+        });
+
+        history.push('/createbionote');
+    }
+}
