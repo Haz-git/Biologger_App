@@ -7,9 +7,11 @@ import {
 } from './bionoteTypes';
 import history from '../../historyObject';
 
-export function createNewBioNote(bioName, data) {
+export function createNewBioNote(bioName, submission) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const data = JSON.stringify(submission);
 
         const response = await api.post('/users/bionote/create', { _id, bioName, data });
 
