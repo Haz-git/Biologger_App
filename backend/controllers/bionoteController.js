@@ -42,14 +42,29 @@ exports.getBioNotes = handleAsync(async(req, res) => {
 })
 
 exports.updateBioNote = handleAsync(async(req, res) => {
+
     const { _id, bioName, data } = req.body;
-    console.log(_id, bioName, data);
 
     //Find target User and select bionotes:
 
-    //Iterate through bionotes, find the one with the correct bioName
+    const userBioNoteCollection = await User.findOne({ _id }).select('bionotes');
 
-    //Replace old data with new data from req.body
+    //Iterate through bionotes, find the one with the correct bioName, replace old data with new from req.body.
+
+    userBioNoteCollection.bionotes.find(x => x.bioName === bioName)['data'] = data;
+
+    //Update document:
+
+    await User.updateOne({ _id }, { bionotes: userBioNoteCollection.bionotes }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
 
     //answer response with new updated bionotes collection for state update in client-side.
+
+    const updatedUserBioNoteCollection = await User.findOne({ _id }).select('bionotes');
+
+    res.status(200).json({
+        status: 'Success',
+        updatedUserBioNoteCollection,
+    })
 })
