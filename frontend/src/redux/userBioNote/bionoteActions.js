@@ -43,15 +43,29 @@ export function updateBioNote(bioName, updatedContent) {
 
         const data = JSON.stringify(updatedContent);
 
-        const response = await api.post('/users/bionote/update', { _id, bioName, data })
-
-        console.log(response);
+        const response = await api.patch('/users/bionote/update', { _id, bioName, data })
 
         dispatch({
             type: USER_UPDATE_BIONOTE,
             payload: response.data.updatedUserBioNoteCollection.bionotes,
         });
 
+        history.push('/createbionote');
+    }
+}
+
+export function deleteBioNote(bioName) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.patch('/users/bionote/delete', {_id, bioName});
+
+        dispatch({
+            type: USER_DELETE_BIONOTE,
+            payload: response.data.deletedUserBioNoteCollection.bionotes,
+        });
+
+        //history object to push to '/createbionote'
         history.push('/createbionote');
     }
 }
