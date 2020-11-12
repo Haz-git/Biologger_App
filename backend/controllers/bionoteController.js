@@ -40,3 +40,16 @@ exports.getBioNotes = handleAsync(async(req, res) => {
         userExistingBioNotesCollection
     })
 })
+
+exports.updateBioNote = handleAsync(async(req, res) => {
+    const { _id, bioName, data } = req.body;
+    console.log(_id, bioName, data);
+
+    //Find target User and select bionotes:
+
+    //Iterate through bionotes, find the one with the correct bioName
+
+    //Replace old data with new data from req.body
+
+    //answer response with new updated bionotes collection for state update in client-side.
+})
