@@ -47,7 +47,7 @@ const DashboardNavbar = styled.div`
     z-index: 1; 
     top: 0; 
     left: 0;
-    background-color: #2D3142; 
+    background-color: #0C0F31; 
     overflow-x: hidden; 
     padding-top: 20px;
 `
@@ -90,12 +90,12 @@ const Navbar = ({ StateJwt }) => {
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#B0D7FF')}</DashboardLink>
-                    <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#B0D7FF')}</DashboardLink>
-                    <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#B0D7FF')}</DashboardLink>
-                    <DashboardLink to='/calendar'>{iconColorDesign(<AiTwotoneCalendar />,'#B0D7FF')}</DashboardLink>
-                    <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#B0D7FF')}</DashboardLink>
-                    <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#B0D7FF')}</DashboardLink>
+                    <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#ADD6FF')}</DashboardLink>
+                    <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#ADD6FF')}</DashboardLink>
+                    <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#ADD6FF')}</DashboardLink>
+                    <DashboardLink to='/calendar'>{iconColorDesign(<AiTwotoneCalendar />,'#ADD6FF')}</DashboardLink>
+                    <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#ADD6FF')}</DashboardLink>
+                    <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#ADD6FF')}</DashboardLink>
                 </DashboardNavbar>
             )
         } else {
