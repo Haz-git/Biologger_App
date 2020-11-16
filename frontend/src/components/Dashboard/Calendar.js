@@ -6,6 +6,9 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 
+import { MdCancel } from 'react-icons/md';
+import { IconContext } from 'react-icons';
+
 
 //Styles:
 const MainCalendarContainer = styled.div`
@@ -58,6 +61,9 @@ const StyledButton = styled.button`
 `
 
 const StyledEventCard = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     cursor: pointer;
     background-color: rgb(55, 136, 216);
     border: 1px solid rgb(55, 136, 216);
@@ -72,6 +78,7 @@ const SubmittedEventContainer = styled.div`
     padding-left: 15px;
     padding-right: 15px;
 `
+
 
 
 
@@ -121,6 +128,10 @@ const Calendar = () => {
         }
     }
 
+    const handleEventCardDelete = eventId => {
+        setSubmittedEvents(submittedEvents.filter(event => (event.id !== eventId)));
+    }
+
 
     const renderSideBar = () => {
         return (
@@ -134,6 +145,13 @@ const Calendar = () => {
                             key={event.id}
                         >
                             {event.title}
+                            <button onClick={() => handleEventCardDelete(event.id)}>
+                            <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
+                                <div>
+                                    <MdCancel />
+                                </div>
+                            </IconContext.Provider>
+                            </button>
                         </StyledEventCard>
                     );
                 })}
