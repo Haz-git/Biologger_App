@@ -6,13 +6,24 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 
+
 //Styles:
 const MainCalendarContainer = styled.div`
     display: flex;
     padding: 20px 20px;
 `
 const SideBarContainer = styled.div`
-    flex-grow: 1;
+    flex-grow: .2;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(44,62,80, 0.7);
+    margin-right: 20px;
+`
+
+const SideBarHeader = styled.h2`
+    color: white;
+    font-family: 'Nunito', sans-serif;
 `
 
 const CalendarContainer = styled.div`
@@ -60,7 +71,6 @@ const Calendar = () => {
     const renderSideBar = () => {
         return (
             <div id='external-events'>
-                <h4>Your Events</h4>
                 {submittedEvents.map(event => {
                     return (
                         <div
@@ -88,12 +98,12 @@ const Calendar = () => {
         <>
             <MainCalendarContainer>
                 <SideBarContainer>
-                    {renderSideBar()}
                     <form onSubmit={handleFormSubmit}>
-                        <label>Add New Event</label>
+                        <SideBarHeader>Add New Events</SideBarHeader>
                         <input type='text' onChange={handleFormChange} value={currentEvent}></input>
                         <button type='submit'>Submit</button>
                     </form>
+                    {renderSideBar()}
                 </SideBarContainer>
                 <CalendarContainer>
                     <FullCalendar
@@ -106,7 +116,7 @@ const Calendar = () => {
                         locale='us'
                         initialView='dayGridMonth'
                         headerToolbar={{
-                            left:'prev,next',
+                            left:'prev,next,today',
                             center:'title',
                             right:'dayGridMonth,timeGridWeek,timeGridDay'
                         }}
