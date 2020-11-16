@@ -19,6 +19,8 @@ const SideBarContainer = styled.div`
     padding: 0;
     background-color: rgba(44,62,80, 0.7);
     margin-right: 20px;
+    border-radius: 8px;
+    max-height: 800px;
 `
 
 const SideBarHeader = styled.h2`
@@ -29,6 +31,51 @@ const SideBarHeader = styled.h2`
 const CalendarContainer = styled.div`
     flex-grow: 3;
 `
+
+const StyledInput = styled.input`
+    height: 25px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid white;
+    &:focus {
+        outline:none;
+    }
+
+`
+const StyledButton = styled.button`
+    height: 29px;
+    background-color: rgb(30, 43, 55);
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid rgb(30, 43, 55);
+    cursor: pointer;
+    &:focus {
+        outline:none;
+    }
+`
+
+const StyledEventCard = styled.div`
+    cursor: pointer;
+    background-color: rgb(55, 136, 216);
+    border: 1px solid rgb(55, 136, 216);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+`
+
+const SubmittedEventContainer = styled.div`
+    padding-left: 15px;
+    padding-right: 15px;
+`
+
+
+
+//Render:
 
 const Calendar = () => {
 
@@ -70,26 +117,20 @@ const Calendar = () => {
 
     const renderSideBar = () => {
         return (
-            <div id='external-events'>
+            <SubmittedEventContainer id='external-events'>
                 {submittedEvents.map(event => {
                     return (
-                        <div
+                        <StyledEventCard
                             className="fc-event"
                             title={event.title}
                             id={event.id}
                             key={event.id}
-                            style={{
-                            marginBottom: "2px",
-                            marginRight: "10px",
-                            padding: "3px",
-                            cursor: "pointer"
-                            }}
                         >
                             {event.title}
-                        </div>
+                        </StyledEventCard>
                     );
                 })}
-            </div>
+            </SubmittedEventContainer>
         )
     }
 
@@ -100,9 +141,10 @@ const Calendar = () => {
                 <SideBarContainer>
                     <form onSubmit={handleFormSubmit}>
                         <SideBarHeader>Add New Events</SideBarHeader>
-                        <input type='text' onChange={handleFormChange} value={currentEvent}></input>
-                        <button type='submit'>Submit</button>
+                        <StyledInput type='text' onChange={handleFormChange} value={currentEvent}></StyledInput>
+                        <StyledButton type='submit'>Submit</StyledButton>
                     </form>
+                    <hr />
                     {renderSideBar()}
                 </SideBarContainer>
                 <CalendarContainer>
@@ -113,6 +155,7 @@ const Calendar = () => {
                         droppable={true}
                         selectable={true}
                         selectMirror={true}
+                        height='800px'
                         locale='us'
                         initialView='dayGridMonth'
                         headerToolbar={{
