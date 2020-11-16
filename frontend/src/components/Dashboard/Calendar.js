@@ -27,7 +27,7 @@ const Calendar = () => {
     const [ submittedEvents, setSubmittedEvents ] = useState([]);
 
     useEffect(() => {
-        let draggableEl = document.getElementById("added-events");
+        let draggableEl = document.getElementById("external-events");
         new Draggable(draggableEl, {
             itemSelector: ".fc-event",
             eventData: function(eventEl) {
@@ -39,7 +39,7 @@ const Calendar = () => {
                 };
             }
         });
-    })
+    },[])
 
     const handleFormChange = e => {
         e.preventDefault();
@@ -49,23 +49,25 @@ const Calendar = () => {
     const handleFormSubmit = e => {
         e.preventDefault();
         setSubmittedEvents([...submittedEvents, {
-            title: currentEvent
+            title: currentEvent,
+            id: uuid(),
         }]);
         setCurrentEvent('')
+        console.log(submittedEvents);
     }
 
 
     const renderSideBar = () => {
         return (
-            <div id='added-events'>
+            <div id='external-events'>
                 <h4>Your Events</h4>
                 {submittedEvents.map(event => {
                     return (
                         <div
                             className="fc-event"
                             title={event.title}
-                            // id={event.id}
-                            key={uuid()}
+                            id={event.id}
+                            key={event.id}
                             style={{
                             marginBottom: "2px",
                             marginRight: "10px",
@@ -89,7 +91,7 @@ const Calendar = () => {
                     {renderSideBar()}
                     <form onSubmit={handleFormSubmit}>
                         <label>Add New Event</label>
-                        <input type='text' onChange={handleFormChange}></input>
+                        <input type='text' onChange={handleFormChange} value={currentEvent}></input>
                         <button type='submit'>Submit</button>
                     </form>
                 </SideBarContainer>
@@ -126,7 +128,5 @@ https://fullcalendar.io/docs#toc
 
 It seems like the events object can easily be saved to mongoDB for persistence... --> Using this strategy we can implement personal calendar..https://fullcalendar.io/docs/event-object
 
-I have managed to get the drag and drop event add to work. However, it seems that FullCalender registers this dropped element as MULTIPLE elements and renders between 4-9 elements onto the calendar.. Maybe this has something to do with the rendered element's Id's?
 */
-
 export default Calendar;
