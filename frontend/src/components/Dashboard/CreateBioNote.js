@@ -3,9 +3,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import { getBioNotes } from '../../redux/userBioNote/bionoteActions';
+import styled from 'styled-components';
 
 //Components:
 import BioNoteCard from './BioNoteCard';
+
+//Styles:
+const StyledHeader = styled.h1`
+    margin: 0;
+    text-align: center;
+`
 
 //Render:
 
@@ -23,7 +30,7 @@ const CreateBioNote = ({ bionotes, getBioNotes }) => {
 
     return (
         <>
-            <h1>Your Bio-Notes</h1>
+            <StyledHeader>Your Bio-Notes</StyledHeader>
             <div>
                 {renderNotes()}
             </div>
