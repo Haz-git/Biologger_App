@@ -17,7 +17,7 @@ const SideBarContainer = styled.div`
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: rgba(44,62,80, 0.7);
+    background-color: rgba(44,62,80, 0.8);
     margin-right: 20px;
     border-radius: 8px;
     max-height: 800px;
@@ -114,6 +114,13 @@ const Calendar = () => {
         console.log(submittedEvents);
     }
 
+    const handleEventClick = clickInfo => {
+        if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}' ?`)) {
+            clickInfo.event.remove();
+            //Add path to DB later
+        }
+    }
+
 
     const renderSideBar = () => {
         return (
@@ -158,11 +165,13 @@ const Calendar = () => {
                         height='800px'
                         locale='us'
                         initialView='dayGridMonth'
+                        eventClick={handleEventClick}
                         headerToolbar={{
                             left:'prev,next,today',
                             center:'title',
                             right:'dayGridMonth,timeGridWeek,timeGridDay'
                         }}
+                        //On drop here--> We will have action creator to insert to our events in db.
                         schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
                         events={[
                             { title: 'Anniversary', start: '2020-11-13', end: '2020-11-16'},
