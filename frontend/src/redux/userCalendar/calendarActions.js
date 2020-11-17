@@ -31,3 +31,18 @@ export function getEvents() {
         });
     }
 }
+
+export function deleteEvent(event) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.post('/users/calendar/delete', { event, _id });
+
+        console.log(response);
+
+        dispatch({
+            type: USER_DELETE_EVENT,
+            payload: response.data.updatedDeletedCalendarEvents
+        });
+    }
+}
