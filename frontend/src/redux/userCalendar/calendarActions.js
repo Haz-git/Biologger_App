@@ -10,6 +10,21 @@ export function addNewEvent(event) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        console.log(event);
+        const response = await api.post('/users/calendar/new', { _id, event });
+
+        dispatch({
+            type: USER_ADD_EVENT,
+            payload: response.data.userNewCalendarEvents,
+        })
+    }
+}
+
+export function getEvents() {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.post('/users/calendar/events', { _id });
+
+        console.log(response)
     }
 }
