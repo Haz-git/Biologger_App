@@ -23,3 +23,14 @@ exports.addNewEvent = handleAsync(async (req, res) => {
         userNewCalendarEvents: userNewCalendarEvents.calendarEvents,
     })
 })
+
+exports.getAllEvents = handleAsync(async (req, res) => {
+    const { _id } = req.body;
+
+    const existingUserCalendarEvents = await User.findOne({ _id }).select('calendarEvents');
+
+    res.status(200).json({
+        status: 'Success',
+        existingUserCalendarEvents: existingUserCalendarEvents.calendarEvents,
+    })
+})
