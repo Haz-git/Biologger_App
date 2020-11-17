@@ -6,7 +6,7 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
-import { addNewEvent, getEvents } from '../../redux/userCalendar/calendarActions';
+import { addNewEvent, getEvents, deleteEvent } from '../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
@@ -85,7 +85,7 @@ const SubmittedEventContainer = styled.div`
 
 //Render:
 
-const Calendar = ({ addNewEvent, getEvents, calendarEvents }) => {
+const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
 
     const calendarComponentRef = React.useRef();
 
@@ -127,8 +127,8 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents }) => {
 
     const handleEventClick = clickInfo => {
         if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}' ?`)) {
+            deleteEvent(clickInfo.event);
             clickInfo.event.remove();
-            //Add path to DB later
         }
     }
 
@@ -227,4 +227,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { addNewEvent, getEvents })(Calendar);
+export default connect(mapStateToProps, { addNewEvent, getEvents, deleteEvent })(Calendar);
