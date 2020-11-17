@@ -15,7 +15,7 @@ export function addNewEvent(event) {
         dispatch({
             type: USER_ADD_EVENT,
             payload: response.data.userNewCalendarEvents,
-        })
+        });
     }
 }
 
@@ -25,6 +25,9 @@ export function getEvents() {
 
         const response = await api.post('/users/calendar/events', { _id });
 
-        console.log(response)
+        dispatch({
+            type: USER_GET_EVENTS,
+            payload: response.data.existingUserCalendarEvents
+        });
     }
 }
