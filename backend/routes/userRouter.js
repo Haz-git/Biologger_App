@@ -7,6 +7,7 @@ const authController = require('../controllers/authControllers');
 const chatController = require('../controllers/chatController');
 const taskController = require('../controllers/taskController');
 const bionoteController = require('../controllers/bionoteController');
+const calendarController = require('../controllers/calendarController');
 
 //Authentication Routers:
 router
@@ -61,6 +62,10 @@ router
     .route('/bionote/delete')
     .patch(bionoteController.deleteBioNote);
 
+//Personal Calendar Router:
 
+router
+    .route('/calendar/new')
+    .post(calendarController.addNewEvent)
 
 module.exports = router;
