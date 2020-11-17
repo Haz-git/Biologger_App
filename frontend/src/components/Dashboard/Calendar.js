@@ -132,6 +132,10 @@ const Calendar = () => {
         setSubmittedEvents(submittedEvents.filter(event => (event.id !== eventId)));
     }
 
+    const handleEventReceive = info => {
+        console.log(info);
+    }
+
 
     const renderSideBar = () => {
         return (
@@ -189,7 +193,7 @@ const Calendar = () => {
                             center:'title',
                             right:'dayGridMonth,timeGridWeek,timeGridDay'
                         }}
-                        //On drop here--> We will have action creator to insert to our events in db.
+                        eventReceive={handleEventReceive}
                         schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
                         events={[
                             { title: 'Anniversary', start: '2020-11-13', end: '2020-11-16'},
@@ -208,5 +212,7 @@ https://fullcalendar.io/docs#toc
 
 It seems like the events object can easily be saved to mongoDB for persistence... --> Using this strategy we can implement personal calendar..https://fullcalendar.io/docs/event-object
 
+
+We are now moving on to persisting this calendar data to mdb. We will use the eventRecieve to dispatch a POST request to our server...
 */
 export default Calendar;
