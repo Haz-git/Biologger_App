@@ -66,6 +66,10 @@ router
 
 router
     .route('/calendar/new')
-    .post(calendarController.addNewEvent)
+    .post(calendarController.addNewEvent);
+
+router
+    .route('/calendar/events')
+    .post(calendarController.getAllEvents);
 
 module.exports = router;
