@@ -5,7 +5,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
-
+import { connect } from 'react-redux';
+import { addNewEvent } from '../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
@@ -84,7 +85,7 @@ const SubmittedEventContainer = styled.div`
 
 //Render:
 
-const Calendar = () => {
+const Calendar = ({ addNewEvent }) => {
 
     const calendarComponentRef = React.useRef();
 
@@ -133,7 +134,8 @@ const Calendar = () => {
     }
 
     const handleEventReceive = info => {
-        console.log(info);
+        //Only submit the event object to action creator:
+        addNewEvent(info.event);
     }
 
 
@@ -215,4 +217,4 @@ It seems like the events object can easily be saved to mongoDB for persistence..
 
 We are now moving on to persisting this calendar data to mdb. We will use the eventRecieve to dispatch a POST request to our server...
 */
-export default Calendar;
+export default connect(null, { addNewEvent })(Calendar);
