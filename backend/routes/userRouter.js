@@ -72,4 +72,8 @@ router
     .route('/calendar/events')
     .post(calendarController.getAllEvents);
 
+router
+    .route('/calendar/delete')
+    .post(calendarController.deleteEvent);
+
 module.exports = router;
