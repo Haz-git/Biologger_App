@@ -6,7 +6,7 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
-import { addNewEvent } from '../../redux/userCalendar/calendarActions';
+import { addNewEvent, getEvents } from '../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
@@ -85,7 +85,7 @@ const SubmittedEventContainer = styled.div`
 
 //Render:
 
-const Calendar = ({ addNewEvent }) => {
+const Calendar = ({ addNewEvent, getEvents, calendarEvents }) => {
 
     const calendarComponentRef = React.useRef();
 
@@ -93,6 +93,9 @@ const Calendar = ({ addNewEvent }) => {
     const [ submittedEvents, setSubmittedEvents ] = useState([]);
 
     useEffect(() => {
+
+        getEvents();
+
         let draggableEl = document.getElementById("external-events");
         new Draggable(draggableEl, {
             itemSelector: ".fc-event",
@@ -197,15 +200,14 @@ const Calendar = ({ addNewEvent }) => {
                         }}
                         eventReceive={handleEventReceive}
                         schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
-                        events={[
-                            { title: 'Anniversary', start: '2020-11-13', end: '2020-11-16'},
-                        ]}
+                        events={calendarEvents.calendarEvents}
                     />
                 </CalendarContainer>
             </MainCalendarContainer>
         </>
     )
 }
+
 
 /*
 Documentation:
@@ -214,7 +216,15 @@ https://fullcalendar.io/docs#toc
 
 It seems like the events object can easily be saved to mongoDB for persistence... --> Using this strategy we can implement personal calendar..https://fullcalendar.io/docs/event-object
 
-
-We are now moving on to persisting this calendar data to mdb. We will use the eventRecieve to dispatch a POST request to our server...
+We have now made persistence when adding new events to the calendar, and grabbing from our DB. However, persistence of moving events or changing duration of events is not supported yet. We have to implement USER_UPDATE_EVENT for that to happen.
 */
-export default connect(null, { addNewEvent })(Calendar);
+
+const mapStateToProps = state => {
+    return {
+        calendarEvents: state.calendarEvents
+    }
+}
+
+
+
+export default connect(mapStateToProps, { addNewEvent, getEvents })(Calendar);
