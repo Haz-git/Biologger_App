@@ -46,6 +46,7 @@ const userSchema = mongoose.Schema({
     },
     taskList: [],
     bionotes: [],
+    calendarEvents:[],
 })
 
 //Create a pre-save Hook to hash password before save:
