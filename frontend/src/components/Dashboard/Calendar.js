@@ -96,13 +96,6 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
         getEvents();
 
-        console.log(calendarEvents.calendarEvents)
-
-        /*
-        Bug Found: Add new event --> Delete Event --> refresh page and/or migrate away from page === All events disappear until next refresh. For some reason... it seems as though during the initial refresh, calendarEvents.calendarEvents is NOT an array...it's an object for some reason.. calendarEvents are accessed.
-
-        */
-
         setApiEvents(calendarEvents.calendarEvents);
 
 
