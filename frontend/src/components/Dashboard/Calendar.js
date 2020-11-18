@@ -6,7 +6,7 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
-import { addNewEvent, getEvents, deleteEvent } from '../../redux/userCalendar/calendarActions';
+import { addNewEvent, getEvents, deleteEvent, updateEvent } from '../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
@@ -84,7 +84,7 @@ const SubmittedEventContainer = styled.div`
 
 //Render:
 
-const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
+const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateEvent }) => {
 
     const calendarComponentRef = React.useRef();
 
@@ -95,7 +95,16 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
     useEffect(() => {
 
         getEvents();
-        setApiEvents([...calendarEvents.calendarEvents]);
+
+        console.log(calendarEvents.calendarEvents)
+
+        /*
+        Bug Found: Add new event --> Delete Event --> refresh page and/or migrate away from page === All events disappear until next refresh. For some reason... it seems as though during the initial refresh, calendarEvents.calendarEvents is NOT an array...it's an object for some reason.. calendarEvents are accessed.
+
+        */
+
+        setApiEvents(calendarEvents.calendarEvents);
+
 
         let draggableEl = document.getElementById("external-events");
 
@@ -141,6 +150,14 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
     const handleEventReceive = info => {
         //Only submit the event object to action creator:
         addNewEvent(info.event.toPlainObject());
+    }
+
+    const handleEventChange = changeInfo => {
+        updateEvent(changeInfo.event.toPlainObject())
+            .catch(() => {
+                console.log('Something Wonky Happened! Change not reported to API');
+                changeInfo.revert()
+            })
     }
 
 
@@ -203,6 +220,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
                         eventReceive={handleEventReceive}
                         schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
                         events={apiEvents}
+                        eventChange={handleEventChange}
                     />
                 </CalendarContainer>
             </MainCalendarContainer>
@@ -234,4 +252,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { addNewEvent, getEvents, deleteEvent })(Calendar);
+export default connect(mapStateToProps, { addNewEvent, getEvents, deleteEvent, updateEvent })(Calendar);
