@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { addNewEvent, getEvents, deleteEvent } from '../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
+import { set } from 'lodash';
 
 
 //Styles:
@@ -111,7 +112,6 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
     },[])
 
     const handleFormChange = e => {
-        e.preventDefault();
         setCurrentEvent(e.target.value);
     }
 
@@ -126,6 +126,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
     }
 
     const handleEventClick = clickInfo => {
+        console.log(clickInfo)
         if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}' ?`)) {
             deleteEvent(clickInfo.event);
             clickInfo.event.remove();
