@@ -9,8 +9,6 @@ import { connect } from 'react-redux';
 import { addNewEvent, getEvents, deleteEvent } from '../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
-import { set } from 'lodash';
-
 
 //Styles:
 const MainCalendarContainer = styled.div`
@@ -90,14 +88,17 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
 
     const calendarComponentRef = React.useRef();
 
+    const [ apiEvents, setApiEvents ] = useState([])
     const [ currentEvent, setCurrentEvent ] = useState('');
     const [ submittedEvents, setSubmittedEvents ] = useState([]);
 
     useEffect(() => {
 
         getEvents();
+        setApiEvents([...calendarEvents.calendarEvents]);
 
         let draggableEl = document.getElementById("external-events");
+
         new Draggable(draggableEl, {
             itemSelector: ".fc-event",
             eventData: function(eventEl) {
@@ -109,6 +110,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
                 };
             }
         });
+
     },[])
 
     const handleFormChange = e => {
@@ -126,7 +128,6 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
     }
 
     const handleEventClick = clickInfo => {
-        console.log(clickInfo)
         if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}' ?`)) {
             deleteEvent(clickInfo.event);
             clickInfo.event.remove();
@@ -139,7 +140,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
 
     const handleEventReceive = info => {
         //Only submit the event object to action creator:
-        addNewEvent(info.event);
+        addNewEvent(info.event.toPlainObject());
     }
 
 
@@ -201,7 +202,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent }) => {
                         }}
                         eventReceive={handleEventReceive}
                         schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
-                        events={calendarEvents.calendarEvents}
+                        events={apiEvents}
                     />
                 </CalendarContainer>
             </MainCalendarContainer>
@@ -218,6 +219,11 @@ https://fullcalendar.io/docs#toc
 It seems like the events object can easily be saved to mongoDB for persistence... --> Using this strategy we can implement personal calendar..https://fullcalendar.io/docs/event-object
 
 We have now made persistence when adding new events to the calendar, and grabbing from our DB. However, persistence of moving events or changing duration of events is not supported yet. We have to implement USER_UPDATE_EVENT for that to happen.
+
+**BUGS**
+1. Adding Events will duplicate events--> Refresh will remove.
+
+2. Deleting Events from Calendar will remove all events --> Refresh will update. 
 */
 
 const mapStateToProps = state => {
