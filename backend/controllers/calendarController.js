@@ -57,7 +57,7 @@ exports.deleteEvent = handleAsync(async (req,res) => {
 
     res.status(200).json({
         status: 'Success',
-        updatedDeletedCalendarEvents,
+        updatedDeletedCalendarEvents: updatedDeletedCalendarEvents.calendarEvents,
     })
 })
 
@@ -88,6 +88,6 @@ exports.updateEvent = handleAsync(async (req,res) => {
 
     res.status(200).json({
         status: 'Success',
-        updatedCalendarEvents: updatedCalendarEvents.calendarEvents
+        updatedCalendarEvents: updatedCalendarEvents.calendarEvents,
     })
 })
