@@ -46,3 +46,16 @@ export function deleteEvent(event) {
         });
     }
 }
+
+export function updateEvent(event) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.patch('/users/calendar/update', { event, _id });
+
+        dispatch({
+            type: USER_UPDATE_EVENT,
+            payload: response.data.updatedCalendarEvents
+        });
+    }
+}
