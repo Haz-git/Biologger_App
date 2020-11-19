@@ -36,7 +36,7 @@ const HeaderContainer = styled.div`
     background-color: #F6F9FC;
 `
 
-const MainHeader = styled.h1`
+export const MainHeader = styled.h1`
     margin: 0;
     font-weight: 900;
     font-size: 60px;
@@ -52,6 +52,7 @@ const SecondaryHeader = styled.h2`
     font-size: 22px;
     padding: 10px 10px;
     font-weight: 500;
+    color: #293241;
     font-family: 'Catamaran', sans-serif;
 `
 
@@ -61,6 +62,7 @@ const ThirdHeader = styled.h3`
     padding-top: 30px;
     font-family: 'Catamaran', sans-serif;
     font-weight: 300;
+    color: #293241;
 `
 
 const FormContainer = styled.div`
@@ -81,7 +83,7 @@ const ImageContainer = styled.div`
     background-color: #F6F9FC;
 `
 
-const StyledField = styled(Field)`
+export const StyledField = styled(Field)`
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -91,7 +93,7 @@ const StyledField = styled(Field)`
     box-sizing: border-box;
 `
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
     font-family: 'Nunito', sans-serif, Helvetica;
     font-weight: 300;
     font-size: 17px;
@@ -101,7 +103,7 @@ const InputContainer = styled.div`
     padding-top: 50px;
 `
 
-const InputFieldContainer = styled.div`
+export const InputFieldContainer = styled.div`
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
@@ -112,7 +114,7 @@ const ButtonContainer = styled.div`
     padding-bottom: 10px;
 `
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
     background-color: #569a59;
     border: none;
     color: white;

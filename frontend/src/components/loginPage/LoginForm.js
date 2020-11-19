@@ -5,10 +5,23 @@ import { connect } from 'react-redux';
 import userLogin from '../../redux/userLogin/userLoginActions';
 
 //Styles:
+import {
+    MainHeader,
+    StyledField,
+    StyledLabel,
+    StyledButton,
+    InputFieldContainer,
+} from '../signupPage/SignUpForm';
+
 const MainContainer = styled.div`
     text-align: center;
     padding: 10px 10px;
-    background-color: lightblue;
+    background-color:#F6F9FC;
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
 `
 
 
@@ -23,21 +36,20 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
     return (
         <>
             <MainContainer>
-                <h1>Please enter the details below:</h1>
+                <MainHeader>Welcome Back!</MainHeader>
                 <div>
                     <form onSubmit={handleSubmit(dispatchFormValues)}>
-                        <div>
-                            <label>Email Address</label>
-                            <Field name='email' component='input'></Field>
-                        </div>
-                        <div>
-                            <label>Password</label>
-                            <Field name='password' component='input'></Field>
-                        </div>
-                        <div>
-                            <button type='submit'>Submit</button>
-                            <button type='reset'>Reset</button>
-                        </div>
+                        <InputFieldContainer>
+                            <StyledLabel>Email Address</StyledLabel>
+                            <StyledField name='email' component='input'></StyledField>
+                        </InputFieldContainer>
+                        <InputFieldContainer>
+                            <StyledLabel>Password</StyledLabel>
+                            <StyledField name='password' component='input' type='password'></StyledField>
+                        </InputFieldContainer>
+                        <InputFieldContainer>
+                            <StyledButton type='submit'>Login</StyledButton>
+                        </InputFieldContainer>
                     </form>
                 </div>
             </MainContainer>
