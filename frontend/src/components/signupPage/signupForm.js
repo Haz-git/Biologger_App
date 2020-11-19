@@ -15,11 +15,10 @@ const MainContainer = styled.div`
 
 const ContentContainer = styled.div`
     display: grid;
+    align-items: center;
     grid-template-columns: 40% 60%;
-    background-color:#F6F9FC;
+    /* background-color:#F6F9FC; */
     text-align: center;
-    border: none;
-    border-radius: 8px;
     width: 100%;
     max-height: 100px;
 
@@ -39,7 +38,7 @@ const MainHeader = styled.h1`
     padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
     color: #293241;
     font-family: 'Catamaran', sans-serif;
 `
@@ -70,6 +69,9 @@ const FormContainer = styled.div`
 const ImageContainer = styled.div`
     flex-grow: 1;
     /* background-color: navy; */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 `
 
 const StyledField = styled(Field)`
@@ -77,14 +79,14 @@ const StyledField = styled(Field)`
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
 `
 
 const StyledLabel = styled.label`
     font-family: 'Nunito', sans-serif, Helvetica;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 17px;
 `
 
@@ -118,7 +120,7 @@ const StyledButton = styled.button`
 const StyledImg = styled.img`
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
 `
 
