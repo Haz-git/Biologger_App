@@ -29,7 +29,6 @@ import DeleteBioNote from '../components/Dashboard/DeleteBioNote';
 
 const AppContainer = styled.div`
     background-color: #F6F9FC;
-    height: 100vh;
 `
 const DashboardContainer = styled.div`
     margin-left: 45px;

@@ -10,18 +10,22 @@ import signupImg from '../../Img/signupImg.jpg';
 const MainContainer = styled.div`
     margin: 0 auto;
     text-align: center;
-    padding: 20px 20px;
+    background-color:#F6F9FC;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
 `
 
 const ContentContainer = styled.div`
     display: grid;
     align-items: center;
-    grid-template-columns: 40% 60%;
-    /* background-color:#F6F9FC; */
+    grid-template-columns: 45% 55%;
+    background-color:#F6F9FC;
     text-align: center;
     width: 100%;
     max-height: 100px;
 
+ 
 `
 const HeaderContainer = styled.div`
     /* background-color: salmon; */
@@ -29,6 +33,7 @@ const HeaderContainer = styled.div`
     padding-right: 12px;
     padding-top: 20px;
     padding-bottom: 10px;
+    background-color: #F6F9FC;
 `
 
 const MainHeader = styled.h1`
@@ -64,6 +69,7 @@ const FormContainer = styled.div`
     /* background-color: lightblue; */
     padding-left: 80px;
     padding-right: 80px;
+    background-color: #F6F9FC;
 `
 
 const ImageContainer = styled.div`
@@ -72,6 +78,7 @@ const ImageContainer = styled.div`
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+    background-color: #F6F9FC;
 `
 
 const StyledField = styled(Field)`
@@ -119,9 +126,13 @@ const StyledButton = styled.button`
 
 const StyledImg = styled.img`
     max-width: 100%;
-    max-height: 100%;
+    max-height: 987px;
     object-fit: cover;
     border-radius: 10px;
+
+    @media (min-width: 1700px) {
+        max-height: 1100px;
+    }
 `
 
 
