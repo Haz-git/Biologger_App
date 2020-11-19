@@ -9,13 +9,16 @@ import userSignUp from '../../redux/userSignUp/userSignUpActions';
 const MainContainer = styled.div`
     margin: 0 auto;
     text-align: center;
+    padding: 20px 20px;
 `
 
 const ContentContainer = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: 40% 60%;
     background-color:#F6F9FC;
-    padding: 20px 20px;
     text-align: center;
+    border: none;
+    border-radius: 8px;
 
 `
 const HeaderContainer = styled.div`
@@ -26,11 +29,17 @@ const HeaderContainer = styled.div`
 const MainHeader = styled.h1`
     margin: 0;
     font-weight: 900;
+    font-size: 40px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 30px;
     font-family: 'Catamaran', sans-serif;
 `
 const SecondaryHeader = styled.h2`
     margin: 0;
-    font-size: 18px;
+    font-size: 22px;
+    padding: 10px 10px;
     font-family: 'Catamaran', sans-serif;
 `
 
@@ -38,7 +47,9 @@ const FormContainer = styled.div`
     flex-grow: 1;
     text-align: center;
     background-color: lightblue;
-    padding: 10px 10px;
+    padding-top: 15px;
+    padding-left: 80px;
+    padding-right: 80px;
 `
 
 const ImageContainer = styled.div`
@@ -51,9 +62,40 @@ const StyledField = styled(Field)`
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
     box-sizing: border-box;
+`
+
+const StyledLabel = styled.label`
+    font-family: 'Nunito', sans-serif, Helvetica;
+`
+
+const InputContainer = styled.div`
+    padding-top: 50px;
+`
+
+const InputFieldContainer = styled.div`
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+`
+
+const ButtonContainer = styled.div`
+    padding-top: 10px;
+    padding-bottom: 20px;
+`
+
+const StyledButton = styled.button`
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+    font-family: 'Nunito', sans-serif, Helvetica;
 `
 
 
@@ -76,41 +118,38 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
                     <form onSubmit={handleSubmit(dispatchFormValues)}>
                         <FormContainer>
                             <HeaderContainer>
-                                <MainHeader>Join Biologger.</MainHeader>
+                                <MainHeader>Join The Colony</MainHeader>
                                 <SecondaryHeader>Create an account to increase your research workflow by writing bio-note snippets, setting task reminders, and organizing work schedule.</SecondaryHeader>
                             </HeaderContainer>
-                                <div>
-                                    <div>
-                                        <label>First Name</label>
+                                <InputContainer>
+                                    <InputFieldContainer>
+                                        <StyledLabel>First Name</StyledLabel>
                                         <StyledField name='firstName' component='input'></StyledField>
-                                    </div>
-                                    <div>
-                                        <label>Last Name</label>
+                                    </InputFieldContainer>
+                                    <InputFieldContainer>
+                                        <StyledLabel>Last Name</StyledLabel>
                                         <StyledField name='lastName' component='input'></StyledField>
-                                    </div>
-                                    <div>
-                                        <label>Username</label>
+                                    </InputFieldContainer>
+                                    <InputFieldContainer>
+                                        <StyledLabel>Username</StyledLabel>
                                         <StyledField name='userName' component='input'></StyledField>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <label>Email Address</label>
+                                    </InputFieldContainer>
+                                    <InputFieldContainer>
+                                        <StyledLabel>Email Address</StyledLabel>
                                         <StyledField name='email' component='input'></StyledField>
-                                    </div>
-                                    <div>
-                                        <label>Password</label>
-                                        <StyledField name='password' component='input'></StyledField>
-                                    </div>
-                                    <div>
-                                        <label>Confirm Password</label>
-                                        <StyledField name='passwordConfirm' component='input'></StyledField>
-                                    </div>
-                                </div>
-                            <div>
-                                <button type='submit'>Submit</button>
-                                <button type='reset'>Reset</button>
-                            </div>
+                                    </InputFieldContainer>
+                                    <InputFieldContainer>
+                                        <StyledLabel>Password</StyledLabel>
+                                        <StyledField name='password' component='input' type='password'></StyledField>
+                                    </InputFieldContainer>
+                                    <InputFieldContainer>
+                                        <StyledLabel>Confirm Password</StyledLabel>
+                                        <StyledField name='passwordConfirm' component='input' type='password'></StyledField>
+                                    </InputFieldContainer>
+                                </InputContainer>
+                            <ButtonContainer>
+                                <StyledButton type='submit'>Sign Up</StyledButton>
+                            </ButtonContainer>
                         </FormContainer>
                     </form>
                 </ContentContainer>
