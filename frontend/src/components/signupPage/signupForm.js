@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import userSignUp from '../../redux/userSignUp/userSignUpActions';
+import signupImg from '../../Img/signupImg.jpg';
 
 //Styles:
 
@@ -87,7 +88,7 @@ const ButtonContainer = styled.div`
 `
 
 const StyledButton = styled.button`
-    background-color: #4CAF50;
+    background-color: #569a59;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -97,7 +98,11 @@ const StyledButton = styled.button`
     width: 100%;
     font-family: 'Nunito', sans-serif, Helvetica;
 `
-
+const StyledImg = styled.img`
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+`
 
 
 
@@ -113,7 +118,7 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
             <MainContainer>
                 <ContentContainer>
                     <ImageContainer>
-                        This should render an image.
+                        <StyledImg src={signupImg}></StyledImg>
                     </ImageContainer>
                     <form onSubmit={handleSubmit(dispatchFormValues)}>
                         <FormContainer>
