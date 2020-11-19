@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
+import biologgerflg from '../../Img/biologgerflg.png';
 
 
 //Icons:
@@ -26,6 +27,7 @@ const DefaultNavbar = styled.div`
     justify-content: space-between;
     background-color: #293241;
     align-items: center;
+    margin: 0;
 
 `
 const NavLinks = styled.div`
@@ -34,13 +36,23 @@ const NavLinks = styled.div`
 
 const DefaultLink = styled(Link)`
     text-decoration: none;
-    padding: 20px 20px;
+    padding-left: 40px;
+    padding-right: 40px;
     color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
     &:hover {
         background: rgba(238, 108, 77, .75);
     }
+`
+
+const LogoLink = styled(Link)`
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
 `
 
 const DashboardNavbar = styled.div`
@@ -63,6 +75,12 @@ const DashboardLink = styled(Link)`
     &:hover {
         background: salmon;
     }
+`
+
+const StyledImg = styled.img`
+    max-width: 500px;
+    max-height: 100px;
+    object-fit: cover;
 `
 
 //Component Structure:
@@ -104,10 +122,12 @@ const Navbar = ({ StateJwt }) => {
         } else {
             return (
                 <DefaultNavbar>
-                    <DefaultLink to='/'>BioLogger</DefaultLink>
+                    <LogoLink to='/'>
+                        <StyledImg src={biologgerflg}></StyledImg>
+                    </LogoLink>
                     <NavLinks>
                         <DefaultLink to='/signup'>Sign up</DefaultLink>
-                        <DefaultLink to='/login' >Login</DefaultLink>
+                        <DefaultLink to='/login' >Log In</DefaultLink>
                     </NavLinks>
                 </DefaultNavbar>
             )
