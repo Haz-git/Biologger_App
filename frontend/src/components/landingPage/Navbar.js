@@ -24,7 +24,7 @@ import { IconContext } from 'react-icons/lib';
 const DefaultNavbar = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: salmon;
+    background-color: #293241;
     align-items: center;
 
 `
@@ -35,8 +35,10 @@ const NavLinks = styled.div`
 const DefaultLink = styled(Link)`
     text-decoration: none;
     padding: 20px 20px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
     &:hover {
-        background: lightblue;
+        background: rgba(238, 108, 77, .75);
     }
 `
 
