@@ -8,14 +8,33 @@ import userSignUp from '../../redux/userSignUp/userSignUpActions';
 
 const MainContainer = styled.div`
     background-color: white;
+    padding: 20px 20px;
     text-align: center;
 `
+const HeaderContainer = styled.div`
+    background-color: salmon;
+    padding: 10px 10px;
+`
+
+const MainHeader = styled.h1`
+    margin: 0;
+    font-weight: 900;
+    font-family: 'Catamaran', sans-serif;
+`
+const SecondaryHeader = styled.h2`
+    margin: 0;
+    font-size: 18px;
+    font-family: 'Catamaran', sans-serif;
+`
+
+
 const FormContainer = styled.div`
     display: grid;
     grid-template-columns: 50% 50%;
     background-color: lightblue;
     padding: 10px 10px;
 `
+
 
 
 //Render:
@@ -28,8 +47,10 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
     return (
         <>
             <MainContainer>
-                <h1>Thank you for signing up!</h1>
-                <h2>Please fill in the provided fields below:</h2>
+                <HeaderContainer>
+                <MainHeader>Join Biologger.</MainHeader>
+                <SecondaryHeader>Create an account to increase your research workflow by writing bio-note snippets, setting task reminders, and organizing work schedule.</SecondaryHeader>
+                </HeaderContainer>
                 <form onSubmit={handleSubmit(dispatchFormValues)}>
                     <FormContainer>
                             <div>
