@@ -37,6 +37,7 @@ const DefaultLink = styled(Link)`
     padding: 20px 20px;
     color: white;
     font-family: 'Nunito', sans-serif;
+    font-weight: 300;
     &:hover {
         background: rgba(238, 108, 77, .75);
     }

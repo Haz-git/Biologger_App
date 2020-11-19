@@ -20,42 +20,56 @@ const ContentContainer = styled.div`
     text-align: center;
     border: none;
     border-radius: 8px;
+    width: 100%;
+    max-height: 100px;
 
 `
 const HeaderContainer = styled.div`
-    background-color: salmon;
-    padding: 10px 10px;
+    /* background-color: salmon; */
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 20px;
+    padding-bottom: 10px;
 `
 
 const MainHeader = styled.h1`
     margin: 0;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 60px;
     padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
     padding-bottom: 30px;
+    color: #293241;
     font-family: 'Catamaran', sans-serif;
 `
 const SecondaryHeader = styled.h2`
     margin: 0;
     font-size: 22px;
     padding: 10px 10px;
+    font-weight: 500;
     font-family: 'Catamaran', sans-serif;
+`
+
+const ThirdHeader = styled.h3`
+    margin: 0;
+    font-size: 17px;
+    padding-top: 30px;
+    font-family: 'Catamaran', sans-serif;
+    font-weight: 300;
 `
 
 const FormContainer = styled.div`
     flex-grow: 1;
     text-align: center;
-    background-color: lightblue;
-    padding-top: 15px;
+    /* background-color: lightblue; */
     padding-left: 80px;
     padding-right: 80px;
 `
 
 const ImageContainer = styled.div`
     flex-grow: 1;
-    background-color: navy;
+    /* background-color: navy; */
 `
 
 const StyledField = styled(Field)`
@@ -70,6 +84,8 @@ const StyledField = styled(Field)`
 
 const StyledLabel = styled.label`
     font-family: 'Nunito', sans-serif, Helvetica;
+    font-weight: 600;
+    font-size: 17px;
 `
 
 const InputContainer = styled.div`
@@ -83,8 +99,8 @@ const InputFieldContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-    padding-top: 10px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
 `
 
 const StyledButton = styled.button`
@@ -98,10 +114,12 @@ const StyledButton = styled.button`
     width: 100%;
     font-family: 'Nunito', sans-serif, Helvetica;
 `
+
 const StyledImg = styled.img`
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    border-radius: 10px;
 `
 
 
@@ -125,6 +143,7 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
                             <HeaderContainer>
                                 <MainHeader>Join The Colony</MainHeader>
                                 <SecondaryHeader>Create an account to increase your research workflow by writing bio-note snippets, setting task reminders, and organizing work schedule.</SecondaryHeader>
+                                <ThirdHeader>Already signed up? Login above!</ThirdHeader>
                             </HeaderContainer>
                                 <InputContainer>
                                     <InputFieldContainer>
