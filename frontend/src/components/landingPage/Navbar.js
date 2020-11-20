@@ -5,21 +5,16 @@ import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import faviconedit3 from '../../Img/faviconedit3.png';
 
+//Styled-icons:
 
-//Icons:
-import {
-    AiFillHome,
-    AiFillMessage,
-    AiFillPhone,
-    AiTwotoneCalendar,
-} from 'react-icons/ai';
+import { HomeHeart } from '@styled-icons/boxicons-solid/HomeHeart';
+import { VideoCamera } from '@styled-icons/entypo/VideoCamera';
+import { ChatLeftDotsFill } from '@styled-icons/bootstrap/ChatLeftDotsFill';
+import { Calendar } from '@styled-icons/foundation/Calendar';
+import { Folder } from '@styled-icons/entypo/Folder';
+import { Tools } from '@styled-icons/entypo/Tools';
+import { LogOut } from '@styled-icons/ionicons-sharp/LogOut';
 
-import { FaTools } from 'react-icons/fa';
-
-import { MdFolder } from 'react-icons/md';
-
-import { BiExit } from 'react-icons/bi';
-import { IconContext } from 'react-icons/lib';
 
 //Styling:
 
@@ -82,23 +77,12 @@ const DashboardNavbar = styled.div`
 
 `
 
-const StyledLinkDivider = styled.div`
-    padding: 10px 10px;
-    color: #ADD6FF;
-`
-
 const DashboardLink = styled(Link)`
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px 10px;
     text-decoration: none;
     font-size: 25px;
     display: block;
-
-    ${StyledLinkDivider}:hover & {
-        color: white;
-    }
 `
-
 const StyledImg = styled.img`
     max-width: 500px;
     max-height: 85px;
@@ -112,12 +96,94 @@ const StyledLogoHeader = styled.h1`
 `
 const StyledLogoMiniContainer = styled.div`
     margin: -10px;
-
 `
 const StyledMiniLogo = styled.p`
     margin: 0;
     font-size: 17px;
     font-family: 'IM Fell English SC', serif;
+`
+const StyledHomeHeart = styled(HomeHeart)`
+    margin-bottom: 3px;
+    height: 31px;
+    width: 31px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+
+const StyledVideoCamera = styled(VideoCamera)`
+    margin-bottom: 3px;
+    height: 30px;
+    width: 27px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+
+const StyledChatIcon = styled(ChatLeftDotsFill)`
+    margin-bottom: 3px;
+    height: 30px;
+    width: 27px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+
+const StyledCalendar = styled(Calendar)`
+    margin-bottom: 3px;
+    height: 35px;
+    width: 35px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+
+const StyledFolder = styled(Folder)`
+    margin-bottom: 3px;
+    height: 30px;
+    width: 30px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+
+const StyledTools = styled(Tools)`
+    margin-bottom: 3px;
+    height: 30px;
+    width: 30px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+const StyledLogOut = styled(LogOut)`
+    margin-bottom: 3px;
+    height: 30px;
+    width: 32px;
+    color: #ADD6FF;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
+    }
+`
+
+const StyledDashboardLogo = styled.img`
+    margin-bottom: 3px;
+    height: 65px;
+    width: 65px;
+    color: #ADD6FF;
+    object-fit: cover;
 `
 
 const StyledLinkLabel = styled.label`
@@ -125,11 +191,14 @@ const StyledLinkLabel = styled.label`
     font-family: 'Nunito', sans-serif;
     font-size: 10px;
     margin-top: 0px;
+    color: #ADD6FF;
+    cursor: pointer;
 
-    ${StyledLinkDivider}:hover & {
-        color: white;
+    ${DashboardLink}:hover & {
+        color: #ee6c4d;
     }
 `
+
 
 
 //Component Structure:
@@ -143,51 +212,41 @@ const Navbar = ({ StateJwt }) => {
         setJWT(jwt2);
     }, [StateJwt]);
 
-    const iconColorDesign = (icon, color) => {
-        return (
-            <IconContext.Provider
-                value={{ color: `${color}`}}
-            >
-                {icon}
-            </IconContext.Provider>
-        )
-    }
-
-    // <AiFillHome style={{ color=#B0D7FF}} />
 
     const renderNavOnJWT = jwt => {
 
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#ADD6FF')}</DashboardLink>
+                    <StyledDashboardLogo src={faviconedit3} />
+                    <DashboardLink to='/dashboard'>
+                        <StyledHomeHeart />
                         <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
-                    </StyledLinkDivider>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#ADD6FF')}</DashboardLink>
+                    </DashboardLink>
+                    <DashboardLink to='/meetings'>
+                        <StyledVideoCamera />
                         <StyledLinkLabel>MEETINGS</StyledLinkLabel>
-                    </StyledLinkDivider>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#ADD6FF')}</DashboardLink>
+                    </DashboardLink>
+                    <DashboardLink to='/messenger'>
+                        <StyledChatIcon />
                         <StyledLinkLabel>MESSENGER</StyledLinkLabel>
-                    </StyledLinkDivider>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/calendar'>{iconColorDesign(<AiTwotoneCalendar />,'#ADD6FF')}</DashboardLink>
+                    </DashboardLink>
+                    <DashboardLink to='/calendar'>
+                        <StyledCalendar />
                         <StyledLinkLabel>CALENDAR</StyledLinkLabel>
-                    </StyledLinkDivider>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#ADD6FF')}</DashboardLink>
+                    </DashboardLink>
+                    <DashboardLink to='/createbionote'>
+                        <StyledFolder />
                         <StyledLinkLabel>BIONOTES</StyledLinkLabel>
-                    </StyledLinkDivider>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/scitools'>{iconColorDesign(<FaTools />,'#ADD6FF')}</DashboardLink>
+                    </DashboardLink>
+                    <DashboardLink to='/scitools'>
+                        <StyledTools />
                         <StyledLinkLabel>SCI-TOOLS</StyledLinkLabel>
-                    </StyledLinkDivider>
-                    <StyledLinkDivider>
-                        <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#ADD6FF')}</DashboardLink>
+                    </DashboardLink>
+                    <DashboardLink to='/logout'>
+                        <StyledLogOut />
                         <StyledLinkLabel>LOGOUT</StyledLinkLabel>
-                    </StyledLinkDivider>
+                    </DashboardLink>
                 </DashboardNavbar>
             )
         } else {

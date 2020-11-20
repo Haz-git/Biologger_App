@@ -24,6 +24,7 @@ import NewBioNote from '../components/Dashboard/NewBioNote';
 import ReadBioNote from '../components/Dashboard/ReadBioNote';
 import EditBioNote from '../components/Dashboard/EditBioNote';
 import DeleteBioNote from '../components/Dashboard/DeleteBioNote';
+import SciToolsLanding from './Dashboard/sciTools/SciToolsLanding';
 
 //Styling:
 
@@ -59,6 +60,7 @@ const App = () => {
                                 <Route exact path='/readbionote/:id' component={ReadBioNote} />
                                 <Route exact path='/editbionote/:id' component={EditBioNote} />
                                 <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
+                                <Route exact path='/scitools' component={SciToolsLanding} />
                             </DashboardContainer>
                         </AuthenticatedComponents>
                     </Switch>
