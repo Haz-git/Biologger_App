@@ -7,6 +7,7 @@ import userLogin from '../../redux/userLogin/userLoginActions';
 //Styles:
 import {
     MainHeader,
+    SecondaryHeader,
     StyledField,
     StyledLabel,
     StyledButton,
@@ -37,6 +38,7 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
         <>
             <MainContainer>
                 <MainHeader>Welcome Back!</MainHeader>
+                <SecondaryHeader>Please log in to continue...</SecondaryHeader>
                 <div>
                     <form onSubmit={handleSubmit(dispatchFormValues)}>
                         <InputFieldContainer>
