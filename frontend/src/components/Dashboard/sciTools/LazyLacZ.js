@@ -125,5 +125,15 @@ const LazyLacZ = ({ addNewStrains }) => {
     )
 }
 
+/*Todo::
+1. Finish AddNewStrain and getAllStrain Controller functions in backend;
+2. Render Strains added to frontend via mapStateToProps
+3. These rendered Strains should have two buttons: Collection | LacZ 
+4. Maybe have a router route these buttons with the unique id of the strain sent from mongodb.
+^^^This means that we'll have a separate component for collection and lacZ, where the URL has mongo's unique_id where whatever we add we can use to search and update the strain in mongo.
+5. Of course, after the CRUD operations are all done we can then search for graphing packages to display a graph....and a way to save it (push to google drive? Download as pdf?)
+
+*/
+
 
 export default connect(null, { addNewStrains })(LazyLacZ);
