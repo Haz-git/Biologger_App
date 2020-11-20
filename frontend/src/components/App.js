@@ -2,7 +2,8 @@
 import React from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { v4 as uuid } from 'uuid';
+ 
 //Components
 import Navbar from './landingPage/Navbar';
 import MainLandingPage from './landingPage/MainLandingPage';
@@ -25,6 +26,7 @@ import ReadBioNote from '../components/Dashboard/ReadBioNote';
 import EditBioNote from '../components/Dashboard/EditBioNote';
 import DeleteBioNote from '../components/Dashboard/DeleteBioNote';
 import SciToolsLanding from './Dashboard/sciTools/SciToolsLanding';
+import LazyLacZ from './Dashboard/sciTools/LazyLacZ';
 
 //Styling:
 
@@ -61,6 +63,7 @@ const App = () => {
                                 <Route exact path='/editbionote/:id' component={EditBioNote} />
                                 <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
                                 <Route exact path='/scitools' component={SciToolsLanding} />
+                                <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
                             </DashboardContainer>
                         </AuthenticatedComponents>
                     </Switch>
