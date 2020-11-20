@@ -9,7 +9,7 @@ export function restoreChats() {
         if (response) {
             dispatch({
                 type: USER_CHAT_REQUEST,
-                payload: response
+                payload: response.data.data.chats
             });
         } else {
             return null;
@@ -22,8 +22,9 @@ export function updateStateAfterNewMessage(data) {
     return (dispatch, getState) => {
         const { chat } = getState();
 
-        const newChatLog = {...chat.chatLogs};
-        newChatLog.data.data.chats = newChatLog.data.data.chats.concat(data);
+        let newChatLog = [...chat.chatLogs];
+
+        newChatLog = newChatLog.concat(data);
 
         dispatch({
             type: USER_CHAT_RECEIVED,
