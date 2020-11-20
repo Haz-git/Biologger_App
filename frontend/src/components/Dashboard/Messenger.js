@@ -77,28 +77,42 @@ const StyledButton = styled.button`
 //Render:
 
 class Messenger extends Component {
+    constructor(props) {
+        super(props)
+        console.log('constructor running');
 
-    state = {
-        chatMessage: "",
+        this.props.restoreChats();
+
+        this.state = {
+            chatMessage: "",
+        }
     }
 
     componentDidMount() {
         let server = 'http://localhost:8080';
+        console.log('Component mounted');
 
         //Gather all stored chat messages:
-        this.props.restoreChats();
 
         //Connecting Socket to Server:
         this.socket = io(server);
         this.socket.on('Output Chat Message', msg => {
             //We need to create another action creator to dispatch an 'updated state' when receiving new messages from backend:
+            console.log('Socket Created');
             console.log(msg);
             this.props.updateStateAfterNewMessage(msg);
         })
+
+        this.socket.open();
     }
 
     componentDidUpdate = () => {
         this.messageEnd.scrollIntoView({behavior: 'smooth'});
+    }
+
+    componentWillUnmount = () => {
+        //Prevent multiple sockets from opening per re-render
+        this.socket.close();
     }
 
     handleSearchChange = e => {
@@ -109,7 +123,7 @@ class Messenger extends Component {
 
     renderCards = () => (
         //Changing key from chat._id to uuid to prevent occasional duplication:
-        this.props.chat.data.data.chats.map((chat) => (
+        this.props.chat.map((chat) => (
             <ChatCard key={uuid()} {...chat}/>
         ))
     )
