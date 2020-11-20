@@ -47,7 +47,7 @@ export const MainHeader = styled.h1`
     color: #293241;
     font-family: 'Catamaran', sans-serif;
 `
-const SecondaryHeader = styled.h2`
+export const SecondaryHeader = styled.h2`
     margin: 0;
     font-size: 22px;
     padding: 10px 10px;
