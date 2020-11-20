@@ -8,6 +8,7 @@ const chatController = require('../controllers/chatController');
 const taskController = require('../controllers/taskController');
 const bionoteController = require('../controllers/bionoteController');
 const calendarController = require('../controllers/calendarController');
+const laczController = require('../controllers/laczController');
 
 //Authentication Routers:
 router
@@ -79,5 +80,15 @@ router
 router
     .route('/calendar/update')
     .patch(calendarController.updateEvent);
+
+//Personal Scitools Router:
+
+router
+    .route('/scitools/lacz/add')
+    .post(laczController.addNewStrain);
+
+router
+    .route('/scitools/lacz/get')
+    .post(laczController.getAllStrains)
 
 module.exports = router;
