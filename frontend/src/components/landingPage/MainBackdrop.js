@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const StyledBackdrop = styled.div`
     text-align: center;
     padding: 30px 30px;
-    background-color: lightcyan;
+    background-color: #293241;
 `
 
 //Render:

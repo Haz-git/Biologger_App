@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
-import biologgerflg from '../../Img/biologgerflg.png';
+import faviconedit3 from '../../Img/faviconedit3.png';
 
 
 //Icons:
@@ -36,17 +36,29 @@ const NavLinks = styled.div`
 
 const DefaultLink = styled(Link)`
     text-decoration: none;
-    padding-left: 40px;
-    padding-right: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
     color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
-    &:hover {
-        background: rgba(238, 108, 77, .75);
+    &::after {
+        display: block;
+        content: '';
+        height: 3px;
+        width: 0;
+        background: transparent;
+        transition: width .5s ease, background-color .5s ease;
+    }
+
+    &:hover::after {
+        width: 100%;
+        background: #ee6c4d;
     }
 `
 
 const LogoLink = styled(Link)`
+    display: flex;
+    align-items: center;
     text-decoration: none;
     padding-left: 10px;
     padding-right: 10px;
@@ -79,8 +91,23 @@ const DashboardLink = styled(Link)`
 
 const StyledImg = styled.img`
     max-width: 500px;
-    max-height: 100px;
+    max-height: 85px;
     object-fit: cover;
+`
+const StyledLogoHeader = styled.h1`
+    margin: 0;
+    font-weight: 300;
+    font-size: 50px;
+    font-family: 'IM Fell English SC', serif;
+`
+const StyledLogoMiniContainer = styled.div`
+    margin: -10px;
+
+`
+const StyledMiniLogo = styled.p`
+    margin: 0;
+    font-size: 17px;
+    font-family: 'IM Fell English SC', serif;
 `
 
 //Component Structure:
@@ -123,7 +150,14 @@ const Navbar = ({ StateJwt }) => {
             return (
                 <DefaultNavbar>
                     <LogoLink to='/'>
-                        <StyledImg src={biologgerflg}></StyledImg>
+                        <StyledImg src={faviconedit3}>
+                        </StyledImg>
+                            <StyledLogoHeader>
+                                BioLogger
+                                <StyledLogoMiniContainer>
+                                    <StyledMiniLogo>research workflow upgraded</StyledMiniLogo>
+                                </StyledLogoMiniContainer>
+                            </StyledLogoHeader>
                     </LogoLink>
                     <NavLinks>
                         <DefaultLink to='/signup'>Sign up</DefaultLink>
