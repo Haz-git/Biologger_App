@@ -6,30 +6,30 @@ import {
     USER_GET_BACTERIA,
 } from './LacZTypes';
 
-export function getTasks() {
+export function getStrains() {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
         const response = await api.post('/users/scitools/lacz/get', { _id });
 
         dispatch({
             type: USER_GET_BACTERIA,
-            payload: response.data.existingUserTaskList,
+            payload: response,
         })
     }
 }
 
-// export function addNewTask(data) {
-//     return async (dispatch, getState) => {
-//         const { auth: { userLogIn: { data: { _id } } } } = getState();
+export function addNewStrains(data) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-//         const response = await api.post(`/users/task`, {data, _id});
+        const response = await api.post(`/users/scitools/lacz/add`, {data, _id});
 
-//         dispatch({
-//             type: USER_NEW_TASK,
-//             payload: response.data.userNewTaskList,
-//         });
-//     }
-// }
+        dispatch({
+            type: USER_ADD_BACTERIA,
+            payload: response,
+        });
+    }
+}
 
 // export function deleteTask(task) {
 //     return async (dispatch, getState) => {
