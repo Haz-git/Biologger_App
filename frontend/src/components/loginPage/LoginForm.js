@@ -20,7 +20,7 @@ const MainContainer = styled.div`
     position: absolute;
     float: left;
     left: 50%;
-    top: 30%;
+    top: 50%;
     transform: translate(-50%, -50%);
 `
 
