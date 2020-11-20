@@ -9,11 +9,12 @@ import faviconedit3 from '../../Img/faviconedit3.png';
 //Icons:
 import {
     AiFillHome,
-    AiOutlineUsergroupAdd,
     AiFillMessage,
     AiFillPhone,
     AiTwotoneCalendar,
 } from 'react-icons/ai';
+
+import { FaTools } from 'react-icons/fa';
 
 import { MdFolder } from 'react-icons/md';
 
@@ -178,6 +179,10 @@ const Navbar = ({ StateJwt }) => {
                     <StyledLinkDivider>
                         <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#ADD6FF')}</DashboardLink>
                         <StyledLinkLabel>BIONOTES</StyledLinkLabel>
+                    </StyledLinkDivider>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/scitools'>{iconColorDesign(<FaTools />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>SCI-TOOLS</StyledLinkLabel>
                     </StyledLinkDivider>
                     <StyledLinkDivider>
                         <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#ADD6FF')}</DashboardLink>
