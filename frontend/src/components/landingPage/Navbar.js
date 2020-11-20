@@ -77,15 +77,24 @@ const DashboardNavbar = styled.div`
     background-color: #0C0F31; 
     overflow-x: hidden; 
     padding-top: 20px;
+    text-align: center;
+
+`
+
+const StyledLinkDivider = styled.div`
+    padding: 10px 10px;
+    color: #ADD6FF;
 `
 
 const DashboardLink = styled(Link)`
-    padding: 10px 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-decoration: none;
     font-size: 25px;
     display: block;
-    &:hover {
-        background: salmon;
+
+    ${StyledLinkDivider}:hover & {
+        color: white;
     }
 `
 
@@ -109,6 +118,18 @@ const StyledMiniLogo = styled.p`
     font-size: 17px;
     font-family: 'IM Fell English SC', serif;
 `
+
+const StyledLinkLabel = styled.label`
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    margin-top: 0px;
+
+    ${StyledLinkDivider}:hover & {
+        color: white;
+    }
+`
+
 
 //Component Structure:
 
@@ -138,12 +159,30 @@ const Navbar = ({ StateJwt }) => {
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#ADD6FF')}</DashboardLink>
-                    <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#ADD6FF')}</DashboardLink>
-                    <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#ADD6FF')}</DashboardLink>
-                    <DashboardLink to='/calendar'>{iconColorDesign(<AiTwotoneCalendar />,'#ADD6FF')}</DashboardLink>
-                    <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#ADD6FF')}</DashboardLink>
-                    <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#ADD6FF')}</DashboardLink>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/dashboard'>{iconColorDesign(<AiFillHome />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
+                    </StyledLinkDivider>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/meetings'>{iconColorDesign(<AiFillPhone />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>MEETINGS</StyledLinkLabel>
+                    </StyledLinkDivider>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/messenger'>{iconColorDesign(<AiFillMessage />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>MESSENGER</StyledLinkLabel>
+                    </StyledLinkDivider>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/calendar'>{iconColorDesign(<AiTwotoneCalendar />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>CALENDAR</StyledLinkLabel>
+                    </StyledLinkDivider>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/createbionote'>{iconColorDesign(<MdFolder />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>BIONOTES</StyledLinkLabel>
+                    </StyledLinkDivider>
+                    <StyledLinkDivider>
+                        <DashboardLink to='/logout'>{iconColorDesign(<BiExit />,'#ADD6FF')}</DashboardLink>
+                        <StyledLinkLabel>LOGOUT</StyledLinkLabel>
+                    </StyledLinkDivider>
                 </DashboardNavbar>
             )
         } else {

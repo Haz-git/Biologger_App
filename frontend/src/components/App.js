@@ -31,7 +31,7 @@ const AppContainer = styled.div`
     background-color: #F6F9FC;
 `
 const DashboardContainer = styled.div`
-    margin-left: 45px;
+    margin-left: 83.9375px;
     padding: 0px;
 `
 
