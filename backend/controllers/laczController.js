@@ -4,6 +4,10 @@ const handleAsync = require("../utils/handleAsync");
 //Model:
 const User = require('../models/userModels');
 
+//uuid:
+
+const { v4: uuid } = require('uuid');
+
 //Controller Functions:
 
 exports.addNewStrain = handleAsync(async (req, res) => {
@@ -12,7 +16,10 @@ exports.addNewStrain = handleAsync(async (req, res) => {
 
     const userExistingStrains = await User.findOne({ _id }).select('laczAssay');
 
-    userExistingStrains.laczAssay.push({ strainName });
+    userExistingStrains.laczAssay.push({
+        strainName,
+        strainId: uuid(),
+    });
 
     await User.updateOne({ _id }, { laczAssay: userExistingStrains.laczAssay }, { bypassDocumentValidation: true}, (err) => {
         if (err) console.log(err);
