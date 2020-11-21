@@ -9,24 +9,27 @@ import {
 export function getStrains() {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
+        
         const response = await api.post('/users/scitools/lacz/get', { _id });
 
         dispatch({
             type: USER_GET_BACTERIA,
-            payload: response,
+            payload: response.data.strainList,
         })
     }
 }
 
-export function addNewStrains(data) {
+export function addNewStrains(strainName) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const response = await api.post(`/users/scitools/lacz/add`, {data, _id});
+        const response = await api.post(`/users/scitools/lacz/add`, {strainName, _id});
+
+        console.log(response);
 
         dispatch({
             type: USER_ADD_BACTERIA,
-            payload: response,
+            payload: response.data.strainList,
         });
     }
 }
