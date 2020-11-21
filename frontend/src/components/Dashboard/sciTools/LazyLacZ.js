@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addNewStrains } from '../../../redux/userLacZ/LacZActions';
+import { addNewStrains, getStrains } from '../../../redux/userLacZ/LacZActions';
+import StrainCard from './StrainCard';
 
 //Styles:
 import { MainHeader, SecondaryHeader } from '../../signupPage/SignUpForm';
@@ -27,6 +28,7 @@ const StyledInput = styled.input`
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 `
 
 const StyledButton = styled.button`
@@ -80,10 +82,15 @@ const StyledButton = styled.button`
 `
 
 
-const LazyLacZ = ({ addNewStrains }) => {
+const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
 
     const [ strainInput, setStrainInput ] = useState('');
 
+    useEffect(() => {
+        getStrains();
+    },[])
+
+    console.log(laczStrains)
     const handleStrainSubmit = (e) => {
         e.preventDefault();
 
@@ -94,6 +101,17 @@ const LazyLacZ = ({ addNewStrains }) => {
     const handleInputChange = (e) => {
         setStrainInput(e.target.value);
     }
+
+    const renderStrains = () => (
+        laczStrains.map(strain => (
+            <StrainCard 
+                name={strain.strainName} 
+                collection={strain.collection}
+                lacZ={strain.lacZ}
+            />
+        ))
+    )
+
 
     return (
         <>
@@ -119,6 +137,9 @@ const LazyLacZ = ({ addNewStrains }) => {
                             </div>
                         </InputContainer>
                     </form>
+                    <div>
+                        {renderStrains()}
+                    </div>
                 </div>
             </MainContainer>
         </>
@@ -134,6 +155,12 @@ const LazyLacZ = ({ addNewStrains }) => {
 5. Of course, after the CRUD operations are all done we can then search for graphing packages to display a graph....and a way to save it (push to google drive? Download as pdf?)
 
 */
+const mapStateToProps = state => {
+    return {
+        laczStrains: state.laczStrains.laczBacteria
+    }
+}
 
 
-export default connect(null, { addNewStrains })(LazyLacZ);
+
+export default connect(mapStateToProps, { addNewStrains, getStrains })(LazyLacZ);
