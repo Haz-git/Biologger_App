@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
-import faviconedit3 from '../../Img/faviconedit3.png';
+import petriLogoEdit2 from '../../Img/petriLogoEdit2.png';
 
 //Styled-icons:
 
@@ -218,7 +218,7 @@ const Navbar = ({ StateJwt }) => {
         if (typeof jwt === 'object' && jwt !== null) {
             return (
                 <DashboardNavbar>
-                    <StyledDashboardLogo src={faviconedit3} />
+                    <StyledDashboardLogo src={petriLogoEdit2} />
                     <DashboardLink to='/dashboard'>
                         <StyledHomeHeart />
                         <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
@@ -253,10 +253,10 @@ const Navbar = ({ StateJwt }) => {
             return (
                 <DefaultNavbar>
                     <LogoLink to='/'>
-                        <StyledImg src={faviconedit3}>
+                        <StyledImg src={petriLogoEdit2}>
                         </StyledImg>
                             <StyledLogoHeader>
-                                BioLogger
+                                Petri
                                 <StyledLogoMiniContainer>
                                     <StyledMiniLogo>research workflow upgraded</StyledMiniLogo>
                                 </StyledLogoMiniContainer>
