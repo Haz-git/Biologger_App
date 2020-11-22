@@ -67,9 +67,19 @@ const StyledButton = styled.button`
 
 const StyledEditButton = styled(StyledButton)`
     background-color: rgb(0, 102, 0);
+
+    &:hover {
+        background-color: rgba(0, 118, 0);
+    }
+
+
 `
 const StyledDeleteButton = styled(StyledButton)`
     background-color: rgb(127, 3, 0);
+
+    &:hover {
+        background-color: rgba(148, 0, 0);
+    }
 `
 
 const StyledSpan = styled.span`
