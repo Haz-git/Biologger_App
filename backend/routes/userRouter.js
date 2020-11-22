@@ -89,6 +89,10 @@ router
 
 router
     .route('/scitools/lacz/get')
-    .post(laczController.getAllStrains)
+    .post(laczController.getAllStrains);
+
+router
+    .route('/scitools/lacz/edit')
+    .patch(laczController.editStrainName);
 
 module.exports = router;
