@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import EditModal from './EditModal';
 
 //Styles:
+import styled from 'styled-components';
 import { AddCircle } from '@styled-icons/ionicons-solid/AddCircle';
 import { MagnifyingGlass } from '@styled-icons/foundation/MagnifyingGlass'
 import { Edit } from '@styled-icons/material/Edit';
@@ -115,74 +116,105 @@ const StyledCardHeader = styled.h2`
 
 //Render:
 
-const StrainCard = ({name, collection, lacZ}) => {
+const StrainCard = ({strainId, name, collection, lacZ}) => {
 
-    const renderCard = () => {
+    const [ renderModal, setRenderModal ] = useState(false);
+
+    const renderCallBack = (boolean) => {
+        //Callback function for handling same state as edit modal..
+        setRenderModal(boolean);
+    }
+
+
+    const handleEditStrainName = (e) => {
+        e.preventDefault();
+        //With this, you can target the exact id of the strain:
+        console.log(strainId);
+
+        setRenderModal(true);
+        
+    }
+
+    const renderCard = () => { 
         if (collection && lacZ) {
             return (
-                <MainCardContainer>
-                    <HeaderContainer>
-                        <StyledCardHeader>{name}</StyledCardHeader>
-                    </HeaderContainer>
-                    <ButtonContainer>
-                        <StyledEditButton>
-                            <StyledSpan>
-                                <StyledEditIcon />
-                                Edit
-                            </StyledSpan>
-                        </StyledEditButton>
-                        <StyledDeleteButton>
-                            <StyledSpan>
-                                <StyledDeleteIcon />
-                                Delete
-                            </StyledSpan>
-                        </StyledDeleteButton>
-                        <StyledButton>
-                            <StyledSpan>
-                                <StyledMGlass />
-                                Collection
-                            </StyledSpan>
-                        </StyledButton>
-                        <StyledButton>
-                            <StyledSpan>
-                                <StyledMGlass />
-                                LacZ
-                            </StyledSpan>
-                        </StyledButton>
-                    </ButtonContainer>
-                </MainCardContainer>
+                <>
+                    <MainCardContainer>
+                        <HeaderContainer>
+                            <StyledCardHeader>{name}</StyledCardHeader>
+                        </HeaderContainer>
+                        <ButtonContainer>
+                            <StyledEditButton>
+                                <StyledSpan>
+                                    <StyledEditIcon />
+                                    Edit
+                                </StyledSpan>
+                            </StyledEditButton>
+                            <StyledDeleteButton>
+                                <StyledSpan>
+                                    <StyledDeleteIcon />
+                                    Delete
+                                </StyledSpan>
+                            </StyledDeleteButton>
+                            <StyledButton>
+                                <StyledSpan>
+                                    <StyledMGlass />
+                                    Collection
+                                </StyledSpan>
+                            </StyledButton>
+                            <StyledButton>
+                                <StyledSpan>
+                                    <StyledMGlass />
+                                    LacZ
+                                </StyledSpan>
+                            </StyledButton>
+                        </ButtonContainer>
+                    </MainCardContainer>
+                    <EditModal
+                        renderProp={renderModal}
+                        strainName={name}
+                        renderCallBack={renderCallBack}
+                    />
+                </>
             )
         } else {
             return (
-                <MainCardContainer>
-                    <StyledCardHeader>{name}</StyledCardHeader>
-                    <ButtonContainer>
-                        <StyledEditButton>
-                            <StyledSpan>
-                                <StyledEditIcon />
-                                Edit
-                            </StyledSpan>
-                        </StyledEditButton>
-                        <StyledDeleteButton>
-                            <StyledSpan>
-                                <StyledDeleteIcon />
-                                Delete
-                            </StyledSpan>
-                        </StyledDeleteButton>
-                        <StyledButton>
-                            <StyledSpan>
-                                <StyledCircle />
-                                Collection
-                            </StyledSpan>
-                        </StyledButton>
-                        <StyledButton>
-                            <StyledSpan>
-                                <StyledCircle />
-                                LacZ
-                            </StyledSpan>
-                        </StyledButton>
-                    </ButtonContainer>
-                </MainCardContainer>
+                <>
+                    <MainCardContainer>
+                        <StyledCardHeader>{name}</StyledCardHeader>
+                        <ButtonContainer>
+                            <StyledEditButton onClick={handleEditStrainName}>
+                                <StyledSpan>
+                                    <StyledEditIcon />
+                                    Edit
+                                </StyledSpan>
+                            </StyledEditButton>
+                            <StyledDeleteButton>
+                                <StyledSpan>
+                                    <StyledDeleteIcon />
+                                    Delete
+                                </StyledSpan>
+                            </StyledDeleteButton>
+                            <StyledButton>
+                                <StyledSpan>
+                                    <StyledCircle />
+                                    Collection
+                                </StyledSpan>
+                            </StyledButton>
+                            <StyledButton>
+                                <StyledSpan>
+                                    <StyledCircle />
+                                    LacZ
+                                </StyledSpan>
+                            </StyledButton>
+                        </ButtonContainer>
+                    </MainCardContainer>
+                    <EditModal
+                        renderProp={renderModal}
+                        strainName={name}
+                        renderCallBack={renderCallBack}
+                    />
+                </>
             )
         }
     }
