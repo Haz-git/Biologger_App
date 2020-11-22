@@ -45,3 +45,26 @@ exports.getAllStrains = handleAsync(async (req, res) => {
         strainList: userGetStrainList.laczAssay,
     })
 })
+
+exports.editStrainName = handleAsync(async (req,res) => {
+    const { currentStrainId, newStrainName, _id } = req.body;
+
+    const userExistingStrains = await User.findOne({ _id }).select('laczAssay');
+
+    console.log(userExistingStrains);
+
+    //Look for currentStrainId match in array of objects:
+
+    userExistingStrains.laczAssay.find(x => x.strainId === currentStrainId)['strainName'] = newStrainName;
+
+    await User.updateOne({ _id }, { laczAssay: userExistingStrains.laczAssay }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const responseUpdatedStrainList = await User.findOne({ _id }).select('laczAssay');
+
+    res.status(200).json({
+        status: 'Success',
+        strainList: responseUpdatedStrainList.laczAssay,
+    });
+});
