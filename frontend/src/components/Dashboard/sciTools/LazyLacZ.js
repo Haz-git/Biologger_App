@@ -89,8 +89,7 @@ const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
     useEffect(() => {
         getStrains();
     },[])
-
-    console.log(laczStrains)
+    
     const handleStrainSubmit = (e) => {
         e.preventDefault();
 
@@ -108,6 +107,8 @@ const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
                 name={strain.strainName} 
                 collection={strain.collection}
                 lacZ={strain.lacZ}
+                strainId={strain.strainId}
+                key={strain.strainId}
             />
         ))
     )
