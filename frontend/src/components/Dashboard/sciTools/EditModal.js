@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { editStrainName } from '../../../redux/userLacZ/LacZActions'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl'
 
-const EditModal = ({ renderProp, strainName, renderCallBack }) => {
+const EditModal = ({ editStrainName,strainId, renderProp, strainName, renderCallBack }) => {
 
     const [ show, setShow ] = useState(false);
+    const [ newStrainName, setNewStrainName] = useState('');
 
     useEffect(() => {
         if (renderProp) {
             setShow(renderProp);
         }
-
-        console.log('renderProps receieved');
     },[renderProp])
 
     const handleClose = () => {
@@ -19,7 +22,14 @@ const EditModal = ({ renderProp, strainName, renderCallBack }) => {
         setShow(false);
     }
     const handleSaveChanges = () => {
-        console.log('stuff has been saved');
+        editStrainName(newStrainName, strainId);
+        renderCallBack(false);
+        setShow(false);
+    }
+
+    const handleFieldChange = e => {
+        e.preventDefault();
+        setNewStrainName(e.target.value);
     }
 
     return (
@@ -32,12 +42,22 @@ const EditModal = ({ renderProp, strainName, renderCallBack }) => {
                 show={show}
                 onHide={handleClose}
                 backdrop='static'
-                keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Change Your Strain Name</Modal.Title>
+                    <Modal.Title>Change Your Strain '{strainName}'</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Change your existing strain name: '{strainName}'</Modal.Body>
+                <Modal.Body>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>New Strain Name</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                        placeholder="BW25311.."
+                        aria-label="Input your new strain name."
+                        onChange={handleFieldChange}
+                        />
+                    </ InputGroup>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
@@ -51,4 +71,4 @@ const EditModal = ({ renderProp, strainName, renderCallBack }) => {
     )
 }
 
-export default EditModal;
+export default connect(null, { editStrainName })(EditModal);
