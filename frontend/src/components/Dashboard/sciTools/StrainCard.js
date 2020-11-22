@@ -4,6 +4,8 @@ import styled from 'styled-components';
 //Styles:
 import { AddCircle } from '@styled-icons/ionicons-solid/AddCircle';
 import { MagnifyingGlass } from '@styled-icons/foundation/MagnifyingGlass'
+import { Edit } from '@styled-icons/material/Edit';
+import { DeleteForever } from '@styled-icons/material/DeleteForever';
 
 const MainContainer = styled.div`
     display: flex;
@@ -24,10 +26,20 @@ const MainCardContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 15px 15px;
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+;
 `
+const HeaderContainer = styled.div`
+    display: flex;
+    align-items: center;
+`
+
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
@@ -47,6 +59,17 @@ const StyledButton = styled.button`
     &:focus {
         outline: none;
     }
+
+    &:hover {
+        background-color: rgba(152, 193, 217);
+    }
+`
+
+const StyledEditButton = styled(StyledButton)`
+    background-color: rgb(0, 102, 0);
+`
+const StyledDeleteButton = styled(StyledButton)`
+    background-color: rgb(127, 3, 0);
 `
 
 const StyledSpan = styled.span`
@@ -56,12 +79,22 @@ const StyledSpan = styled.span`
 `
 const StyledCircle = styled(AddCircle)`
     width: 20px;
-    margin-right: 7px;
+    margin-right: 5px;
 `
 const StyledMGlass = styled(MagnifyingGlass)`
     width: 20px;
-    margin-right: 7px;
+    margin-right: 5px;
 `
+const StyledEditIcon = styled(Edit)`
+    width: 20px;
+    margin-right: 5px;
+`
+const StyledDeleteIcon = styled(DeleteForever)`
+    width: 20px;
+    margin-right: 5px;
+`
+
+
 const StyledCardHeader = styled.h2`
     margin: 0;
     font-family: 'Nunito', sans-serif;
@@ -78,8 +111,22 @@ const StrainCard = ({name, collection, lacZ}) => {
         if (collection && lacZ) {
             return (
                 <MainCardContainer>
-                    <StyledCardHeader>{name}</StyledCardHeader>
+                    <HeaderContainer>
+                        <StyledCardHeader>{name}</StyledCardHeader>
+                    </HeaderContainer>
                     <ButtonContainer>
+                        <StyledEditButton>
+                            <StyledSpan>
+                                <StyledEditIcon />
+                                Edit
+                            </StyledSpan>
+                        </StyledEditButton>
+                        <StyledDeleteButton>
+                            <StyledSpan>
+                                <StyledDeleteIcon />
+                                Delete
+                            </StyledSpan>
+                        </StyledDeleteButton>
                         <StyledButton>
                             <StyledSpan>
                                 <StyledMGlass />
@@ -100,6 +147,18 @@ const StrainCard = ({name, collection, lacZ}) => {
                 <MainCardContainer>
                     <StyledCardHeader>{name}</StyledCardHeader>
                     <ButtonContainer>
+                        <StyledEditButton>
+                            <StyledSpan>
+                                <StyledEditIcon />
+                                Edit
+                            </StyledSpan>
+                        </StyledEditButton>
+                        <StyledDeleteButton>
+                            <StyledSpan>
+                                <StyledDeleteIcon />
+                                Delete
+                            </StyledSpan>
+                        </StyledDeleteButton>
                         <StyledButton>
                             <StyledSpan>
                                 <StyledCircle />
