@@ -174,6 +174,7 @@ const StrainCard = ({strainId, name, collection, lacZ}) => {
                         renderProp={renderModal}
                         strainName={name}
                         renderCallBack={renderCallBack}
+                        strainId={strainId}
                     />
                 </>
             )
@@ -213,6 +214,7 @@ const StrainCard = ({strainId, name, collection, lacZ}) => {
                         renderProp={renderModal}
                         strainName={name}
                         renderCallBack={renderCallBack}
+                        strainId={strainId}
                     />
                 </>
             )
