@@ -39,13 +39,11 @@ export function editStrainName(newStrainName, currentStrainId) {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
         const response = await api.patch(`/users/scitools/lacz/edit`, {newStrainName, currentStrainId, _id});
-        
-        console.log(response);
 
-        // dispatch({
-        //     type: USER_EDIT_NAME_BACTERIA,
-        //     payload: response.data.strainList,
-        // });
+        dispatch({
+            type: USER_EDIT_NAME_BACTERIA,
+            payload: response.data.strainList,
+        });
 
     }
 }
