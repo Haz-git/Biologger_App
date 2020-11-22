@@ -89,12 +89,16 @@ const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
     useEffect(() => {
         getStrains();
     },[])
-    
+
     const handleStrainSubmit = (e) => {
         e.preventDefault();
 
-        addNewStrains(strainInput);
-        setStrainInput('')
+        if(strainInput.trim() === '') {
+            alert('Please Enter A Value...')
+        } else {
+            addNewStrains(strainInput);
+            setStrainInput('')
+        }
     }
 
     const handleInputChange = (e) => {
