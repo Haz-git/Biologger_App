@@ -9,7 +9,7 @@ import {
 export function getStrains() {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
-        
+
         const response = await api.post('/users/scitools/lacz/get', { _id });
 
         dispatch({
@@ -31,6 +31,22 @@ export function addNewStrains(strainName) {
             type: USER_ADD_BACTERIA,
             payload: response.data.strainList,
         });
+    }
+}
+
+export function editStrainName(newStrainName, currentStrainId) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.patch(`/users/scitools/lacz/edit`, {newStrainName, currentStrainId, _id});
+        
+        console.log(response);
+
+        // dispatch({
+        //     type: USER_EDIT_NAME_BACTERIA,
+        //     payload: response.data.strainList,
+        // });
+
     }
 }
 
