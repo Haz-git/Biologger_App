@@ -4,7 +4,7 @@ import { deleteProtocol } from '../../../redux/userLacZ/LacZActions'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const DeleteModal = ({ renderProp, renderCallBack, protocolName, protocolId}) => {
+const DeleteModal = ({ renderProp, renderCallBack, protocolName, protocolId, deleteProtocol }) => {
 
     const [ show, setShow ] = useState(false);
 
@@ -20,7 +20,9 @@ const DeleteModal = ({ renderProp, renderCallBack, protocolName, protocolId}) =>
     }
 
     const handleDelete = () => {
-        console.log('Delete pressed');
+        deleteProtocol(protocolId);
+        renderCallBack(false);
+        setShow(false);
     }
 
     return (
