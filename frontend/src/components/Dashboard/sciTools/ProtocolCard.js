@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
+import { Link } from 'react-router-dom';
 
 //Styles:
 import styled from 'styled-components';
@@ -50,11 +51,12 @@ const StyledButton = styled.button`
     padding: 5px 5px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: rgba(61, 90, 128);
+    background-color: rgba(6, 53, 95);
     color: whitesmoke;
     border: none;
     border-radius: 5px;
     font-family: 'Nunito', sans-serif;
+    font-size: 14px;
     cursor: pointer;
 
     &:focus {
@@ -62,22 +64,23 @@ const StyledButton = styled.button`
     }
 
     &:hover {
-        background-color: rgba(152, 193, 217);
+        background-color: rgba(6, 65, 117);
     }
 `
 
 const StyledEditButton = styled(StyledButton)`
     background-color: rgb(0, 102, 0);
-
+    margin-bottom: 1px;
     &:hover {
         background-color: rgba(0, 118, 0);
+        text-decoration: none;
     }
 
 
 `
 const StyledDeleteButton = styled(StyledButton)`
     background-color: rgb(127, 3, 0);
-
+    margin-bottom: 1px;
     &:hover {
         background-color: rgba(148, 0, 0);
     }
@@ -90,19 +93,19 @@ const StyledSpan = styled.span`
 `
 const StyledCircle = styled(AddCircle)`
     width: 20px;
-    margin-right: 5px;
+    margin-right: 2px;
 `
 const StyledMGlass = styled(MagnifyingGlass)`
     width: 20px;
-    margin-right: 5px;
+    margin-right: 2px;
 `
 const StyledEditIcon = styled(Edit)`
     width: 20px;
-    margin-right: 5px;
+    margin-right: 2px;
 `
 const StyledDeleteIcon = styled(DeleteForever)`
     width: 20px;
-    margin-right: 5px;
+    margin-right: 2px;
 `
 
 const TimeStampDesc = styled.h3`
@@ -177,18 +180,22 @@ const ProtocolCard = ({ protocolId, name, collection, lacZ, timeStamp }) => {
                                     Delete
                                 </StyledSpan>
                             </StyledDeleteButton>
-                            <StyledButton>
-                                <StyledSpan>
-                                    <StyledMGlass />
-                                    Collection
-                                </StyledSpan>
-                            </StyledButton>
-                            <StyledButton>
-                                <StyledSpan>
-                                    <StyledMGlass />
-                                    LacZ
-                                </StyledSpan>
-                            </StyledButton>
+                            <Link to={`/scitools/lazylacz/collection/${protocolId}`}>
+                                <StyledButton>
+                                    <StyledSpan>
+                                        <StyledMGlass />
+                                        Collection
+                                    </StyledSpan>
+                                </StyledButton>
+                            </Link>
+                            <Link to={`/scitools/lazylacz/lacz/${protocolId}`}>
+                                <StyledButton>
+                                    <StyledSpan>
+                                        <StyledMGlass />
+                                        LacZ
+                                    </StyledSpan>
+                                </StyledButton>
+                            </Link>
                         </ButtonContainer>
                     </MainCardContainer>
                     <EditModal
@@ -226,18 +233,22 @@ const ProtocolCard = ({ protocolId, name, collection, lacZ, timeStamp }) => {
                                     Delete
                                 </StyledSpan>
                             </StyledDeleteButton>
-                            <StyledButton>
-                                <StyledSpan>
-                                    <StyledCircle />
-                                    Collection
-                                </StyledSpan>
-                            </StyledButton>
-                            <StyledButton>
-                                <StyledSpan>
-                                    <StyledCircle />
-                                    LacZ
-                                </StyledSpan>
-                            </StyledButton>
+                            <Link to={`/scitools/lazylacz/collection/${protocolId}`}>
+                                <StyledButton>
+                                    <StyledSpan>
+                                        <StyledCircle />
+                                        Collection
+                                    </StyledSpan>
+                                </StyledButton>
+                            </Link>
+                            <Link to={`/scitools/lazylacz/lacz/${protocolId}`}>
+                                <StyledButton>
+                                    <StyledSpan>
+                                        <StyledCircle />
+                                        LacZ
+                                    </StyledSpan>
+                                </StyledButton>
+                            </Link>
                         </ButtonContainer>
                     </MainCardContainer>
                     <EditModal
