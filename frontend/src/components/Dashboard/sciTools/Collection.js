@@ -1,14 +1,149 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
+import TimePicker from 'react-time-picker';
+
+//Styles:
+import { MainHeader, SecondaryHeader, StyledLabel } from '../../signupPage/SignUpForm';
+import { StyledInput } from './LazyLacZ';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+const MainGridContainer = styled.div`
+    display: grid;
+    grid-template-columns: 45% 55%;
+    padding: 20px 20px;
+`
+
+const CollectionContainer = styled.div`
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 60px 40px rgba(0, 0, 0, 0.12);
+;
+`
+const DetailInputContainer = styled.div`
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+`
+
+const StyledMainHeader = styled(MainHeader)`
+    font-size: 30px;
+    margin: 0px;
+    font-weight: 600;
+    padding: 0;
+`
+const StyledSecondaryHeader = styled(SecondaryHeader)`
+    margin: 0;
+    font-size: 20px;
+`
+
+const TimePickerDivider = styled.div`
+    margin: 10px 10px;
+`
+const StyledLabelEdit = styled(StyledLabel)`
+    margin: 0;
+`
+
+const StyledButton = styled(Button)`
+    margin-left: 5px;
+    margin-right: 5px;
+`
+
+const StrainInput = styled(StyledInput)`
+    width: 100%;
+    margin-top: 5px;
+    height: 35px;
+    padding-left: 10px;
+`
+//Render:
 
 const Collection = ({ownProtocol}) => {
+
+    const [ startTime, setStartTime ] = useState('');
+    const [ collectionPoints, setCollectionPoints ] = useState('');
 
     //id == protocolId for mongoDB.
     const { protocolName, protocolId, timeStamp } = ownProtocol;
 
+    const handleStartTimeChange = time => {
+        setStartTime(time);
+    }
+
+    const handleCollectionPointChange = number => {
+        setCollectionPoints(number.target.value);
+    }
+
     return (
         <>
-            Collection Page for: {protocolName}, created on {timeStamp}...
+            <MainGridContainer>
+                <CollectionContainer>
+                <StyledMainHeader>Collection: {protocolName}</StyledMainHeader>
+                    <DetailInputContainer>
+                        <form>
+                            <div>
+                                <StyledLabelEdit>Start Time: </StyledLabelEdit>
+                                <TimePickerDivider>
+                                    <TimePicker
+                                        value={startTime}
+                                        onChange={handleStartTimeChange}
+                                        disableClock={true}
+                                        format='h:m a'
+                                    />
+                                </TimePickerDivider>
+                            </div>
+                            <div>
+                                <StyledLabelEdit>Collection Points (Per Strain):</StyledLabelEdit>
+                                <Form.Control
+                                    as="select"
+                                    className="my-1 mr-sm-2"
+                                    id="inlineFormCustomSelectPref"
+                                    custom
+                                    onChange={handleCollectionPointChange}
+                                >
+                                    <option value="0">Choose...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                    <option value="4">Four</option>
+                                    <option value="5">Five</option>
+                                    <option value="6">Six</option>
+                                    <option value="7">Seven</option>
+                                    <option value="8">Eight</option>
+                                </Form.Control>
+                            </div>
+                            <div>
+                                <StyledLabelEdit>Strain Name:</StyledLabelEdit>
+                                <StrainInput></StrainInput>
+                            </div>
+                            <div>
+                                <StyledButton variant="primary" type='submit'>
+                                    Submit
+                                </StyledButton>
+                                <StyledButton variant="warning" type='reset'>
+                                    Reset
+                                </StyledButton>
+                            </div>
+                        </form>
+                    </DetailInputContainer>
+                
+                </CollectionContainer>
+                <div>
+                    test
+                </div>
+            </MainGridContainer>
         </>
     )
 }
