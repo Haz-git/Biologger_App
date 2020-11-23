@@ -27,6 +27,8 @@ import EditBioNote from '../components/Dashboard/EditBioNote';
 import DeleteBioNote from '../components/Dashboard/DeleteBioNote';
 import SciToolsLanding from './Dashboard/sciTools/SciToolsLanding';
 import LazyLacZ from './Dashboard/sciTools/LazyLacZ';
+import Collection from './Dashboard/sciTools/Collection';
+import LacZ from './Dashboard/sciTools/LacZ';
 
 //Styling:
 
@@ -64,6 +66,8 @@ const App = () => {
                                 <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
                                 <Route exact path='/scitools' component={SciToolsLanding} />
                                 <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
+                                <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
+                                <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
                             </DashboardContainer>
                         </AuthenticatedComponents>
                     </Switch>
