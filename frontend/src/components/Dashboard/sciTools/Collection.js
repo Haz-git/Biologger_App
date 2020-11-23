@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import TimePicker from 'react-time-picker';
+import CollectionStrains from './CollectionStrains';
 
 //Styles:
 import { MainHeader, SecondaryHeader, StyledLabel } from '../../signupPage/SignUpForm';
@@ -14,8 +15,11 @@ const MainGridContainer = styled.div`
     grid-template-columns: 45% 55%;
     padding: 20px 20px;
 `
+const MainInputContainer = styled.div`
+    display: block;
+`
 
-const CollectionContainer = styled.div`
+export const CollectionContainer = styled.div`
     background-color: white;
     border: 1px solid white;
     border-radius: 10px;
@@ -37,6 +41,11 @@ const DetailInputContainer = styled.div`
     margin-top: 20px;
     display: block;
     text-align: center;
+`
+const StrainsContainer = styled.div`
+    display: block;
+    text-align: center;
+
 `
 
 const StyledMainHeader = styled(MainHeader)`
@@ -74,6 +83,7 @@ const Collection = ({ownProtocol}) => {
 
     const [ startTime, setStartTime ] = useState('');
     const [ collectionPoints, setCollectionPoints ] = useState('');
+    const [ strainName, setStrainName ] = useState('')
 
     //id == protocolId for mongoDB.
     const { protocolName, protocolId, timeStamp } = ownProtocol;
@@ -86,63 +96,85 @@ const Collection = ({ownProtocol}) => {
         setCollectionPoints(number.target.value);
     }
 
+    const handleStrainNameChange = name => {
+        setStrainName(name.target.value);
+    }
+
+    const handleCollectionSubmit = e => {
+        e.preventDefault();
+
+        const collectionsObject = {
+            strainName,
+            collectionPoints,
+            startTime,
+        }
+
+        //send collectionsObject to action creator...
+        console.log(JSON.stringify(collectionsObject))
+    }
+
     return (
         <>
             <MainGridContainer>
-                <CollectionContainer>
-                <StyledMainHeader>Collection: {protocolName}</StyledMainHeader>
-                    <DetailInputContainer>
-                        <form>
-                            <div>
-                                <StyledLabelEdit>Start Time: </StyledLabelEdit>
-                                <TimePickerDivider>
-                                    <TimePicker
-                                        value={startTime}
-                                        onChange={handleStartTimeChange}
-                                        disableClock={true}
-                                        format='h:m a'
+                <MainInputContainer>
+                    <CollectionContainer>
+                    <StyledMainHeader>Collection: {protocolName}</StyledMainHeader>
+                        <DetailInputContainer>
+                            <form onSubmit={handleCollectionSubmit}>
+                                <div>
+                                    <StyledLabelEdit>Start Time: </StyledLabelEdit>
+                                    <TimePickerDivider>
+                                        <TimePicker
+                                            value={startTime}
+                                            onChange={handleStartTimeChange}
+                                            disableClock={true}
+                                            format='h:m a'
+                                        />
+                                    </TimePickerDivider>
+                                </div>
+                                <div>
+                                    <StyledLabelEdit>Collection Points (Per Strain):</StyledLabelEdit>
+                                    <Form.Control
+                                        as="select"
+                                        className="my-1 mr-sm-2"
+                                        id="inlineFormCustomSelectPref"
+                                        custom
+                                        onChange={handleCollectionPointChange}
+                                        value={collectionPoints}
+                                    >
+                                        <option value="0">Choose...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                        <option value="4">Four</option>
+                                        <option value="5">Five</option>
+                                        <option value="6">Six</option>
+                                        <option value="7">Seven</option>
+                                        <option value="8">Eight</option>
+                                    </Form.Control>
+                                </div>
+                                <div>
+                                    <StyledLabelEdit>Strain Name:</StyledLabelEdit>
+                                    <StrainInput
+                                        onChange={handleStrainNameChange}
+                                        value={strainName}
                                     />
-                                </TimePickerDivider>
-                            </div>
-                            <div>
-                                <StyledLabelEdit>Collection Points (Per Strain):</StyledLabelEdit>
-                                <Form.Control
-                                    as="select"
-                                    className="my-1 mr-sm-2"
-                                    id="inlineFormCustomSelectPref"
-                                    custom
-                                    onChange={handleCollectionPointChange}
-                                >
-                                    <option value="0">Choose...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Four</option>
-                                    <option value="5">Five</option>
-                                    <option value="6">Six</option>
-                                    <option value="7">Seven</option>
-                                    <option value="8">Eight</option>
-                                </Form.Control>
-                            </div>
-                            <div>
-                                <StyledLabelEdit>Strain Name:</StyledLabelEdit>
-                                <StrainInput></StrainInput>
-                            </div>
-                            <div>
-                                <StyledButton variant="primary" type='submit'>
-                                    Submit
-                                </StyledButton>
-                                <StyledButton variant="warning" type='reset'>
-                                    Reset
-                                </StyledButton>
-                            </div>
-                        </form>
-                    </DetailInputContainer>
-                
-                </CollectionContainer>
-                <div>
-                    test
-                </div>
+                                </div>
+                                <div>
+                                    <StyledButton variant="primary" type='submit'>
+                                        Submit
+                                    </StyledButton>
+                                    <StyledButton variant="warning" type='reset'>
+                                        Reset
+                                    </StyledButton>
+                                </div>
+                            </form>
+                        </DetailInputContainer>
+                    </CollectionContainer>
+                    <StrainsContainer>
+                        <CollectionStrains />
+                    </StrainsContainer>
+                </MainInputContainer>
             </MainGridContainer>
         </>
     )
