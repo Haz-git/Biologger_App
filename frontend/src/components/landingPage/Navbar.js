@@ -31,7 +31,7 @@ const NavLinks = styled.div`
 `
 
 const DefaultLink = styled(Link)`
-    text-decoration: none;
+    text-decoration: none !important;
     margin-left: 40px;
     margin-right: 40px;
     color: white;
@@ -50,17 +50,24 @@ const DefaultLink = styled(Link)`
         width: 100%;
         background: #ee6c4d;
     }
+
+    &:hover {
+        color: white !important;
+    }
 `
 
 const LogoLink = styled(Link)`
     display: flex;
     align-items: center;
-    text-decoration: none;
+    text-decoration: none !important;
     padding-left: 10px;
     padding-right: 10px;
     color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
+    &:hover {
+        color: white !important;
+    }
 `
 
 const DashboardNavbar = styled.div`
@@ -79,7 +86,7 @@ const DashboardNavbar = styled.div`
 
 const DashboardLink = styled(Link)`
     padding: 10px 10px;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: 25px;
     display: block;
 `
