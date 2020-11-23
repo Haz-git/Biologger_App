@@ -54,8 +54,10 @@ export function deleteProtocol(currentProtocolId) {
 
         const response = await api.post(`/users/scitools/lacz/delete`, {currentProtocolId, _id});
 
-        console.log(response);
-
+        dispatch({
+            type: USER_EDIT_NAME_PROTOCOL,
+            payload: response.data.laczAssayProtocols,
+        });
     }
 }
 
