@@ -10,61 +10,59 @@ const { v4: uuid } = require('uuid');
 
 //Controller Functions:
 
-exports.addNewStrain = handleAsync(async (req, res) => {
+exports.addNewProtocol = handleAsync(async (req, res) => {
 
-    const { strainName, _id } = req.body;
+    const { protocolName, _id } = req.body;
 
-    const userExistingStrains = await User.findOne({ _id }).select('laczAssay');
+    const userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
 
-    userExistingStrains.laczAssay.push({
-        strainName,
-        strainId: uuid(),
+    userExistingProtocols.laczAssayProtocols.push({
+        protocolName,
+        protocolId: uuid(),
     });
 
-    await User.updateOne({ _id }, { laczAssay: userExistingStrains.laczAssay }, { bypassDocumentValidation: true}, (err) => {
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
         if (err) console.log(err);
     });
 
-    const responseStrainList = await User.findOne({ _id }).select('laczAssay');
+    const responseProtocolList = await User.findOne({ _id }).select('laczAssayProtocols');
 
 
     res.status(200).json({
         status: 'Success',
-        strainList: responseStrainList.laczAssay,
+        laczAssayProtocols: responseProtocolList.laczAssayProtocols,
     })
 })
 
-exports.getAllStrains = handleAsync(async (req, res) => {
+exports.getAllProtocols = handleAsync(async (req, res) => {
 
     const { _id } = req.body;
 
-    const userGetStrainList = await User.findOne({ _id }).select('laczAssay');
+    const userGetProtocolList = await User.findOne({ _id }).select('laczAssayProtocols');
 
     res.status(200).json({
         status: 'Success',
-        strainList: userGetStrainList.laczAssay,
+        laczAssayProtocols: userGetProtocolList.laczAssayProtocols,
     })
 })
 
-exports.editStrainName = handleAsync(async (req,res) => {
-    const { currentStrainId, newStrainName, _id } = req.body;
+exports.editProtocolName = handleAsync(async (req,res) => {
+    const { currentProtocolId, newProtocolName, _id } = req.body;
 
-    const userExistingStrains = await User.findOne({ _id }).select('laczAssay');
+    const userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
 
-    console.log(userExistingStrains);
+    //Look for currentProtocolId match in array of objects:
 
-    //Look for currentStrainId match in array of objects:
+    userExistingProtocols.laczAssayProtocols.find(x => x.protocolId === currentProtocolId)['protocolName'] = newProtocolName;
 
-    userExistingStrains.laczAssay.find(x => x.strainId === currentStrainId)['strainName'] = newStrainName;
-
-    await User.updateOne({ _id }, { laczAssay: userExistingStrains.laczAssay }, { bypassDocumentValidation: true}, (err) => {
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
         if (err) console.log(err);
     });
 
-    const responseUpdatedStrainList = await User.findOne({ _id }).select('laczAssay');
+    const responseUpdatedProtocolList = await User.findOne({ _id }).select('laczAssayProtocols');
 
     res.status(200).json({
         status: 'Success',
-        strainList: responseUpdatedStrainList.laczAssay,
+        laczAssayProtocols: responseUpdatedProtocolList.laczAssayProtocols,
     });
 });

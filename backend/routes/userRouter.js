@@ -85,14 +85,14 @@ router
 
 router
     .route('/scitools/lacz/add')
-    .post(laczController.addNewStrain);
+    .post(laczController.addNewProtocol);
 
 router
     .route('/scitools/lacz/get')
-    .post(laczController.getAllStrains);
+    .post(laczController.getAllProtocols);
 
 router
     .route('/scitools/lacz/edit')
-    .patch(laczController.editStrainName);
+    .patch(laczController.editProtocolName);
 
 module.exports = router;
