@@ -38,8 +38,7 @@ const MainCardContainer = styled.div`
 ;
 `
 const HeaderContainer = styled.div`
-    display: flex;
-    align-items: center;
+    display: block;
 `
 
 const ButtonContainer = styled.div`
@@ -106,6 +105,14 @@ const StyledDeleteIcon = styled(DeleteForever)`
     margin-right: 5px;
 `
 
+const TimeStampDesc = styled.h3`
+    position: absolute;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    text-align: left;
+`
+
 
 const StyledCardHeader = styled.h2`
     margin: 0;
@@ -113,11 +120,13 @@ const StyledCardHeader = styled.h2`
     font-weight: 600;
     font-size: 20px;
     color: #293241;
+    text-align: left;
+    margin-bottom: 2px;
 `
 
 //Render:
 
-const ProtocolCard = ({protocolId, name, collection, lacZ}) => {
+const ProtocolCard = ({ protocolId, name, collection, lacZ, timeStamp }) => {
 
     const [ renderModal, setRenderModal ] = useState(false);
     const [ renderDeleteModal, setRenderDeleteModal ] = useState(false);
@@ -153,6 +162,7 @@ const ProtocolCard = ({protocolId, name, collection, lacZ}) => {
                     <MainCardContainer>
                         <HeaderContainer>
                             <StyledCardHeader>{name}</StyledCardHeader>
+                            <TimeStampDesc>{timeStamp}</TimeStampDesc>
                         </HeaderContainer>
                         <ButtonContainer>
                             <StyledEditButton onClick={handleEditProtocolName}>
@@ -199,7 +209,10 @@ const ProtocolCard = ({protocolId, name, collection, lacZ}) => {
             return (
                 <>
                     <MainCardContainer>
+                        <HeaderContainer>
                         <StyledCardHeader>{name}</StyledCardHeader>
+                        <TimeStampDesc>{timeStamp}</TimeStampDesc>
+                        </HeaderContainer>
                         <ButtonContainer>
                             <StyledEditButton onClick={handleEditProtocolName}>
                                 <StyledSpan>
