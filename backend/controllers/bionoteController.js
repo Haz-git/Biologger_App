@@ -74,7 +74,7 @@ exports.deleteBioNote = handleAsync(async(req, res) => {
 
     let userBioNoteCollection = await User.findOne({ _id }).select('bionotes');
 
-
+    //This is perhaps inefficient. What happens when a user has same bionote names? I think i'll generate a uuid() and then use that for deletion...
     userBioNoteCollection.bionotes.splice(userBioNoteCollection.bionotes.indexOf(x => x.bioName === bioName), 1);
 
     await User.updateOne({ _id }, { bionotes: userBioNoteCollection.bionotes }, { bypassDocumentValidation: true}, (err) => {
