@@ -113,6 +113,7 @@ const LazyLacZ = ({ addNewProtocols, getProtocols, laczAssayProtocols }) => {
                 lacZ={protocol.lacZ}
                 protocolId={protocol.protocolId}
                 key={protocol.protocolId}
+                timeStamp={protocol.timeStamp}
             />
         ))
     )
