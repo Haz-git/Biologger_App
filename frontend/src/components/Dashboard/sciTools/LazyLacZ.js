@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addNewStrains, getStrains } from '../../../redux/userLacZ/LacZActions';
-import StrainCard from './StrainCard';
+import { addNewProtocols, getProtocols } from '../../../redux/userLacZ/LacZActions';
+import ProtocolCard from './ProtocolCard';
 
 //Styles:
 import { MainHeader, SecondaryHeader } from '../../signupPage/SignUpForm';
@@ -82,37 +82,37 @@ const StyledButton = styled.button`
 `
 
 
-const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
+const LazyLacZ = ({ addNewProtocols, getProtocols, laczAssayProtocols }) => {
 
-    const [ strainInput, setStrainInput ] = useState('');
+    const [ protocolInput, setProtocolInput ] = useState('');
 
     useEffect(() => {
-        getStrains();
+        getProtocols();
     },[])
 
-    const handleStrainSubmit = (e) => {
+    const handleProtocolSubmit = (e) => {
         e.preventDefault();
 
-        if(strainInput.trim() === '') {
+        if(protocolInput.trim() === '') {
             alert('Please Enter A Value...')
         } else {
-            addNewStrains(strainInput);
-            setStrainInput('')
+            addNewProtocols(protocolInput);
+            setProtocolInput('')
         }
     }
 
     const handleInputChange = (e) => {
-        setStrainInput(e.target.value);
+        setProtocolInput(e.target.value);
     }
 
-    const renderStrains = () => (
-        laczStrains.map(strain => (
-            <StrainCard 
-                name={strain.strainName} 
-                collection={strain.collection}
-                lacZ={strain.lacZ}
-                strainId={strain.strainId}
-                key={strain.strainId}
+    const renderProtocols = () => (
+        laczAssayProtocols.map(protocol => (
+            <ProtocolCard 
+                name={protocol.protocolName} 
+                collection={protocol.collection}
+                lacZ={protocol.lacZ}
+                protocolId={protocol.protocolId}
+                key={protocol.protocolId}
             />
         ))
     )
@@ -121,17 +121,17 @@ const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
     return (
         <>
             <MainContainer>
-                <MainHeader>Lac Z Assay</MainHeader>
+                <MainHeader>LacZ Assay</MainHeader>
                 <div>
-                    <SecondaryHeader>Add New Bacterial Strains</SecondaryHeader>
-                    <form onSubmit={handleStrainSubmit}>
+                    <SecondaryHeader>Add New Protocols</SecondaryHeader>
+                    <form onSubmit={handleProtocolSubmit}>
                         <InputContainer>
                             <div>
                                 <StyledInput 
                                     onChange={handleInputChange} 
                                     placeholder='Name...'
                                     type='text'
-                                    value={strainInput}
+                                    value={protocolInput}
                                     autoComplete='off'
                                 />
                             </div>
@@ -143,7 +143,7 @@ const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
                         </InputContainer>
                     </form>
                     <div>
-                        {renderStrains()}
+                        {renderProtocols()}
                     </div>
                 </div>
             </MainContainer>
@@ -164,10 +164,10 @@ const LazyLacZ = ({ addNewStrains, getStrains, laczStrains }) => {
 */
 const mapStateToProps = state => {
     return {
-        laczStrains: state.laczStrains.laczBacteria
+        laczAssayProtocols: state.laczAssayProtocols.laczProtocol
     }
 }
 
 
 
-export default connect(mapStateToProps, { addNewStrains, getStrains })(LazyLacZ);
+export default connect(mapStateToProps, { addNewProtocols, getProtocols })(LazyLacZ);

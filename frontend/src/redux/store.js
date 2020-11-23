@@ -17,7 +17,7 @@ const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
     key: 'root',
     storage,
-    whitelist: ['auth', 'chat', 'task', 'news', 'bionotes', 'calendarEvents', 'laczStrains']
+    whitelist: ['auth', 'chat', 'task', 'news', 'bionotes', 'calendarEvents', 'laczAssayProtocols']
 }
 
 //Creating Enhancers:
@@ -33,7 +33,7 @@ const rootReducer = combineReducers({
     news: newsReducer,
     bionotes: bionotesReducer,
     calendarEvents: calendarReducer,
-    laczStrains: lacZReducer,
+    laczAssayProtocols: lacZReducer,
 });
 
 //Persisting formReducer:

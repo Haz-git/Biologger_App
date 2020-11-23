@@ -1,49 +1,60 @@
 import api from '../../api';
 import {
-    USER_ADD_BACTERIA,
-    USER_DELETE_BACTERIA,
-    USER_EDIT_NAME_BACTERIA,
-    USER_GET_BACTERIA,
+    USER_ADD_PROTOCOL,
+    USER_DELETE_PROTOCOL,
+    USER_EDIT_NAME_PROTOCOL,
+    USER_GET_PROTOCOL,
 } from './LacZTypes';
 
-export function getStrains() {
+export function getProtocols() {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
 
         const response = await api.post('/users/scitools/lacz/get', { _id });
 
         dispatch({
-            type: USER_GET_BACTERIA,
-            payload: response.data.strainList,
+            type: USER_GET_PROTOCOL,
+            payload: response.data.laczAssayProtocols,
         })
     }
 }
 
-export function addNewStrains(strainName) {
+export function addNewProtocols(protocolName) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const response = await api.post(`/users/scitools/lacz/add`, {strainName, _id});
+        const response = await api.post(`/users/scitools/lacz/add`, { protocolName, _id });
 
         console.log(response);
 
         dispatch({
-            type: USER_ADD_BACTERIA,
-            payload: response.data.strainList,
+            type: USER_ADD_PROTOCOL,
+            payload: response.data.laczAssayProtocols,
         });
     }
 }
 
-export function editStrainName(newStrainName, currentStrainId) {
+export function editProtocolName(newProtocolName, currentProtocolId) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const response = await api.patch(`/users/scitools/lacz/edit`, {newStrainName, currentStrainId, _id});
+        const response = await api.patch(`/users/scitools/lacz/edit`, {newProtocolName, currentProtocolId, _id});
 
         dispatch({
-            type: USER_EDIT_NAME_BACTERIA,
-            payload: response.data.strainList,
+            type: USER_EDIT_NAME_PROTOCOL,
+            payload: response.data.laczAssayProtocols,
         });
+
+    }
+}
+
+export function deleteProtocol(currentProtocolId) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.post(`/users/scitools/lacz/delete`, {currentProtocolId, _id});
+
+        console.log(response);
 
     }
 }

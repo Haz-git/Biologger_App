@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { editStrainName } from '../../../redux/userLacZ/LacZActions'
+import { editProtocolName } from '../../../redux/userLacZ/LacZActions'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl'
 
-const EditModal = ({ editStrainName,strainId, renderProp, strainName, renderCallBack }) => {
+const EditModal = ({ editProtocolName, protocolId, renderProp, protocolName, renderCallBack }) => {
 
     const [ show, setShow ] = useState(false);
-    const [ newStrainName, setNewStrainName] = useState('');
+    const [ newProtocolName, setNewProtocolName] = useState('');
 
     useEffect(() => {
         if (renderProp) {
@@ -22,14 +22,14 @@ const EditModal = ({ editStrainName,strainId, renderProp, strainName, renderCall
         setShow(false);
     }
     const handleSaveChanges = () => {
-        editStrainName(newStrainName, strainId);
+        editProtocolName(newProtocolName, protocolId);
         renderCallBack(false);
         setShow(false);
     }
 
     const handleFieldChange = e => {
         e.preventDefault();
-        setNewStrainName(e.target.value);
+        setNewProtocolName(e.target.value);
     }
 
     return (
@@ -44,16 +44,16 @@ const EditModal = ({ editStrainName,strainId, renderProp, strainName, renderCall
                 backdrop='static'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Change Your Strain '{strainName}'</Modal.Title>
+                    <Modal.Title>Change Your Protocol '{protocolName}'</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text>New Strain Name</InputGroup.Text>
+                            <InputGroup.Text>New Protocol Name</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                         placeholder="BW25311.."
-                        aria-label="Input your new strain name."
+                        aria-label="Input your new Protocol name."
                         onChange={handleFieldChange}
                         />
                     </ InputGroup>
@@ -71,4 +71,4 @@ const EditModal = ({ editStrainName,strainId, renderProp, strainName, renderCall
     )
 }
 
-export default connect(null, { editStrainName })(EditModal);
+export default connect(null, { editProtocolName })(EditModal);
