@@ -20,7 +20,7 @@ const InputContainer = styled.div`
     justify-content: center;
 `
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
     width: 500px;
     padding: 12px 20px;
     margin: 8px 0;
