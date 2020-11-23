@@ -95,4 +95,8 @@ router
     .route('/scitools/lacz/edit')
     .patch(laczController.editProtocolName);
 
+router
+    .route('/scitools/lacz/delete')
+    .post(laczController.deleteProtocol);
+
 module.exports = router;
