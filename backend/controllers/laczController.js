@@ -10,6 +10,7 @@ const dayjs = require('dayjs');
 //uuid:
 
 const { v4: uuid } = require('uuid');
+const { collection } = require("../models/userModels");
 
 //Controller Functions:
 
@@ -91,4 +92,37 @@ exports.deleteProtocol = handleAsync(async (req, res) => {
         status: 'Success',
         laczAssayProtocols: responseUpdatedProtocolList.laczAssayProtocols,
     });
+})
+
+//Controller Functions for Strain Manipulation in Collections:
+
+exports.addStrainToCollection = handleAsync(async(req, res) => {
+    const { collectionsObject, currentProtocolId, _id} = req.body;
+
+
+    //Find Protocols
+    let userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    console.log(userExistingProtocols);
+
+    const targetIndex = userExistingProtocols.laczAssayProtocols.findIndex(item => item.protocolId === currentProtocolId);
+
+    if(userExistingProtocols.laczAssayProtocols[targetIndex].hasOwnProperty('collectionStrains')) {
+        userExistingProtocols.laczAssayProtocols[targetIndex].collectionStrains.push(collectionsObject);
+    } else {
+        userExistingProtocols.laczAssayProtocols[targetIndex].collectionStrains = [collectionsObject];
+    }
+
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const responseUpdatedProtocolList = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    res.status(200).json({
+        status: 'Success',
+        laczAssayProtocols: responseUpdatedProtocolList.laczAssayProtocols,
+    });
+
+
 })
