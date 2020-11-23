@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import TimePicker from 'react-time-picker';
 import CollectionStrains from './CollectionStrains';
+import {v4 as uuid} from 'uuid';
+import { addStrainToCollection } from '../../../redux/userLacZ/LacZActions';
 
 //Styles:
 import { MainHeader, SecondaryHeader, StyledLabel } from '../../signupPage/SignUpForm';
@@ -79,7 +81,7 @@ const StrainInput = styled(StyledInput)`
 `
 //Render:
 
-const Collection = ({ownProtocol}) => {
+const Collection = ({ ownProtocol, addStrainToCollection }) => {
 
     const [ startTime, setStartTime ] = useState('');
     const [ collectionPoints, setCollectionPoints ] = useState('');
@@ -104,13 +106,18 @@ const Collection = ({ownProtocol}) => {
         e.preventDefault();
 
         const collectionsObject = {
+            strainId: uuid(),
             strainName,
             collectionPoints,
             startTime,
         }
 
         //send collectionsObject to action creator...
-        console.log(JSON.stringify(collectionsObject))
+        addStrainToCollection(collectionsObject, protocolId);
+
+        setStartTime('');
+        setCollectionPoints('');
+        setStrainName('');
     }
 
     return (
@@ -190,4 +197,4 @@ const mapStateToProps = (state, ownProps) => {
 
 }
 
-export default connect(mapStateToProps)(Collection);
+export default connect(mapStateToProps, { addStrainToCollection })(Collection);
