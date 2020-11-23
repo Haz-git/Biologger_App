@@ -124,13 +124,13 @@ const LazyLacZ = ({ addNewProtocols, getProtocols, laczAssayProtocols }) => {
             <MainContainer>
                 <MainHeader>LacZ Assay</MainHeader>
                 <div>
-                    <SecondaryHeader>Add New Protocols</SecondaryHeader>
+                    <SecondaryHeader>Protocol List</SecondaryHeader>
                     <form onSubmit={handleProtocolSubmit}>
                         <InputContainer>
                             <div>
                                 <StyledInput 
                                     onChange={handleInputChange} 
-                                    placeholder='Name...'
+                                    placeholder='Add new protocols...'
                                     type='text'
                                     value={protocolInput}
                                     autoComplete='off'
