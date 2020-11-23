@@ -4,6 +4,9 @@ const handleAsync = require("../utils/handleAsync");
 //Model:
 const User = require('../models/userModels');
 
+//TimeStamp:
+const dayjs = require('dayjs');
+
 //uuid:
 
 const { v4: uuid } = require('uuid');
@@ -16,9 +19,12 @@ exports.addNewProtocol = handleAsync(async (req, res) => {
 
     const userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
 
+    const timeStamp = dayjs();
+
     userExistingProtocols.laczAssayProtocols.push({
         protocolName,
         protocolId: uuid(),
+        timeStamp: timeStamp.format('MM/DD/YYYY'),
     });
 
     await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
@@ -66,3 +72,23 @@ exports.editProtocolName = handleAsync(async (req,res) => {
         laczAssayProtocols: responseUpdatedProtocolList.laczAssayProtocols,
     });
 });
+
+exports.deleteProtocol = handleAsync(async (req, res) => {
+    const { currentProtocolId, _id } = req.body;
+
+    const userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
+
+
+    userExistingProtocols.laczAssayProtocols.splice(userExistingProtocols.laczAssayProtocols.findIndex(x => x.protocolId === currentProtocolId), 1);
+
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const responseUpdatedProtocolList = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    res.status(200).json({
+        status: 'Success',
+        laczAssayProtocols: responseUpdatedProtocolList.laczAssayProtocols,
+    });
+})
