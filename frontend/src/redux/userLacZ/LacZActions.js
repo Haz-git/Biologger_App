@@ -4,6 +4,10 @@ import {
     USER_DELETE_PROTOCOL,
     USER_EDIT_NAME_PROTOCOL,
     USER_GET_PROTOCOL,
+    USER_ADD_STRAIN_TO_COLLECTION,
+    USER_EDIT_STRAIN_IN_COLLECTION,
+    USER_REMOVE_STRAIN_FROM_COLLECTION,
+    USER_GET_STRAINS_FROM_COLLECTION,
 } from './LacZTypes';
 
 export function getProtocols() {
@@ -61,15 +65,19 @@ export function deleteProtocol(currentProtocolId) {
     }
 }
 
-// export function deleteTask(task) {
-//     return async (dispatch, getState) => {
-//         const { auth: { userLogIn: { data: { _id }}}} = getState();
+export function addStrainToCollection(collectionsObject, currentProtocolId) {
+    return async (dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-//         const response = await api.post(`/users/task/delete`, {task, _id});
+        const response = await api.post('/users/scitools/lacz/collection/addStrainToCollection', {
+            collectionsObject,
+            currentProtocolId,
+            _id
+        })
 
-//         dispatch({
-//             type: USER_DELETED_TASK,
-//             payload: response.data.afterDeletionTaskList,
-//         });
-//     }
-// }
+        dispatch({
+            type: USER_ADD_STRAIN_TO_COLLECTION,
+            payload: response.data.laczAssayProtocols,
+        })
+    }
+}
