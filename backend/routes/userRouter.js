@@ -99,4 +99,8 @@ router
     .route('/scitools/lacz/delete')
     .post(laczController.deleteProtocol);
 
+router
+    .route('/scitools/lacz/collection/addStrainToCollection')
+    .post(laczController.addStrainToCollection);
+
 module.exports = router;
