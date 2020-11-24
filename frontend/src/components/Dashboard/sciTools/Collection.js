@@ -179,7 +179,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
                         </DetailInputContainer>
                     </CollectionContainer>
                     <StrainsContainer>
-                        <CollectionStrains />
+                        <CollectionStrains ownProtocol={ownProtocol} />
                     </StrainsContainer>
                 </MainInputContainer>
             </MainGridContainer>
