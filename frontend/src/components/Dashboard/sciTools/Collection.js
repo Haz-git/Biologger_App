@@ -50,7 +50,7 @@ const StrainsContainer = styled.div`
 
 `
 
-const StyledMainHeader = styled(MainHeader)`
+export const StyledMainHeader = styled(MainHeader)`
     font-size: 30px;
     margin: 0px;
     font-weight: 600;
