@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CollectionStrainCard from './CollectionStrainCard';
 
 //Styles:
+import { StyledMainHeader } from './Collection';
 
 const StrainMainContainer = styled.div`
     margin-top: 30px;
@@ -35,6 +36,8 @@ const CollectionStrains = ({ ownProtocolStrains }) => {
                     name={strain.strainName}
                     pointNum={strain.collectionPoints}
                     startTime={strain.startTime}
+                    strainId={strain.strainId}
+                    key={strain.strainId}
                 /> 
             </>
         ))
@@ -43,6 +46,9 @@ const CollectionStrains = ({ ownProtocolStrains }) => {
     return (
         <>
             <StrainMainContainer>
+                <StyledMainHeader>
+                    Your Strains
+                </StyledMainHeader>
                 {renderStrains()}
             </StrainMainContainer>
         </>
