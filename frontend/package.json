@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.19.26",
     "@fullcalendar/daygrid": "^5.4.0",
     "@fullcalendar/interaction": "^5.4.0",
     "@fullcalendar/react": "^5.4.0",
