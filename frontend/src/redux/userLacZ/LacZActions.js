@@ -75,6 +75,8 @@ export function addStrainToCollection(collectionsObject, currentProtocolId) {
             _id
         })
 
+        //Successfully appending modified strains to collectionStrains array. Just need to render the state of that on the screen using collectionStrains...do we even need a getallStrains()?? I don't think so.
+
         dispatch({
             type: USER_ADD_STRAIN_TO_COLLECTION,
             payload: response.data.laczAssayProtocols,
