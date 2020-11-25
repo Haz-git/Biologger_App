@@ -99,11 +99,8 @@ exports.deleteProtocol = handleAsync(async (req, res) => {
 exports.addStrainToCollection = handleAsync(async(req, res) => {
     const { collectionsObject, currentProtocolId, _id} = req.body;
 
-
     //Find Protocols
     let userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
-
-    console.log(userExistingProtocols);
 
     const targetIndex = userExistingProtocols.laczAssayProtocols.findIndex(item => item.protocolId === currentProtocolId);
 
@@ -125,4 +122,27 @@ exports.addStrainToCollection = handleAsync(async(req, res) => {
     });
 
 
+})
+
+exports.deleteStrainFromCollection = handleAsync(async(req,res) => {
+    const { _id, currentStrainId, currentProtocolId } = req.body;
+
+    let userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    const targetIndex = userExistingProtocols.laczAssayProtocols.findIndex(item => item.protocolId === currentProtocolId);
+
+    const strainIndex = userExistingProtocols.laczAssayProtocols[targetIndex].collectionStrains.findIndex(strain => strain.strainId === currentStrainId);
+
+    userExistingProtocols.laczAssayProtocols[targetIndex].collectionStrains.splice(strainIndex, 1);
+
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const responseUpdatedProtocolListDeletedStrain = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    res.status(200).json({
+        status: 'Success',
+        laczAssayProtocols: responseUpdatedProtocolListDeletedStrain.laczAssayProtocols,
+    });
 })
