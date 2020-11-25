@@ -103,4 +103,8 @@ router
     .route('/scitools/lacz/collection/addStrainToCollection')
     .post(laczController.addStrainToCollection);
 
+router
+    .route('/scitools/lacz/collection/deleteStrain')
+    .post(laczController.deleteStrainFromCollection);
+
 module.exports = router;
