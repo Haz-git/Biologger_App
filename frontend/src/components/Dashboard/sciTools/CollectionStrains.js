@@ -27,7 +27,7 @@ const StrainMainContainer = styled.div`
 
 //Render:
 
-const CollectionStrains = ({ ownProtocolStrains }) => {
+const CollectionStrains = ({ ownProtocolStrains, protocolId }) => {
 
     const renderStrains = () => (
         ownProtocolStrains.map(strain => (
@@ -37,6 +37,7 @@ const CollectionStrains = ({ ownProtocolStrains }) => {
                     pointNum={strain.collectionPoints}
                     startTime={strain.startTime}
                     strainId={strain.strainId}
+                    protocolId={protocolId}
                     key={strain.strainId}
                 /> 
             </>
@@ -61,6 +62,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         ownProtocolStrains: ownProtocol.collectionStrains,
+        protocolId: protocolId
     }
 }
 
