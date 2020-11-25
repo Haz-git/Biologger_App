@@ -179,7 +179,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
                         </DetailInputContainer>
                     </CollectionContainer>
                     <StrainsContainer>
-                        <CollectionStrains ownProtocol={ownProtocol} />
+                        <CollectionStrains ownProtocolId={protocolId} />
                     </StrainsContainer>
                 </MainInputContainer>
             </MainGridContainer>
@@ -190,6 +190,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
 const mapStateToProps = (state, ownProps) => {
     const ownProtocolId = ownProps.match.params.id;
     const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === ownProtocolId);
+
 
     return {
         ownProtocol,
