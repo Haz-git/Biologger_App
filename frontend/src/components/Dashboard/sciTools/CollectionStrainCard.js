@@ -9,6 +9,7 @@ import TimePicker from 'react-time-picker';
 import { v4 as uuid } from 'uuid';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 
 //Create a card with an input group--might have to add starting OD600 to the collection input card...
 
@@ -43,6 +44,23 @@ const StyledLabel = styled.label`
     margin-right: 10px;
 `
 
+const StyledExistingCData = styled(StyledLabel)`
+    font-size: 16px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 5px 5px;
+
+`
+
+const BadgeDivider = styled.div`
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+`
+
 const TimeInputDivider = styled.div`
     display: flex;
     height: 30px;
@@ -53,18 +71,47 @@ const TimeInputDivider = styled.div`
 const SpacerButton = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 `
 const DividerButton = styled.div`
     margin-left: 5px;
     margin-right: 5px;
 `
-const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection, addCollectionInputDataToStrain, collectionData }) => {
+const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection, addCollectionInputDataToStrain, collectionData, laczAssayProtocols }) => {
 
     let [ collectionValue, setCollectionValue ] = useState([]);
+    let [ storedCollectionValues, setStoredCollectionValues ] = useState(collectionData);
 
-    useEffect(() => {
+    console.log(laczAssayProtocols);
+    const ownProtocol = laczAssayProtocols.find(item => item.protocolId === protocolId);
+    const ownStrain = ownProtocol.collectionStrains.find(strain => strain.strainId === strainId);
+    // console.log(collectionData)
 
-    })
+    const renderExistingCollectionPoints = () => {
+        if (ownStrain.hasOwnProperty('collectionData')) {
+            return (
+                <>
+                    <Card.Subtitle className='mb-2 text-muted'>Existing Values for {(ownStrain.collectionData.length)}/{pointNum} Collection Points</Card.Subtitle>
+                        {ownStrain.collectionData.map(item =>(
+                            <BadgeDivider>
+                                <Badge variant='light'>
+                                    <StyledExistingCData>
+                                        Collection: {item.collectionNum} |||
+                                        OD600: {item.odValue} ||| 
+                                        Time: {item.time}
+                                    </StyledExistingCData>
+                                </Badge>
+                            </BadgeDivider>
+                        ))}
+                </>
+            )
+        } else {
+            return (
+                <Card.Subtitle className='mb-2 text-muted'>Add data for the {pointNum} collection points.</Card.Subtitle>
+            )
+        }
+    }
+
 
     const handleOnChange = (object) => {
         const { name, value, number } = object;
@@ -131,7 +178,6 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
                     <TimeInputDivider>
                         <StyledLabel>Collected at: </StyledLabel>
                         <TimePicker
-                            // value={startTime}
                             onChange={(time) => handleOnChange({name: 'time', value: time, number})}
                             disableClock={true}
                             format='h:m a'
@@ -147,7 +193,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
                                 aria-describedby="inputGroup-sizing-sm" 
                                 type='number' 
                                 key={number} 
-                                name='odValue' 
+                                name='odValue'
                                 onChange={(e) => handleOnChange({ name:'odValue', value: e.target.value, number })} 
                             />
                         </InputGroup.Prepend>
@@ -169,10 +215,10 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
     return (
         <>
             <CardMainContainer>
-                <Card>
+                <Card key={strainId}>
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
-                        <Card.Subtitle className='mb-2 text-muted'>Enter values for the {pointNum} collection points.</Card.Subtitle>
+                        {renderExistingCollectionPoints()}
                         <SpacerButton>
                             <DividerButton>
                                 <Button variant="danger" size='sm'onClick={handleStrainDelete}>Delete</Button>
@@ -199,12 +245,21 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { protocolId, strainId } = ownProps;
-    const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === protocolId);
-    const ownStrainCollectionData = ownProtocol.collectionStrains.find(strain => strain.strainId = strainId);
+    // const { protocolId ,name} = ownProps;
+
+    // // console.log(currentStrainId, name)
+    // const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === protocolId);
+
+    // console.log(ownProtocol, name)
+    // //Now, for some reason above ownProtocol's collectionStrains have the SAME strain ID. It is verified in MongoDB that this is untrue.
+
+    // const ownStrainCollectionData = ownProtocol.collectionStrains.find(strain => strain.strainId = ownProps.strainId);
+
+
+    // // console.log(ownStrainCollectionData, name, currentStrainId) <-- For some reason, this pulls the wrong 'ownStrainCollectionData'
 
     return {
-        collectionData: ownStrainCollectionData,
+        laczAssayProtocols: state.laczAssayProtocols.laczProtocol
     }
 
 }
