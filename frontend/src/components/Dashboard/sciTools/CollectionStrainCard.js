@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { deleteStrainFromCollection } from '../../../redux/userLacZ/LacZActions';
 import styled from 'styled-components';
 import Card from 'react-bootstrap/Card';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -172,6 +174,10 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
         )
     }
 
+    const handleStrainDelete = () => {
+        deleteStrainFromCollection(strainId);
+    }
+
 
     return (
         <>
@@ -182,7 +188,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
                         <Card.Subtitle className='mb-2 text-muted'>Enter values for the {pointNum} collection points.</Card.Subtitle>
                         <SpacerButton>
                             <DividerButton>
-                                <Button variant="danger" size='sm'>Delete</Button>
+                                <Button variant="danger" size='sm'onClick={handleStrainDelete}>Delete</Button>
                             </DividerButton>
                             <DividerButton>
                                 <Button variant="success"size='sm'>Save</Button>
@@ -205,4 +211,4 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
     )
 }
 
-export default CollectionStrainCard;
+export default connect(null, { deleteStrainFromCollection })(CollectionStrainCard);
