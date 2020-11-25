@@ -125,6 +125,8 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
             }
         } else if (targetIndex > -1) {
             collectionInputs[targetIndex][name] = value;
+            setCollectionValue(collectionInputs);
+            console.log(collectionValue);
         }
     }
 
