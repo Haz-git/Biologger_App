@@ -84,20 +84,19 @@ export function addStrainToCollection(collectionsObject, currentProtocolId) {
     }
 }
 
-export function deleteStrainFromCollection(strainId) {
+export function deleteStrainFromCollection(strainId, protocolId) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
         
         const response = await api.post('/users/scitools/lacz/collection/deleteStrain', {
             _id,
-            strainId,
+            currentStrainId: strainId,
+            currentProtocolId: protocolId,
         });
 
-        console.log(response);
-
-        // dispatch({
-        //     type: USER_REMOVE_STRAIN_FROM_COLLECTION,
-        //     payload: response.data.laczAssayProtocols,
-        // })
+        dispatch({
+            type: USER_REMOVE_STRAIN_FROM_COLLECTION,
+            payload: response.data.laczAssayProtocols,
+        })
     }
 }
