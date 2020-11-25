@@ -107,4 +107,10 @@ router
     .route('/scitools/lacz/collection/deleteStrain')
     .post(laczController.deleteStrainFromCollection);
 
+//Route to modify collection data for a certain strain:
+
+router
+    .route('/scitools/lacz/collection/addCollectionData')
+    .post(laczController.addCollectionDataToStrain);
+
 module.exports = router;
