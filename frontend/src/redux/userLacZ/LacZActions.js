@@ -88,7 +88,10 @@ export function deleteStrainFromCollection(strainId) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
         
-        const response = await api.post('/users/scitools/lacz/collection/deleteStrain');
+        const response = await api.post('/users/scitools/lacz/collection/deleteStrain', {
+            _id,
+            strainId,
+        });
 
         console.log(response);
 
