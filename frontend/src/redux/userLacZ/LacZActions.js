@@ -30,8 +30,6 @@ export function addNewProtocols(protocolName) {
 
         const response = await api.post(`/users/scitools/lacz/add`, { protocolName, _id });
 
-        console.log(response);
-
         dispatch({
             type: USER_ADD_PROTOCOL,
             payload: response.data.laczAssayProtocols,
@@ -112,6 +110,7 @@ export function addCollectionInputDataToStrain(strainId, protocolId, inputArray)
             currentProtocolId: protocolId,
             collectionData: inputArray,
         })
+
 
         dispatch({
             type: USER_ADD_COLLECTION_DATA_TO_STRAIN,
