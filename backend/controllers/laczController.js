@@ -146,3 +146,26 @@ exports.deleteStrainFromCollection = handleAsync(async(req,res) => {
         laczAssayProtocols: responseUpdatedProtocolListDeletedStrain.laczAssayProtocols,
     });
 })
+
+exports.addCollectionDataToStrain = handleAsync(async (req, res) => {
+    const { _id, currentStrainId, currentProtocolId, collectionData } = req.body;
+
+    let userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    const targetIndex = userExistingProtocols.laczAssayProtocols.findIndex(item => item.protocolId === currentProtocolId);
+
+    const strainIndex = userExistingProtocols.laczAssayProtocols[targetIndex].collectionStrains.findIndex(strain => strain.strainId === currentStrainId);
+
+    userExistingProtocols.laczAssayProtocols[targetIndex].collectionStrains[strainIndex]['collectionData'] = collectionData;
+
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const responseUpdatedProtocolListUpdatedCollectionData = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    res.status(200).json({
+        status: 'Success',
+        laczAssayProtocols: responseUpdatedProtocolListUpdatedCollectionData.laczAssayProtocols,
+    });
+})
