@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteStrainFromCollection } from '../../../redux/userLacZ/LacZActions';
+import { deleteStrainFromCollection, addCollectionInputDataToStrain } from '../../../redux/userLacZ/LacZActions';
 import styled from 'styled-components';
 import Card from 'react-bootstrap/Card';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -58,30 +58,13 @@ const DividerButton = styled.div`
     margin-left: 5px;
     margin-right: 5px;
 `
-const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection }) => {
+const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection, addCollectionInputDataToStrain, collectionData }) => {
 
     let [ collectionValue, setCollectionValue ] = useState([]);
 
+    useEffect(() => {
 
-    /*
-    Object structuring...
-    [
-        {
-            collectionNum: 1,
-            time: _____,
-            value: -----,
-            
-        },
-
-        {
-            collectionNum: 2,
-            time: _____,
-            value: ______,
-
-        },
-    ]
-
-    */
+    })
 
     const handleOnChange = (object) => {
         const { name, value, number } = object;
@@ -178,6 +161,10 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
         deleteStrainFromCollection(strainId, protocolId);
     }
 
+    const handleSaveCollectionData = () => {
+        addCollectionInputDataToStrain(strainId, protocolId, collectionValue);
+    }
+
 
     return (
         <>
@@ -191,7 +178,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
                                 <Button variant="danger" size='sm'onClick={handleStrainDelete}>Delete</Button>
                             </DividerButton>
                             <DividerButton>
-                                <Button variant="success"size='sm'>Save</Button>
+                                <Button variant="success"size='sm' onClick={handleSaveCollectionData}>Save</Button>
                             </DividerButton>
                             <DividerButton>
                                 <Dropdown drop='right'>
@@ -211,4 +198,15 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
     )
 }
 
-export default connect(null, { deleteStrainFromCollection })(CollectionStrainCard);
+const mapStateToProps = (state, ownProps) => {
+    const { protocolId, strainId } = ownProps;
+    const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === protocolId);
+    const ownStrainCollectionData = ownProtocol.collectionStrains.find(strain => strain.strainId = strainId);
+
+    return {
+        collectionData: ownStrainCollectionData,
+    }
+
+}
+
+export default connect(mapStateToProps, { deleteStrainFromCollection, addCollectionInputDataToStrain })(CollectionStrainCard);
