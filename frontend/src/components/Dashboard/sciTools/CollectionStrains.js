@@ -29,20 +29,26 @@ const StrainMainContainer = styled.div`
 
 const CollectionStrains = ({ ownProtocolStrains, protocolId }) => {
 
-    const renderStrains = () => (
-        ownProtocolStrains.map(strain => (
-            <>
-                <CollectionStrainCard 
-                    name={strain.strainName}
-                    pointNum={strain.collectionPoints}
-                    startTime={strain.startTime}
-                    strainId={strain.strainId}
-                    protocolId={protocolId}
-                    key={strain.strainId}
-                /> 
-            </>
-        ))
-    )
+    const renderStrains = () => {
+        if (ownProtocolStrains !== undefined) {
+            return (
+                ownProtocolStrains.map(strain => (
+                    <>
+                        <CollectionStrainCard 
+                            name={strain.strainName}
+                            pointNum={strain.collectionPoints}
+                            startTime={strain.startTime}
+                            strainId={strain.strainId}
+                            protocolId={protocolId}
+                            key={strain.strainId}
+                        /> 
+                    </>
+                ))
+            )
+        } else {
+            return null;
+        }
+    }
 
     return (
         <>
@@ -57,12 +63,14 @@ const CollectionStrains = ({ ownProtocolStrains, protocolId }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { protocolId } = ownProps.ownProtocol;
-    const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === protocolId)
+    const { ownProtocolId } = ownProps;
+    const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === ownProtocolId)
+
+    console.log(ownProtocol);
 
     return {
         ownProtocolStrains: ownProtocol.collectionStrains,
-        protocolId: protocolId
+        protocolId: ownProtocolId,
     }
 }
 
