@@ -82,10 +82,8 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
     let [ collectionValue, setCollectionValue ] = useState([]);
     let [ storedCollectionValues, setStoredCollectionValues ] = useState(collectionData);
 
-    console.log(laczAssayProtocols);
     const ownProtocol = laczAssayProtocols.find(item => item.protocolId === protocolId);
     const ownStrain = ownProtocol.collectionStrains.find(strain => strain.strainId === strainId);
-    // console.log(collectionData)
 
     const renderExistingCollectionPoints = () => {
         if (ownStrain.hasOwnProperty('collectionData')) {
@@ -140,7 +138,6 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
 
                 collectionInputs.push(inputObjectTime);
                 setCollectionValue(collectionInputs);
-                console.log(collectionValue);
             }
 
             if(name === 'odValue') {
@@ -151,14 +148,11 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
                 }
 
                 collectionInputs.push(inputObjectOD);
-                console.log(collectionInputs);
                 setCollectionValue(collectionInputs);
-                console.log(collectionValue);
             }
         } else if (targetIndex > -1) {
             collectionInputs[targetIndex][name] = value;
             setCollectionValue(collectionInputs);
-            console.log(collectionValue);
         }
     }
 
@@ -244,19 +238,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
     )
 }
 
-const mapStateToProps = (state, ownProps) => {
-    // const { protocolId ,name} = ownProps;
-
-    // // console.log(currentStrainId, name)
-    // const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === protocolId);
-
-    // console.log(ownProtocol, name)
-    // //Now, for some reason above ownProtocol's collectionStrains have the SAME strain ID. It is verified in MongoDB that this is untrue.
-
-    // const ownStrainCollectionData = ownProtocol.collectionStrains.find(strain => strain.strainId = ownProps.strainId);
-
-
-    // // console.log(ownStrainCollectionData, name, currentStrainId) <-- For some reason, this pulls the wrong 'ownStrainCollectionData'
+const mapStateToProps = (state) => {
 
     return {
         laczAssayProtocols: state.laczAssayProtocols.laczProtocol

@@ -66,8 +66,6 @@ const mapStateToProps = (state, ownProps) => {
     const { ownProtocolId } = ownProps;
     const ownProtocol = state.laczAssayProtocols.laczProtocol.find(item => item.protocolId === ownProtocolId)
 
-    console.log(ownProtocol);
-
     return {
         ownProtocolStrains: ownProtocol.collectionStrains,
         protocolId: ownProtocolId,
