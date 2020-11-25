@@ -58,7 +58,7 @@ const DividerButton = styled.div`
     margin-left: 5px;
     margin-right: 5px;
 `
-const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
+const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection }) => {
 
     let [ collectionValue, setCollectionValue ] = useState([]);
 
@@ -175,7 +175,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
     }
 
     const handleStrainDelete = () => {
-        deleteStrainFromCollection(strainId);
+        deleteStrainFromCollection(strainId, protocolId);
     }
 
 
