@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card from 'react-bootstrap/Card';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -7,7 +7,6 @@ import TimePicker from 'react-time-picker';
 import { v4 as uuid } from 'uuid';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
-import { toNumber } from 'lodash';
 
 //Create a card with an input group--might have to add starting OD600 to the collection input card...
 
@@ -59,28 +58,75 @@ const DividerButton = styled.div`
 `
 const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
 
-    const [ collectionValue, setCollectionValue ] = useState({});
+    let [ collectionValue, setCollectionValue ] = useState([]);
 
-    const handleCollectionTimeChange = (time, number) => {
-        console.log(time, number);
-        if (collectionValue[number]) {
-            setCollectionValue[number] = collectionValue[number].push(time);
+
+    /*
+    Object structuring...
+    [
+        {
+            collectionNum: 1,
+            time: _____,
+            value: -----,
+            
+        },
+
+        {
+            collectionNum: 2,
+            time: _____,
+            value: ______,
+
+        },
+    ]
+
+    */
+
+    const handleOnChange = (object) => {
+        const { name, value, number } = object;
+        let collectionInputs = [...collectionValue]
+
+        if (collectionInputs.length > 0) {
+            for (let i = 0; i < collectionInputs.length; i++) {
+                if (collectionInputs[i].collectionNum === number) {
+                    collectionInputs[i][name] = value;
+                    console.log(collectionInputs);
+                    setCollectionValue(collectionInputs);
+                }
+
+                i++;
+            }
+
+            console.log(collectionValue);
+
         } else {
-            setCollectionValue[number] = [time];
+
+            if (name === 'time') {
+                let inputObjectTime = {
+                    collectionNum: number,
+                    time: value,
+                    value: '',
+                }
+
+                collectionInputs.push(inputObjectTime);
+                setCollectionValue(collectionInputs);
+                console.log(collectionValue);
+            }
+
+            if(name === 'odValue') {
+                let inputObjectOD = {
+                    collectionNum: number,
+                    time: '',
+                    value: value,
+                }
+
+                collectionInputs.push(inputObjectOD);
+                console.log(collectionInputs);
+                setCollectionValue(collectionInputs);
+                console.log(collectionValue);
+            }
+
         }
 
-        console.log('after Time change: ' + collectionValue);
-    }
-
-    const handleOdCollectionChange = (value, number) => {
-        console.log(value, number);
-        if (collectionValue[number]) {
-            setCollectionValue[number] = collectionValue[number].push(value);
-        } else {
-            setCollectionValue[number] = [value];
-        }
-
-        console.log('after OD change: ' + collectionValue);
     }
 
 
@@ -100,16 +146,24 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
                         <StyledLabel>Collected at: </StyledLabel>
                         <TimePicker
                             // value={startTime}
-                            onChange={(time) => handleCollectionTimeChange(time, number)}
+                            onChange={(time) => handleOnChange({name: 'time', value: time, number})}
                             disableClock={true}
                             format='h:m a'
                             key={number}
+                            name='time'
                         />
                     </TimeInputDivider>
                     <InputGroup size='sm' className='mb-3'>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroup-sizing-sm" >OD600</InputGroup.Text>
-                            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" type='number' key={number} onChange={(e) => handleOdCollectionChange(e.target.value, number)} />
+                            <FormControl 
+                                aria-label="Small" 
+                                aria-describedby="inputGroup-sizing-sm" 
+                                type='number' 
+                                key={number} 
+                                name='odValue' 
+                                onChange={(e) => handleOnChange({ name:'odValue', value: e.target.value, number })} 
+                            />
                         </InputGroup.Prepend>
                     </InputGroup>
                 </InputDivider>
