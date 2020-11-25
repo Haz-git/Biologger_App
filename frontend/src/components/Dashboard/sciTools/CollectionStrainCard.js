@@ -83,28 +83,27 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
 
     const handleOnChange = (object) => {
         const { name, value, number } = object;
-        let collectionInputs = [...collectionValue]
+        let collectionInputs = [...collectionValue];
 
-        if (collectionInputs.length > 0) {
-            for (let i = 0; i < collectionInputs.length; i++) {
-                if (collectionInputs[i].collectionNum === number) {
-                    collectionInputs[i][name] = value;
-                    console.log(collectionInputs);
-                    setCollectionValue(collectionInputs);
-                }
+        /*
+            1. Destructures, name, value, and number out.
+            2. Sets a variable to hold state array...
+            3. loops through variable array, and finds the object with the correct collection number--
+            if it DOESN'T find it, create a new object and insert.
+            4. After finding the correct collection number and determining whether to replace a value or--
+            create a new object, check the destructured 'name' value.
+            5. Depending on the name value, place or replace the value accordingly...
 
-                i++;
-            }
+        */
 
-            console.log(collectionValue);
+        const targetIndex = collectionInputs.findIndex(input => input.collectionNum === number);
 
-        } else {
-
+        if (targetIndex === -1) {
             if (name === 'time') {
                 let inputObjectTime = {
                     collectionNum: number,
                     time: value,
-                    value: '',
+                    odValue: '',
                 }
 
                 collectionInputs.push(inputObjectTime);
@@ -116,7 +115,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
                 let inputObjectOD = {
                     collectionNum: number,
                     time: '',
-                    value: value,
+                    odValue: value,
                 }
 
                 collectionInputs.push(inputObjectOD);
@@ -124,9 +123,9 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId }) => {
                 setCollectionValue(collectionInputs);
                 console.log(collectionValue);
             }
-
+        } else if (targetIndex > -1) {
+            collectionInputs[targetIndex][name] = value;
         }
-
     }
 
 
