@@ -30,8 +30,10 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
     let parsedData;
 
     if(ownProtocol.collectionStrains) {
-        let parsedData = [...ownProtocol.collectionStrains];
+        parsedData = [...ownProtocol.collectionStrains];
     }
+
+    console.log(parsedData);
 
     if (parsedData !== undefined) {
         
@@ -39,22 +41,21 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
 
         for (let i = 0; i < parsedData.length; i++) {
 
+            startTime = parsedData[i].startTime.split(':').map(x => parseInt(x));
+
             if (parsedData[i].collectionData) {
 
                 for (let j = 0; j < parsedData[i].collectionData.length; j++) {
-                    if (j === 0) {
-                        parsedData[i].collectionData[j]['timeMinutes'] = '0';
-                        startTime = parsedData[i].collectionData[j].time.split(':').map(x => parseInt(x));
-                    } else {
-                        let timeSplit = parsedData[i].collectionData[j].time.split(':').map(x => parseInt(x));
-                        let minuteDifference = ((timeSplit[0] - startTime[0]) * 60) + timeSplit[1];
-                        parsedData[i].collectionData[j]['timeMinutes'] = minuteDifference.toString();
-                    }
+                    let timeSplit = parsedData[i].collectionData[j].time.split(':').map(x => parseInt(x));
+                    let minuteDifference = ((timeSplit[0] - startTime[0]) * 60) + timeSplit[1];
+                    parsedData[i].collectionData[j]['timeMinutes'] = minuteDifference.toString();
+                    
                 }
 
             }
         }
     }
+
 
 
     const renderCharts = () => {
@@ -64,7 +65,7 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
                     <>
                         <ResContainer>
                             <h3>{item.strainName}</h3>
-                            <ResponsiveContainer aspect={2}>
+                            <ResponsiveContainer aspect={1.8}>
                                 <LineChart width={550} height={400} data={item.collectionData} margin={{ top: 10, right: 20, left: 20, bottom: 40 }}>
                                     <Line type="monotone" dataKey="odValue" stroke="#8884d8" />
                                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
