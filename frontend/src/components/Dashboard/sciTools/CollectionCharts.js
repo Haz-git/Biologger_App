@@ -33,7 +33,6 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
         parsedData = [...ownProtocol.collectionStrains];
     }
 
-    console.log(parsedData);
 
     if (parsedData !== undefined) {
         
