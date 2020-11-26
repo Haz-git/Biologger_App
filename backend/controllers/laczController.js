@@ -120,8 +120,6 @@ exports.addStrainToCollection = handleAsync(async(req, res) => {
         status: 'Success',
         laczAssayProtocols: responseUpdatedProtocolList.laczAssayProtocols,
     });
-
-
 })
 
 exports.deleteStrainFromCollection = handleAsync(async(req,res) => {
