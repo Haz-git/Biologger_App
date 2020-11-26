@@ -8,7 +8,6 @@ import { StyledMainHeader } from './Collection';
 import styled from 'styled-components';
 
 const ChartMainContainer = styled.div`
-    display: block;
     text-align: center;
 `
 
@@ -16,12 +15,23 @@ const ChartContainer = styled.div`
     height: 500px;
     width: 100%;
 `
+const ResContainer = styled.div`
+    width: 100%;
+    height: 500px;
+    padding: 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+`
 
 const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
 
     const ownProtocol = laczAssayProtocols.find(item => item.protocolId === ownProtocolId);
 
-    let parsedData = [...ownProtocol.collectionStrains];
+    let parsedData;
+
+    if(ownProtocol.collectionStrains) {
+        let parsedData = [...ownProtocol.collectionStrains];
+    }
 
     if (parsedData !== undefined) {
         
@@ -52,21 +62,23 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
             return (
                 parsedData.map(item => (
                     <>
-                        <h3>{item.strainName}</h3>
-                        <ResponsiveContainer>
-                            <LineChart width={550} height={400} data={item.collectionData} margin={{ top: 10, right: 20, left: 20, bottom: 40 }}>
-                                <Line type="monotone" dataKey="odValue" stroke="#8884d8" />
-                                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                                <XAxis dataKey="timeMinutes">
-                                    <Label value='Minutes' position='bottom' style={{ textAnchor: 'middle' }} />
-                                </XAxis>
-                                <YAxis dataKey='odValue'>
-                                    <Label value='OD600 Value' position='left' angle='-90' style={{ textAnchor: 'middle' }} />
-                                </YAxis>
-                                <Tooltip />
-                                <Legend verticalAlign="top" height={50}/>
-                            </LineChart>
-                        </ResponsiveContainer>
+                        <ResContainer>
+                            <h3>{item.strainName}</h3>
+                            <ResponsiveContainer aspect={2}>
+                                <LineChart width={550} height={400} data={item.collectionData} margin={{ top: 10, right: 20, left: 20, bottom: 40 }}>
+                                    <Line type="monotone" dataKey="odValue" stroke="#8884d8" />
+                                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                                    <XAxis dataKey="timeMinutes">
+                                        <Label value='Minutes' position='bottom' style={{ textAnchor: 'middle' }} />
+                                    </XAxis>
+                                    <YAxis dataKey='odValue'>
+                                        <Label value='OD600 Value' position='left' angle='-90' style={{ textAnchor: 'middle' }} />
+                                    </YAxis>
+                                    <Tooltip />
+                                    <Legend verticalAlign="top" height={50}/>
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </ResContainer>
                     </>
                 ))
             )
@@ -84,9 +96,7 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
                 <StyledMainHeader>
                     Your Charts
                 </StyledMainHeader>
-                <ChartContainer>
-                    {renderCharts()}
-                </ChartContainer>
+                {renderCharts()}
             </ChartMainContainer>
         </>
     )
