@@ -22,6 +22,7 @@ const MainGridContainer = styled.div`
 const MainInputContainer = styled.div`
     display: block;
     max-width: 550px;
+    justify-self: center;
 `
 
 export const CollectionContainer = styled.div`
@@ -90,7 +91,6 @@ const StrainInput = styled(StyledInput)`
 
 const Collection = ({ ownProtocol, addStrainToCollection }) => {
 
-    const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}];
 
     const [ startTime, setStartTime ] = useState('');
     const [ collectionPoints, setCollectionPoints ] = useState('');
