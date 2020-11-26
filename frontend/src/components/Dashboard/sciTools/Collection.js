@@ -18,10 +18,11 @@ const MainGridContainer = styled.div`
     display: grid;
     grid-template-columns: 45% 55%;
     padding: 20px 20px;
+    
 `
 const MainInputContainer = styled.div`
     display: block;
-    max-width: 550px;
+    max-width: 600px;
     justify-self: center;
 `
 
