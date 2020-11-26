@@ -5,6 +5,8 @@ import TimePicker from 'react-time-picker';
 import CollectionStrains from './CollectionStrains';
 import {v4 as uuid} from 'uuid';
 import { addStrainToCollection } from '../../../redux/userLacZ/LacZActions';
+import CollectionCharts from './CollectionCharts';
+//Re-Chart:
 
 //Styles:
 import { MainHeader, SecondaryHeader, StyledLabel } from '../../signupPage/SignUpForm';
@@ -19,6 +21,7 @@ const MainGridContainer = styled.div`
 `
 const MainInputContainer = styled.div`
     display: block;
+    max-width: 550px;
 `
 
 export const CollectionContainer = styled.div`
@@ -38,6 +41,10 @@ export const CollectionContainer = styled.div`
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 60px 40px rgba(0, 0, 0, 0.12);
 ;
+`
+
+const ChartContainer = styled(CollectionContainer)`
+    background-color: white;
 `
 const DetailInputContainer = styled.div`
     margin-top: 20px;
@@ -82,6 +89,8 @@ const StrainInput = styled(StyledInput)`
 //Render:
 
 const Collection = ({ ownProtocol, addStrainToCollection }) => {
+
+    const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}];
 
     const [ startTime, setStartTime ] = useState('');
     const [ collectionPoints, setCollectionPoints ] = useState('');
@@ -182,6 +191,9 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
                         <CollectionStrains ownProtocolId={protocolId} />
                     </StrainsContainer>
                 </MainInputContainer>
+                <ChartContainer>
+                    <CollectionCharts ownProtocolId={protocolId} />
+                </ChartContainer>
             </MainGridContainer>
         </>
     )
