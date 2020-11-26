@@ -5,6 +5,7 @@ import CollectionStrainCard from './CollectionStrainCard';
 
 //Styles:
 import { StyledMainHeader } from './Collection';
+import Spinner from 'react-bootstrap/Spinner';
 
 const StrainMainContainer = styled.div`
     margin-top: 30px;
@@ -30,7 +31,7 @@ const StrainMainContainer = styled.div`
 const CollectionStrains = ({ ownProtocolStrains, protocolId }) => {
 
     const renderStrains = () => {
-        if (ownProtocolStrains !== undefined) {
+        if (ownProtocolStrains) {
             return (
                 ownProtocolStrains.map(strain => (
                     <>
@@ -46,9 +47,14 @@ const CollectionStrains = ({ ownProtocolStrains, protocolId }) => {
                 ))
             )
         } else {
-            return null;
+            return (
+                <div>
+                    Uh Oh. Nothing's here! Have you entered your strains?
+                </div>
+            )
         }
     }
+
 
     return (
         <>
