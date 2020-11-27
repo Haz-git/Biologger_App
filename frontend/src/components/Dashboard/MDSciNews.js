@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getNews } from '../../redux/sciNews/sciNewsActions';
-
 import { AiOutlineReload } from 'react-icons/ai';
+import styled from 'styled-components';
+
+//Styles:
+
+
+
 
 //Components:
 import SciCarousel from './SciCarousel';
+
+//Render:
 
 const MDSciNews = ({ getNews, news }) => {
 
