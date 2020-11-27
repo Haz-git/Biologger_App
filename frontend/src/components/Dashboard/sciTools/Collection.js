@@ -95,7 +95,8 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
 
     const [ startTime, setStartTime ] = useState('');
     const [ collectionPoints, setCollectionPoints ] = useState('');
-    const [ strainName, setStrainName ] = useState('')
+    const [ strainName, setStrainName ] = useState('');
+    const [ startingOD, setStartingOD ] = useState('');
 
     //id == protocolId for mongoDB.
     const { protocolName, protocolId, timeStamp } = ownProtocol;
@@ -112,10 +113,12 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
         setStrainName(name.target.value);
     }
 
+    const handleStartingODChange = number => {
+        setStartingOD(number);
+    }
+
     const handleCollectionSubmit = e => {
         e.preventDefault();
-
-        console.log(typeof(strainName), typeof(collectionPoints), typeof(startTime));
 
         if (strainName !== '' && collectionPoints !== '' && startTime !== '') {
             const collectionsObject = {
@@ -123,6 +126,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
                 strainName,
                 collectionPoints,
                 startTime,
+                startingOD,
             }
 
             //send collectionsObject to action creator...
@@ -135,6 +139,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
         setStartTime('');
         setCollectionPoints('');
         setStrainName('');
+        setStartingOD('');
     }
 
     return (
@@ -155,6 +160,14 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
                                             format='h:m a'
                                         />
                                     </TimePickerDivider>
+                                </div>
+                                <div>
+                                    <StyledLabelEdit>Starting OD600</StyledLabelEdit>
+                                    <StrainInput
+                                        onChange={handleStartingODChange}
+                                        value={startingOD}
+                                        type='number'
+                                    />
                                 </div>
                                 <div>
                                     <StyledLabelEdit>Collection Points (Per Strain):</StyledLabelEdit>
