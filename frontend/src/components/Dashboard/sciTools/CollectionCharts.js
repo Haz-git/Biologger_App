@@ -7,13 +7,16 @@ import { StyledMainHeader } from './Collection';
 
 import styled from 'styled-components';
 
-const ChartMainContainer = styled.div`
-    text-align: center;
+const ChartHeader = styled.h3`
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+    text-decoration: underline;
+
 `
 
-const ChartContainer = styled.div`
-    height: 500px;
-    width: 100%;
+const ChartMainContainer = styled.div`
+    text-align: center;
 `
 const ResContainer = styled.div`
     width: 100%;
@@ -63,10 +66,10 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols }) => {
                 parsedData.map(item => (
                     <>
                         <ResContainer>
-                            <h3>{item.strainName}</h3>
+                            <ChartHeader>{item.strainName}</ChartHeader>
                             <ResponsiveContainer aspect={1.8}>
                                 <LineChart width={550} height={400} data={item.collectionData} margin={{ top: 10, right: 20, left: 20, bottom: 40 }}>
-                                    <Line type="monotone" dataKey="odValue" stroke="#8884d8" />
+                                    <Line type="monotone" dataKey="odValue" stroke="#8884d8" strokeWidth={2.5} />
                                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                                     <XAxis dataKey="timeMinutes">
                                         <Label value='Minutes' position='bottom' style={{ textAnchor: 'middle' }} />

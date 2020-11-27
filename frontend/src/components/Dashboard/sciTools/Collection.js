@@ -16,7 +16,7 @@ import Form from 'react-bootstrap/Form';
 
 const MainGridContainer = styled.div`
     display: grid;
-    grid-template-columns: 45% 55%;
+    grid-template-columns: 37% 63%;
     padding: 20px 20px;
     
 `
