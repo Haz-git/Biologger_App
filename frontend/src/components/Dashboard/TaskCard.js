@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { deleteTask } from '../../redux/userTaskLog/userTaskLogActions';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
 
 //Icons:
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';
 import { FaUndo } from 'react-icons/fa';
 
-const MainTaskCardContainer = styled.div`
+const MainTaskCardContainer = styled(Card)`
+    display: grid;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding: 5px 5px;
-    border: 1px solid black;
+    padding: 0;
+    grid-template-columns: 85% 15%;
+
 `
 
 const StyledButton = styled.button`
@@ -23,6 +27,18 @@ const StyledButton = styled.button`
         outline: none;
     }
 `
+const RenderContainer = styled(Card.Body)`
+    display: flex;
+    padding: 5px 5px;
+    justify-content: space-between;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+`
+const RenderButtonContainer = styled.div`
+    display: flex;
+`
+
+//Render:
 
 const TaskCard = ({ item, deleteTask }) => {
 
@@ -51,12 +67,14 @@ const TaskCard = ({ item, deleteTask }) => {
         } else if (status === 'complete') {
             return (
                 <>
-                    <StyledButton onClick={handleDelete}>
-                        <FaTrashAlt />
-                    </StyledButton>
-                    <StyledButton onClick={handleRefresh}>
-                        <FaUndo />
-                    </StyledButton>
+                    <RenderButtonContainer>
+                        <StyledButton onClick={handleDelete}>
+                            <FaTrashAlt />
+                        </StyledButton>
+                        <StyledButton onClick={handleRefresh}>
+                            <FaUndo />
+                        </StyledButton>
+                    </RenderButtonContainer>
                 </>
             )
         }
@@ -64,7 +82,7 @@ const TaskCard = ({ item, deleteTask }) => {
 
     const renderColor = () => {
         if (status === 'incomplete') {
-            return '#73232C';
+            return '#943943';
         } else if (status === 'complete') {
             return 'seagreen';
         }
@@ -72,11 +90,11 @@ const TaskCard = ({ item, deleteTask }) => {
 
     return (
         <>
-            <MainTaskCardContainer style={{ backgroundColor: `${renderColor()}`}}>
-                <div>
+            <MainTaskCardContainer>
+                <RenderContainer style={{ backgroundColor: `${renderColor()}`}}>
                     {item}
-                    {renderButton()}
-                </div>
+                </RenderContainer>
+                {renderButton()}
             </MainTaskCardContainer>
         </>
     )
