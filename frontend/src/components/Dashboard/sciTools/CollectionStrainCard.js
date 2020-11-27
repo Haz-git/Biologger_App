@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import { isNull } from 'lodash';
 
 //Create a card with an input group--might have to add starting OD600 to the collection input card...
 
@@ -112,7 +113,10 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
 
 
     const handleOnChange = (object) => {
+
         const { name, value, number } = object;
+
+        console.log(object);
         let collectionInputs = [...collectionValue];
 
         /*
@@ -129,7 +133,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
         const targetIndex = collectionInputs.findIndex(input => input.collectionNum === number);
 
         if (targetIndex === -1) {
-            if (name === 'time') {
+            if (name === 'time' && value !== null) {
                 let inputObjectTime = {
                     collectionNum: number,
                     time: value,
@@ -140,7 +144,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
                 setCollectionValue(collectionInputs);
             }
 
-            if(name === 'odValue') {
+            if(name === 'odValue' && value !== null) {
                 let inputObjectOD = {
                     collectionNum: number,
                     time: '',
@@ -150,7 +154,7 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
                 collectionInputs.push(inputObjectOD);
                 setCollectionValue(collectionInputs);
             }
-        } else if (targetIndex > -1) {
+        } else if (targetIndex > -1 && value !== null) {
             collectionInputs[targetIndex][name] = value;
             setCollectionValue(collectionInputs);
         }
