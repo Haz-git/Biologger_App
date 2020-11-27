@@ -6,15 +6,35 @@ import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
 
 //Styles:
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
+
+const StyledHeader = styled.h2`
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+
+`
 
 const MainTodoContainer = styled.div`
-    background-color: lightyellow;
-    border: 1px solid black;
-    height: 300px;
+    padding: 20px 20px;
+    background-color: white;
+    border: none;
+    height: 400px;
     width: 100%;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+`
+
+const TaskRenderContainer = styled.div`
+    height: 290px;
     overflow-y: scroll;
 `
 
+
+//Render:
 const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     const [task, setTask] = useState('');
@@ -47,23 +67,29 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     return (
         <>
-            <h2>Daily Task Log</h2>
             <MainTodoContainer>
-                <div>
-                    {renderTasks()}
-                </div>
+                <StyledHeader>Daily Task Log</StyledHeader>
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <input 
-                            onChange={handleChange}
-                            type='text' 
-                            placeholder='Add New Task'
-                            value={task}
-                            autoComplete='off'
-                        />
-                        <button type='submit'>Submit</button>
+                        <InputGroup className="mb-3">
+                            <FormControl
+                                placeholder="Add new task"
+                                aria-label="Add new task"
+                                aria-describedby="basic-addon2"
+                                type="text"
+                                value={task}
+                                autoComplete='off'
+                                onChange={handleChange}
+                            />
+                            <InputGroup.Append>
+                                <Button variant="primary" type='submit'>Add</Button>
+                            </InputGroup.Append>
+                        </InputGroup>
                     </form>
                 </div>
+                <TaskRenderContainer>
+                    {renderTasks()}
+                </TaskRenderContainer>
             </MainTodoContainer>
         </>
     )
