@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deleteStrainFromCollection, addCollectionInputDataToStrain } from '../../../redux/userLacZ/LacZActions';
 import styled from 'styled-components';
@@ -6,11 +6,9 @@ import Card from 'react-bootstrap/Card';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import TimePicker from 'react-time-picker';
-import { v4 as uuid } from 'uuid';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
-import { isNull } from 'lodash';
 
 //Create a card with an input group--might have to add starting OD600 to the collection input card...
 
