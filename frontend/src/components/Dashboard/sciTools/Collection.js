@@ -114,7 +114,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
     }
 
     const handleStartingODChange = number => {
-        setStartingOD(number);
+        setStartingOD(number.target.value);
     }
 
     const handleCollectionSubmit = e => {
