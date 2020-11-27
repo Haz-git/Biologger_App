@@ -115,15 +115,22 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
     const handleCollectionSubmit = e => {
         e.preventDefault();
 
-        const collectionsObject = {
-            strainId: uuid(),
-            strainName,
-            collectionPoints,
-            startTime,
-        }
+        console.log(typeof(strainName), typeof(collectionPoints), typeof(startTime));
 
-        //send collectionsObject to action creator...
-        addStrainToCollection(collectionsObject, protocolId);
+        if (strainName !== '' && collectionPoints !== '' && startTime !== '') {
+            const collectionsObject = {
+                strainId: uuid(),
+                strainName,
+                collectionPoints,
+                startTime,
+            }
+
+            //send collectionsObject to action creator...
+            addStrainToCollection(collectionsObject, protocolId);
+
+        } else {
+            return alert('Please input values for the fields before submission.')
+        }
 
         setStartTime('');
         setCollectionPoints('');
