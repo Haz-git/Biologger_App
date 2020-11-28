@@ -13,6 +13,15 @@ import FormControl from 'react-bootstrap/FormControl';
 const StyledHeader = styled.h2`
     font-family: 'Nunito', sans-serif;
     font-size: 25px;
+    margin: 0;
+    background-color:#242746;
+    color: white;
+    padding: 10px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
 
 `
 
@@ -22,10 +31,11 @@ const MainTodoContainer = styled.div`
     border: none;
     height: 400px;
     width: 100%;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
 `
 
 const TaskRenderContainer = styled.div`
@@ -67,8 +77,8 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     return (
         <>
+            <StyledHeader>Daily Task Log</StyledHeader>
             <MainTodoContainer>
-                <StyledHeader>Daily Task Log</StyledHeader>
                 <div>
                     <form onSubmit={handleSubmit}>
                         <InputGroup className="mb-3">
