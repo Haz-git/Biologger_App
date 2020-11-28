@@ -24,13 +24,13 @@ const StyledCheckCircle = styled(CheckCircle)`
     width: 25px;
 `
 const StyledTrash = styled(Trash)`
-    color: #760000;
-    height: 25px; 
-    width: 25px;
+    color: whitesmoke;
+    height: 22px; 
+    width: 22px;
 `
 
 const StyledUndo = styled(Undo)`
-    color: white;
+    color: #545879;
     height: 25px; 
     width: 25px;
 `
@@ -43,7 +43,7 @@ const StyledButton = styled.button`
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     height: 34px;
-    background-color: #943943;
+    background-color: #242746;
     outline: none;
     &:focus {
         outline: none;
@@ -53,19 +53,18 @@ const RenderContainer = styled(Card.Body)`
     display: flex;
     padding: 5px 5px;
     justify-content: space-between;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     color: white;
 `
 const StyledDeleteButton = styled(StyledButton)`
     border-radius: 0;
     flex-grow: 1;
-    background-color: seagreen;
+    background-color:#242746;
 `
 const StyledResetButton = styled(StyledButton)`
-    border-radius: none;
     flex-grow: 1;
-    background-color: seagreen;
+    background-color: #242746;
 `
 
 const RenderButtonContainer = styled.div`
