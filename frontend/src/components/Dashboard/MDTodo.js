@@ -10,7 +10,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 
-const StyledHeader = styled.h2`
+export const StyledHeader = styled.h2`
     font-family: 'Nunito', sans-serif;
     font-size: 25px;
     margin: 0;
@@ -25,7 +25,7 @@ const StyledHeader = styled.h2`
 
 `
 
-const MainTodoContainer = styled.div`
+export const MainTodoContainer = styled.div`
     padding: 20px 20px;
     background-color: white;
     border: none;

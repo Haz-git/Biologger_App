@@ -2,9 +2,30 @@ import React from 'react';
 import Slider from 'react-slick';
 import { connect } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import styled from 'styled-components';
 
 //Components:
 import SciCard from './SciCard';
+import { CaretLeft } from '@styled-icons/boxicons-regular/CaretLeft';
+import { CaretRight } from '@styled-icons/boxicons-regular/CaretRight';
+
+const StyledLeft = styled(CaretLeft)`
+    height: 50px;
+    width: 50px;
+    color: red;
+    &:hover {
+        color: red;
+    }
+`
+const StyledRight = styled(CaretRight)`
+    height: 35px;
+    width: 35px;
+    color: red;
+    &:hover {
+        color: red;
+    }
+`
+
 
 const SciCarousel = ({ news }) => {
     const settings = {
@@ -13,6 +34,8 @@ const SciCarousel = ({ news }) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        nextArrow: <StyledRight />,
+        prevArrow: <StyledLeft />,
     }
 
     const renderNews = () => (
