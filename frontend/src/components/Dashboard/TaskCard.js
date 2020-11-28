@@ -2,27 +2,49 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { deleteTask } from '../../redux/userTaskLog/userTaskLogActions';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
 
 //Icons:
-import { FaCheckCircle } from 'react-icons/fa';
-import { FaTrashAlt } from 'react-icons/fa';
-import { FaUndo } from 'react-icons/fa';
+import { CheckCircle } from '@styled-icons/boxicons-regular/CheckCircle';
+import { Trash } from '@styled-icons/entypo/Trash';
+import { Undo } from '@styled-icons/boxicons-regular/Undo';
 
 const MainTaskCardContainer = styled(Card)`
     display: grid;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 0;
-    grid-template-columns: 85% 15%;
+    grid-template-columns: 80% 20%;
 
+`
+
+const StyledCheckCircle = styled(CheckCircle)`
+    color: seagreen;
+    height: 25px;
+    width: 25px;
+`
+const StyledTrash = styled(Trash)`
+    color: #760000;
+    height: 25px; 
+    width: 25px;
+`
+
+const StyledUndo = styled(Undo)`
+    color: white;
+    height: 25px; 
+    width: 25px;
 `
 
 const StyledButton = styled.button`
     cursor: pointer;
     border: none;
-    margin-left: 10px;
+    border-top-left-radius: none;
+    border-bottom-left-radius: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 34px;
+    background-color: #943943;
+    outline: none;
     &:focus {
         outline: none;
     }
@@ -33,7 +55,19 @@ const RenderContainer = styled(Card.Body)`
     justify-content: space-between;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    color: white;
 `
+const StyledDeleteButton = styled(StyledButton)`
+    border-radius: 0;
+    flex-grow: 1;
+    background-color: seagreen;
+`
+const StyledResetButton = styled(StyledButton)`
+    border-radius: none;
+    flex-grow: 1;
+    background-color: seagreen;
+`
+
 const RenderButtonContainer = styled.div`
     display: flex;
 `
@@ -61,19 +95,19 @@ const TaskCard = ({ item, deleteTask }) => {
         if (status === 'incomplete') {
             return (
                 <StyledButton onClick={handleComplete}>
-                    <FaCheckCircle />
+                    <StyledCheckCircle />
                 </StyledButton>
             )
         } else if (status === 'complete') {
             return (
                 <>
                     <RenderButtonContainer>
-                        <StyledButton onClick={handleDelete}>
-                            <FaTrashAlt />
-                        </StyledButton>
-                        <StyledButton onClick={handleRefresh}>
-                            <FaUndo />
-                        </StyledButton>
+                        <StyledDeleteButton onClick={handleDelete}>
+                            <StyledTrash />
+                        </StyledDeleteButton>
+                        <StyledResetButton onClick={handleRefresh}>
+                            <StyledUndo />
+                        </StyledResetButton>
                     </RenderButtonContainer>
                 </>
             )
