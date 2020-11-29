@@ -120,15 +120,14 @@ export function addCollectionInputDataToStrain(strainId, protocolId, inputArray)
     }
 }
 
-export function addCollectionChartParsedData(strainId, protocolId, newObject) {
+export function addCollectionChartParsedData(protocolId, newArray) {
     return async(dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const response = await api.post('/users/scitools/lacz/collection/updatedParsedData',{
+        const response = await api.post('/users/scitools/lacz/collection/updateParsedData',{
             _id,
-            currentStrainId: strainId,
             currentProtocolId: protocolId,
-            parsedData: newObject,
+            parsedData: newArray,
         })
 
         // dispatch({
