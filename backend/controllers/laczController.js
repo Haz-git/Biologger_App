@@ -167,3 +167,25 @@ exports.addCollectionDataToStrain = handleAsync(async (req, res) => {
         laczAssayProtocols: responseUpdatedProtocolListUpdatedCollectionData.laczAssayProtocols,
     });
 })
+
+exports.updateParsedDataToStrain = handleAsync(async(req, res) => {
+    const { _id, currentProtocolId, parsedData } = req.body;
+
+    let userExistingProtocols = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    const targetIndex = userExistingProtocols.laczAssayProtocols.findIndex(item => item.protocolId === currentProtocolId);
+
+    userExistingProtocols.laczAssayProtocols[targetIndex]['collectionStrains'] = parsedData;
+
+    await User.updateOne({ _id }, { laczAssayProtocols: userExistingProtocols.laczAssayProtocols }, { bypassDocumentValidation: true}, (err) => {
+        if (err) console.log(err);
+    });
+
+    const updatedCollectionStrainData = await User.findOne({ _id }).select('laczAssayProtocols');
+
+    res.status(200).json({
+        status: 'Success',
+        laczAssayProtocols: updatedCollectionStrainData.laczAssayProtocols,
+    });
+
+})
