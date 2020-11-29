@@ -113,4 +113,8 @@ router
     .route('/scitools/lacz/collection/addCollectionData')
     .post(laczController.addCollectionDataToStrain);
 
+router
+    .route('/scitools/lacz/collection/updateParsedData')
+    .post(laczController.updateParsedDataToStrain);
+
 module.exports = router;
