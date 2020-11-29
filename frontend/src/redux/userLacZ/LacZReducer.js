@@ -8,6 +8,7 @@ import {
     USER_REMOVE_STRAIN_FROM_COLLECTION,
     USER_GET_STRAINS_FROM_COLLECTION,
     USER_ADD_COLLECTION_DATA_TO_STRAIN,
+    USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN
 } from './LacZTypes';
 
 const initialState = {};
@@ -31,6 +32,8 @@ export default (state = initialState, action) => {
         case USER_GET_STRAINS_FROM_COLLECTION:
             return {...state, laczProtocol: action.payload};
         case USER_ADD_COLLECTION_DATA_TO_STRAIN:
+            return {...state, laczProtocol: action.payload};
+        case USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN:
             return {...state, laczProtocol: action.payload};
         default:
             return state;
