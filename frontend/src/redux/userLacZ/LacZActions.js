@@ -9,6 +9,7 @@ import {
     USER_REMOVE_STRAIN_FROM_COLLECTION,
     USER_GET_STRAINS_FROM_COLLECTION,
     USER_ADD_COLLECTION_DATA_TO_STRAIN,
+    USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
 } from './LacZTypes';
 
 export function getProtocols() {
@@ -116,5 +117,23 @@ export function addCollectionInputDataToStrain(strainId, protocolId, inputArray)
             type: USER_ADD_COLLECTION_DATA_TO_STRAIN,
             payload: response.data.laczAssayProtocols,
         })
+    }
+}
+
+export function addCollectionChartParsedData(strainId, protocolId, newObject) {
+    return async(dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.post('/users/scitools/lacz/collection/updatedParsedData',{
+            _id,
+            currentStrainId: strainId,
+            currentProtocolId: protocolId,
+            parsedData: newObject,
+        })
+
+        // dispatch({
+        //     type: USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
+        //     payload: response.data.laczAssayProtocols,
+        // })
     }
 }
