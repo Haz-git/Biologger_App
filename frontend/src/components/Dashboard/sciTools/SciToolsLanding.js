@@ -60,9 +60,9 @@ const SciToolsLanding = () => {
                             <StyledCard bg='dark' text='light' style={{ width: '15rem' }}>
                                 <Card.Img variant="top" src={galactPhoto} style={{ width: '100%', height: '200px' }}/>
                                 <Card.Body>
-                                    <Card.Title bg='dark'>Beta-Galactosidase Assay</Card.Title>
+                                    <Card.Title bg='dark'>Lazy Lac-Z</Card.Title>
                                     <Card.Text>
-                                        Otherwise known as the Lac-Z Assay.
+                                        Otherwise known as the Beta-Galactosidase Assay.
                                     </Card.Text>
                                 </Card.Body>
                             </StyledCard>
