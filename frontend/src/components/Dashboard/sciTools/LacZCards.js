@@ -14,7 +14,7 @@ import LacZChart from './LacZChart';
 //Styles:
 const MainCardContainer = styled.div`
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 30% 70%;
     margin-top: 30px;
     background-color: white;
     border: 1px solid white;
@@ -68,10 +68,6 @@ const MainChartRenderingContainer = styled.div`
     background-color: white;
 `
 
-const ChartRenderedContainer = styled.div`
-    display: grid;
-    grid-template-columns: 80% 20%;
-`
 
 //Render:
 const LacZCards = ({
@@ -193,21 +189,12 @@ const LacZCards = ({
         if (ownStrain.lacZData !== null && ownStrain.lacZData !== undefined) {
             return (
                 <>
-                    <ChartRenderedContainer>
-                        <div>
-                            <LacZChart
-                                ownStrain={ownStrain}
-                                minute={minute}
-                                dilutionFactor={dilutionFactor}
-                                volume={volume}
-                            />
-                        </div>
-                        <div>
-                            Information:
-                            B-gal Units:
-                            RSQ...etc.
-                        </div>
-                    </ChartRenderedContainer>
+                    <LacZChart
+                        ownStrain={ownStrain}
+                        minute={minute}
+                        dilutionFactor={dilutionFactor}
+                        volume={volume}
+                    />
                 </>
             )
         } else {
