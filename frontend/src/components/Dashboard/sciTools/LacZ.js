@@ -19,12 +19,11 @@ const LacZ = ({ laczAssayProtocols, match:{params:{id}} }) => {
 
     const ownProtocol = laczAssayProtocols.find(x => x.protocolId === id);
 
-    console.log(ownProtocol)
-
     const renderLacZCards = () => {
         if (ownProtocol.collectionStrains !== null && ownProtocol.collectionStrains !== undefined) {
             return ownProtocol.collectionStrains.map(strain => (
                 <LacZCards
+                    minute={1.333333}
                     dilutionFactor={5}
                     volume={0.05}
                     ownProtocolId={ownProtocol.protocolId}
