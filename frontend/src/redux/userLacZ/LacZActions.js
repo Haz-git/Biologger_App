@@ -130,9 +130,9 @@ export function addCollectionChartParsedData(protocolId, newArray) {
             parsedData: newArray,
         })
 
-        // dispatch({
-        //     type: USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
-        //     payload: response.data.laczAssayProtocols,
-        // })
+        dispatch({
+            type: USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
+            payload: response.data.laczAssayProtocols,
+        })
     }
 }
