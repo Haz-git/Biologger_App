@@ -60,6 +60,16 @@ const BadgeDivider = styled.div`
     margin-bottom: 5px;
 `
 
+const InputGroupContainer = styled.div`
+    text-align: center;
+    padding: 10px 10px;
+    width: 270px;
+`
+
+const InputGroupHeaderContainer = styled.div`
+    text-align: center;
+`
+
 const StyledExistingCData = styled.div`
     color: #242746;
 `
@@ -92,32 +102,34 @@ const LacZCards = ({
 
         return collectionData.map((collection, index) => (
             <>
-                <div>
-                    <h4>Collection {collection.collectionNum} </h4>
-                    <label>Collected OD600: {collection.odValue} </label>
-                </div>
-                <InputGroup size='sm' className='mb-3'>
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="inputGroup-sizing-sm" >OD420</InputGroup.Text>
-                        <FormControl 
-                            aria-label="Small" 
-                            aria-describedby="inputGroup-sizing-sm" 
-                            type='number' 
-                            name='odValue420'
-                            onChange={(e) => handleOnChange({ name:'odValue420', value: e.target.value, number: index + 1})} 
-                        />
-                    </InputGroup.Prepend>
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="inputGroup-sizing-sm" >OD550</InputGroup.Text>
-                        <FormControl 
-                            aria-label="Small" 
-                            aria-describedby="inputGroup-sizing-sm" 
-                            type='number' 
-                            name='odValue550'
-                            onChange={(e) => handleOnChange({ name:'odValue550', value: e.target.value, number: index + 1 })} 
-                        />
-                    </InputGroup.Prepend>
-                </InputGroup>
+                <InputGroupContainer>
+                    <InputGroupHeaderContainer>
+                        <h4>Collection {collection.collectionNum} </h4>
+                        <label>Collected OD600: {collection.odValue} </label>
+                    </InputGroupHeaderContainer>
+                    <InputGroup size='sm' className='mb-3'>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-sizing-sm" >OD420</InputGroup.Text>
+                            <FormControl 
+                                aria-label="Small" 
+                                aria-describedby="inputGroup-sizing-sm" 
+                                type='number' 
+                                name='odValue420'
+                                onChange={(e) => handleOnChange({ name:'odValue420', value: e.target.value, number: index + 1})} 
+                            />
+                        </InputGroup.Prepend>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-sizing-sm" >OD550</InputGroup.Text>
+                            <FormControl 
+                                aria-label="Small" 
+                                aria-describedby="inputGroup-sizing-sm" 
+                                type='number' 
+                                name='odValue550'
+                                onChange={(e) => handleOnChange({ name:'odValue550', value: e.target.value, number: index + 1 })} 
+                            />
+                        </InputGroup.Prepend>
+                    </InputGroup>
+                </InputGroupContainer>
             </>
         ))
     }
