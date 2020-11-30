@@ -79,7 +79,6 @@ const DividerButton = styled.div`
 const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection, addCollectionInputDataToStrain, collectionData, laczAssayProtocols }) => {
 
     let [ collectionValue, setCollectionValue ] = useState([]);
-    let [ storedCollectionValues, setStoredCollectionValues ] = useState(collectionData);
 
     const ownProtocol = laczAssayProtocols.find(item => item.protocolId === protocolId);
     const ownStrain = ownProtocol.collectionStrains.find(strain => strain.strainId === strainId);
@@ -113,8 +112,6 @@ const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId,
     const handleOnChange = (object) => {
 
         const { name, value, number } = object;
-
-        console.log(object);
         let collectionInputs = [...collectionValue];
 
         /*
