@@ -49,7 +49,7 @@ const ResContainer = styled.div`
     filter: drop-shadow(0 0 1px black);
 `
 
-const StyledBadge = styled(Badge)`
+export const StyledBadge = styled(Badge)`
     padding: 6px 6px;
     margin-top: 5px;
     margin-left: 5px;
