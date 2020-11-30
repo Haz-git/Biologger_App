@@ -117,4 +117,9 @@ router
     .route('/scitools/lacz/collection/updateParsedData')
     .post(laczController.updateParsedDataToStrain);
 
+router
+    .route('/scitools/lacz/laczdata/addLacZData')
+    .post(laczController.addLacZDataToStrain);
+
+
 module.exports = router;
