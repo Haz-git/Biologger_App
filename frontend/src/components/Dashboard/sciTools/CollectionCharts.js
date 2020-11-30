@@ -106,7 +106,6 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                     pairArray.push(Math.log2(Number(parsedData[k].collectionData[y].timeMinutes)));
                     pairArray.push(Number(parsedData[k].collectionData[y].odValue));
 
-                    console.log(pairArray);
 
                     linearRegressionArray.push(pairArray);
                 }
@@ -118,15 +117,13 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                 const rSquaredValue = rSquared(linearRegressionArray, regressionLine);
 
 
-                parsedData[k]['linearRegressionValue'] = m;
+                parsedData[k]['linearRegressionValueCollection'] = m;
                 parsedData[k]['doublingTime'] = (m * 100).toFixed(1);
-                parsedData[k]['rSquaredValue'] = rSquaredValue.toFixed(3);
+                parsedData[k]['rSquaredValueCollection'] = rSquaredValue.toFixed(3);
 
             }
         }
     }
-
-    console.log(parsedData);
 
     //Automatically dispatch parsedData to save item:
 
@@ -170,7 +167,7 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                                     Calculated Doubling Time: {item.doublingTime} minutes
                                 </StyledBadge>
                                 <StyledBadge variant='dark'>
-                                    rSquaredValue: {item.rSquaredValue}
+                                    rSquaredValue: {item.rSquaredValueCollection}
                                 </StyledBadge>
                                 <StyledBadge variant='dark'>
                                     Starting OD600: {item.startingOD} |||
