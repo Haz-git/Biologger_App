@@ -4,6 +4,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label, R
 import { StyledMainHeader } from './Collection';
 import Badge from 'react-bootstrap/Badge';
 import { addCollectionChartParsedData } from '../../../redux/userLacZ/LacZActions';
+import { Link } from 'react-router-dom';
 
 //Statistics:
 import { linearRegression, linearRegressionLine, rSquared } from 'simple-statistics';
@@ -12,6 +13,8 @@ import { linearRegression, linearRegressionLine, rSquared } from 'simple-statist
 
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
+import { ArrowRightSquareFill } from '@styled-icons/bootstrap/ArrowRightSquareFill';
+
 
 const ChartMainContainer = styled.div`
     text-align: center;
@@ -24,9 +27,16 @@ const MainHeaderDivider = styled.div`
     justify-content: center;
 `
 
+const StyledMainButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
+`
+
 const StyledButton = styled(Button)`
     display: flex;
     justify-content: flex-end;
+    margin-left: 6px;
+    margin-right: 6px;
 `
 
 const ChartHeader = styled.h3`
@@ -56,6 +66,12 @@ export const StyledBadge = styled(Badge)`
     margin-right: 5px;
     background-color: #2d2d7d;
 ` 
+const TravelIcon = styled(ArrowRightSquareFill)`
+    height: 18px;
+    width: 18px;
+    margin-left: 7px;
+    vertical-align: middle;
+`
 
 //Render:
 
@@ -206,7 +222,15 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                 <MainHeaderDivider>
                     <StyledMainHeader>
                         Your Charts
-                        <StyledButton variant="primary" size='sm' onClick={handleUpdateDatabase}>Send Charts To Database</StyledButton>
+                        <StyledMainButtonContainer>
+                            <StyledButton variant="primary" size='sm' onClick={handleUpdateDatabase}>Send Charts To Database</StyledButton>
+                            <Link to={`/scitools/lazylacz/lacz/${ownProtocolId}`}>
+                                <StyledButton variant='secondary' size='sm'>
+                                    Lac-Z Data
+                                    <TravelIcon />
+                                </StyledButton>
+                            </Link>
+                        </StyledMainButtonContainer>
                     </StyledMainHeader>
                 </MainHeaderDivider>
                 {renderCharts()}
