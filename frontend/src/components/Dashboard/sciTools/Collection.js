@@ -22,6 +22,23 @@ const MainGridContainer = styled.div`
     display: grid;
     grid-template-columns: 37% 63%;
     padding: 20px 20px;
+    column-gap: 10px;
+
+    @media (min-width: 1800px) {
+        grid-template-columns: 30% 70%;
+    }
+
+    @media (min-width: 2000px) {
+        grid-template-columns: 27% 73%;
+    }
+
+    @media (min-width: 2200px) {
+        grid-template-columns: 23% 77%;
+    }
+
+    @media (min-width: 2500px) {
+        grid-template-columns: 20% 80%;
+    }
     
 `
 const MainInputContainer = styled.div`
@@ -57,7 +74,7 @@ const ChartContainer = styled(CollectionContainer)`
     background-color: white;
     padding-left: 20px;
     padding-right: 20px;
-    justify-self: center;
+
 
     @media (max-width: 1350px) {
         max-width: 90%;
