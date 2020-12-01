@@ -21,13 +21,17 @@ import { BackspaceFill } from '@styled-icons/bootstrap/BackspaceFill';
 const MainGridContainer = styled.div`
     display: grid;
     grid-template-columns: 37% 63%;
-    padding: 15px 15px;
+    padding: 20px 20px;
     
 `
 const MainInputContainer = styled.div`
     display: block;
-    max-width: 500px;
+    max-width: 450px;
     justify-self: center;
+
+    @media (min-width: 1600px) {
+        max-width: 600px;
+    }
 `
 
 export const CollectionContainer = styled.div`
@@ -51,7 +55,18 @@ export const CollectionContainer = styled.div`
 
 const ChartContainer = styled(CollectionContainer)`
     background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
     justify-self: center;
+
+    @media (max-width: 1350px) {
+        max-width: 90%;
+    }
+
+    @media (min-width: 1600px) {
+        max-width: 100%;
+        justify-self: stretch
+    }
 `
 const DetailInputContainer = styled.div`
     margin-top: 20px;

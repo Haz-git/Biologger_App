@@ -50,13 +50,12 @@ const ChartHeader = styled.h3`
 
 const ResContainer = styled.div`
     width: 100%;
-    height: 500px;
     padding: 10px 10px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: white;
     border-radius: 5px;
-    filter: drop-shadow(0 0 1px black);
+    filter: drop-shadow(0 0 2.7px black);
 `
 
 export const StyledBadge = styled(Badge)`
