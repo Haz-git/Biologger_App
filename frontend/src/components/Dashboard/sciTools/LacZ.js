@@ -7,10 +7,25 @@ import { Link } from 'react-router-dom';
 //Styles:
 import { MainHeader, SecondaryHeader } from '../../signupPage/SignUpForm';
 import { Button } from 'react-bootstrap';
+import { ArrowLeftSquare } from '@styled-icons/bootstrap/ArrowLeftSquare';
 
 const LacZMainContainer = styled.div`
     padding: 20px 20px;
     text-align: center;
+`
+
+const HeaderContainer = styled.div`
+    text-align: center;
+`
+
+const ReturnButtonContainer = styled.div`
+    display: flex;
+`
+
+const ArrowIcon = styled(ArrowLeftSquare)`
+    height: 21px;
+    width: 21px;
+    margin-right: 7px;
 `
 
 //Render:
@@ -49,9 +64,17 @@ const LacZ = ({ laczAssayProtocols, match:{params:{id}} }) => {
 
     return (
         <LacZMainContainer>
-            <div>
+            <HeaderContainer>
                 <MainHeader>LacZ Data Collection</MainHeader>
-            </div>
+                <ReturnButtonContainer>
+                    <Link to='/scitools/lazylacz'>
+                        <Button variant='dark'>
+                            <ArrowIcon />
+                            My Protocols
+                        </Button>
+                    </Link>
+                </ReturnButtonContainer>
+            </HeaderContainer>
             <div>
                 {renderLacZCards()}
             </div>
