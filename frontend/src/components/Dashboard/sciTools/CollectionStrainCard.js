@@ -52,6 +52,14 @@ const StyledExistingCData = styled(StyledLabel)`
     margin-bottom: 0px;
     padding: 5px 5px;
 
+    @media (max-width: 1350px) {
+        font-size: 12px;
+    }
+
+    @media (max-width: 1200px) {
+        font-size: 8px;
+    }
+
 `
 
 const BadgeDivider = styled.div`
@@ -71,10 +79,19 @@ const SpacerButton = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 10px;
+
+    @media (max-width: 1250px) {
+        display: inline-grid;
+    }
 `
 const DividerButton = styled.div`
     margin-left: 5px;
     margin-right: 5px;
+
+    @media (max-width: 1250px) {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 `
 const CollectionStrainCard = ({ name, pointNum, startTime, strainId, protocolId, deleteStrainFromCollection, addCollectionInputDataToStrain, collectionData, laczAssayProtocols }) => {
 

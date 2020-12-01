@@ -49,6 +49,11 @@ const MainInputContainer = styled.div`
     @media (min-width: 1600px) {
         max-width: 600px;
     }
+
+    @media (max-width: 1350px) {
+        max-width: 90%;
+        justify-self: center;
+    }
 `
 
 export const CollectionContainer = styled.div`
@@ -74,10 +79,12 @@ const ChartContainer = styled(CollectionContainer)`
     background-color: white;
     padding-left: 20px;
     padding-right: 20px;
+    justify-self: stretch;
 
 
     @media (max-width: 1350px) {
-        max-width: 90%;
+        max-width: 80%;
+        justify-self: center;
     }
 
     @media (min-width: 1600px) {
