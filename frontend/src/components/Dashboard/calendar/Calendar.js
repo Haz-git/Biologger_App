@@ -6,7 +6,7 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
-import { addNewEvent, getEvents, deleteEvent, updateEvent } from '../../redux/userCalendar/calendarActions';
+import { addNewEvent, getEvents, deleteEvent, updateEvent } from '../../../redux/userCalendar/calendarActions';
 import { MdCancel } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 

@@ -16,10 +16,10 @@ import Logout from '../components/Logout';
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
 
 //Authenticated Components:
-import MainDashboard from '../components/Dashboard/MainDashboard';
-import Calendar from './Dashboard/Calendar';
+import MainDashboard from '../components/Dashboard/homePage/MainDashboard';
+import Calendar from './Dashboard/calendar/Calendar';
 import Meetings from '../components/Dashboard/Meetings';
-import Messenger from '../components/Dashboard/Messenger';
+import Messenger from '../components/Dashboard/messenger/Messenger';
 import CreateBioNote from '../components/Dashboard/bioNotes/CreateBioNote';
 import NewBioNote from '../components/Dashboard/bioNotes/NewBioNote';
 import ReadBioNote from '../components/Dashboard/bioNotes/ReadBioNote';

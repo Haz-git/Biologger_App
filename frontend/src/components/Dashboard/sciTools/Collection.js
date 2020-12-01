@@ -83,7 +83,7 @@ const ChartContainer = styled(CollectionContainer)`
 
 
     @media (max-width: 1350px) {
-        max-width: 80%;
+        max-width: 100%;
         justify-self: center;
     }
 

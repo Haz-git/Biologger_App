@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addNewTask, getTasks } from '../../redux/userTaskLog/userTaskLogActions';
+import { addNewTask, getTasks } from '../../../redux/userTaskLog/userTaskLogActions';
 import TaskCard from './TaskCard';
 import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';

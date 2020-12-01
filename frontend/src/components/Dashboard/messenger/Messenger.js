@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import io from 'socket.io-client';
-import { restoreChats, updateStateAfterNewMessage } from '../../redux/chatMessaging/chatActions';
+import { restoreChats, updateStateAfterNewMessage } from '../../../redux/chatMessaging/chatActions';
 import ChatCard from './ChatCard.js';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';

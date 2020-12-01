@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { deleteTask } from '../../redux/userTaskLog/userTaskLogActions';
+import { deleteTask } from '../../../redux/userTaskLog/userTaskLogActions';
 import Card from 'react-bootstrap/Card'
 
 //Icons:

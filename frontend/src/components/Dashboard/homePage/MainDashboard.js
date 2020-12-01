@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getJWT } from '../../utils/jwthelper';
+import { getJWT } from '../../../utils/jwthelper';
 import styled from 'styled-components';
 
 //Main Dashboard Components:
