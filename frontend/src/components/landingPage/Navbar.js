@@ -77,7 +77,7 @@ const DashboardNavbar = styled.div`
     z-index: 1; 
     top: 0; 
     left: 0;
-    background-color: #0C0F31; 
+    background-color: #1c1e37; 
     overflow-x: hidden; 
     padding-top: 20px;
     text-align: center;
@@ -113,10 +113,10 @@ const StyledHomeHeart = styled(HomeHeart)`
     margin-bottom: 3px;
     height: 31px;
     width: 31px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
@@ -124,10 +124,10 @@ const StyledVideoCamera = styled(VideoCamera)`
     margin-bottom: 3px;
     height: 30px;
     width: 27px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
@@ -135,10 +135,10 @@ const StyledChatIcon = styled(ChatLeftDotsFill)`
     margin-bottom: 3px;
     height: 30px;
     width: 27px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
@@ -146,10 +146,10 @@ const StyledCalendar = styled(Calendar)`
     margin-bottom: 3px;
     height: 35px;
     width: 35px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
@@ -157,10 +157,10 @@ const StyledFolder = styled(Folder)`
     margin-bottom: 3px;
     height: 30px;
     width: 30px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
@@ -168,20 +168,20 @@ const StyledTools = styled(Tools)`
     margin-bottom: 3px;
     height: 30px;
     width: 30px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 const StyledLogOut = styled(LogOut)`
     margin-bottom: 3px;
     height: 30px;
     width: 32px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
@@ -198,11 +198,11 @@ const StyledLinkLabel = styled.label`
     font-family: 'Nunito', sans-serif;
     font-size: 10px;
     margin-top: 0px;
-    color: #ADD6FF;
+    color: #ffffff;
     cursor: pointer;
 
     ${DashboardLink}:hover & {
-        color: #ee6c4d;
+        color: #ADD6FF;
     }
 `
 
