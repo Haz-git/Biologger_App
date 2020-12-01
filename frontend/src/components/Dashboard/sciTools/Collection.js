@@ -6,6 +6,9 @@ import CollectionStrains from './CollectionStrains';
 import {v4 as uuid} from 'uuid';
 import { addStrainToCollection } from '../../../redux/userLacZ/LacZActions';
 import CollectionCharts from './CollectionCharts';
+import { Link } from 'react-router-dom';
+
+
 //Re-Chart:
 
 //Styles:
@@ -13,16 +16,17 @@ import { MainHeader, SecondaryHeader, StyledLabel } from '../../signupPage/SignU
 import { StyledInput } from './LazyLacZ';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { BackspaceFill } from '@styled-icons/bootstrap/BackspaceFill';
 
 const MainGridContainer = styled.div`
     display: grid;
     grid-template-columns: 37% 63%;
-    padding: 20px 20px;
+    padding: 15px 15px;
     
 `
 const MainInputContainer = styled.div`
     display: block;
-    max-width: 600px;
+    max-width: 500px;
     justify-self: center;
 `
 
@@ -47,6 +51,7 @@ export const CollectionContainer = styled.div`
 
 const ChartContainer = styled(CollectionContainer)`
     background-color: white;
+    justify-self: center;
 `
 const DetailInputContainer = styled.div`
     margin-top: 20px;
@@ -59,15 +64,17 @@ const StrainsContainer = styled.div`
 
 `
 
+const StyledReturnIcon = styled(BackspaceFill)`
+    height: 22px;
+    width: 22px;
+    margin-right: 5px;
+`
+
 export const StyledMainHeader = styled(MainHeader)`
     font-size: 30px;
     margin: 0px;
     font-weight: 600;
     padding: 0;
-`
-const StyledSecondaryHeader = styled(SecondaryHeader)`
-    margin: 0;
-    font-size: 20px;
 `
 
 const TimePickerDivider = styled.div`
@@ -198,6 +205,12 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
                                     />
                                 </div>
                                 <div>
+                                    <Link to='/scitools/lazylacz'>
+                                        <StyledButton variant='secondary'>
+                                            <StyledReturnIcon />
+                                            Return
+                                        </StyledButton>
+                                    </Link>
                                     <StyledButton variant="primary" type='submit'>
                                         Submit
                                     </StyledButton>
