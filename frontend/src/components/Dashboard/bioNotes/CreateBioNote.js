@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import { getBioNotes } from '../../redux/userBioNote/bionoteActions';
+import { getBioNotes } from '../../../redux/userBioNote/bionoteActions';
 import styled from 'styled-components';
 
 //Components:

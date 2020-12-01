@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { deleteBioNote } from '../../redux/userBioNote/bionoteActions';
+import { deleteBioNote } from '../../../redux/userBioNote/bionoteActions';
 
 const DeleteBioNote = ({ match:{ params:{ id } }, deleteBioNote }) => {
 

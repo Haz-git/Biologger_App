@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { createNewBioNote } from '../../redux/userBioNote/bionoteActions';
+import { createNewBioNote } from '../../../redux/userBioNote/bionoteActions';
 import { Link } from 'react-router-dom';
 
 //Editor imports:
 import { Editor } from 'react-draft-wysiwyg';
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorState, convertToRaw } from 'draft-js';
 
 //Styles:

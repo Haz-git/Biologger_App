@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { updateBioNote } from '../../redux/userBioNote/bionoteActions';
+import { updateBioNote } from '../../../redux/userBioNote/bionoteActions';
 
 //Editor Imports:
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
