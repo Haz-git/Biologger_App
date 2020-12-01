@@ -5,7 +5,6 @@ import CollectionStrainCard from './CollectionStrainCard';
 
 //Styles:
 import { StyledMainHeader } from './Collection';
-import Spinner from 'react-bootstrap/Spinner';
 
 const StrainMainContainer = styled.div`
     margin-top: 30px;
